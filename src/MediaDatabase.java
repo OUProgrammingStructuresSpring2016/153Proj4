@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,7 +37,7 @@ public class MediaDatabase {
 	 * @param	title	The exact token to search the movie database titles for.
 	 * @return			The list of movies matching the exact token.
 	 */
-	public List<Movie> searchMovieTitleExact(String title){
+	public ArrayList<Movie> searchMovieTitleExact(String title){
 		
 	}
 	
@@ -45,7 +46,7 @@ public class MediaDatabase {
 	 * @param	title	The token to search the movie database titles for.
 	 * @return			The list of movies containing the token.
 	 */
-	public List<Movie> searchMovieTitlePartial(String title){
+	public ArrayList<Movie> searchMovieTitlePartial(String title){
 		
 	}
 	
@@ -54,7 +55,7 @@ public class MediaDatabase {
 	 * @param	year	The token to search the movie database years for.
 	 * @return			The list of movies whose years match the input token.
 	 */
-	public List<Movie> searchMovieYear(String year){
+	public ArrayList<Movie> searchMovieYear(String year){
 		
 	}
 	
@@ -64,7 +65,7 @@ public class MediaDatabase {
 	 * @param	year	The token to search the movie database years for.
 	 * @return			The list of movies matching both inputs.
 	 */
-	public List<Movie> searchMovieBoth(String title, String year){
+	public ArrayList<Movie> searchMovieBoth(String title, String year){
 		
 	}
 	
@@ -74,7 +75,7 @@ public class MediaDatabase {
 	 * @param	includeEpTitles		Determines whether to include episode titles in the search.
 	 * @return			The list of TV series matching the exact token.
 	 */
-	public List<TVSeries> searchTVTitleExact(String title, boolean includeEpTitles){
+	public ArrayList<TVSeries> searchTVTitleExact(String title, boolean includeEpTitles){
 		
 	}
 	
@@ -84,7 +85,7 @@ public class MediaDatabase {
 	 * @param	includeEpTitles		Determines whether to include episode titles in the search.
 	 * @return			The list of TV series containing the token.
 	 */
-	public List<TVSeries> searchTVTitlePartial(String title, boolean includeEpTitles){
+	public ArrayList<TVSeries> searchTVTitlePartial(String title, boolean includeEpTitles){
 		
 	}
 	
@@ -93,7 +94,7 @@ public class MediaDatabase {
 	 * @param	title	The year to search the database for.
 	 * @return			The list of TV series matching the input.
 	 */
-	public List<TVSeries> searchTVYear(String year){
+	public ArrayList<TVSeries> searchTVYear(String year){
 		
 	}
 	/**
@@ -102,7 +103,7 @@ public class MediaDatabase {
 	 * @param	includeEpTitles		Determines whether to include episode titles in the search.
 	 * @return			The list of TV series matching the exact token.
 	 */
-	public List<TVSeries> searchTVBoth(String year, boolean includeEpTitles){
+	public ArrayList<TVSeries> searchTVBoth(String year, boolean includeEpTitles){
 		
 	}
 	

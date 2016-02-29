@@ -11,7 +11,7 @@ import java.util.Comparator;
  */
 
 
-public class Media {
+public class Media implements Comparable<Media>{
 
 	/** Stores the title of the media. */
 	protected String title;
@@ -24,7 +24,8 @@ public class Media {
 	 *  @param	year	The release year of the new media object
 	 */
 	public Media(String title, String year){
-		
+		this.title = title;
+		this.year = year;
 	}
 	
 	/**
@@ -54,5 +55,23 @@ public class Media {
 	public void setYear(String year){
 		this.year = year;
 	}
+	
+	public int compareTo(Media otherMedia) {	
+		return this.title.compareTo(otherMedia.getTitle());	
+	}
+	
+	static class YearComparator implements Comparator<Media>{
+
+		public int compare(Media med1, Media med2) {
+			try{ // turn year String into int, then compare the ints
+				return Math.max(Integer.parseInt(med1.getYear().substring(0,5)), Integer.parseInt(med2.getYear().substring(0, 5)));
+			}
+			catch(NumberFormatException e){ // i.e., one Media's year == "????"
+				return 0;
+			}
+		}
+
+	}
+
 
 }

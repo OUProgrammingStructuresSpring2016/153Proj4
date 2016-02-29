@@ -8,7 +8,7 @@
  * </P>
  * @version 1.0
  */
-public class TVEpisode {
+public class TVEpisode{
 	
 	/** Stores the name of the episode. */
 	private String episodeName;
@@ -21,12 +21,25 @@ public class TVEpisode {
 	
 	/** Constructs a new TV episode object given all of the necessary information. */
 	public TVEpisode(String epName, String seasonNums, String year){
-		
+		this.episodeName= epName;
+		this.seasonAndEpisodeNums = seasonNums;
+		this.yearAired= year;
+	}
+	
+	public String getEpisodeName(){	
+		return this.episodeName;
+	}
+	
+	public String getYearAired(){
+		return this.yearAired;
 	}
 	
 	/** toString method, because you'll never know when you need it */
 	public String toString(){
+		if(!seasonAndEpisodeNums.isEmpty())
+			return "{" + episodeName + " " + seasonAndEpisodeNums + "}" + yearAired;
 		
+		return "{" + episodeName + "}" + yearAired;
 	}
-
+	
 }

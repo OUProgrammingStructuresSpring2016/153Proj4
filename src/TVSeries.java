@@ -18,23 +18,26 @@ public class TVSeries extends Media{
 	/** Stores the entirety of the TV series's episodes. */
 	private ArrayList<TVEpisode> episodes;
 	
+	
 	/** Constructs a new TVSeries given its title, release year, and its running years. */
+	
 	public TVSeries(String title, String year, String runningYears){
-		
+		super(title, year);
+		this.runningYears = runningYears;
 	}
 	
 	/**
 	 * @return 	The String containing the information for the series' running years.
 	 */
 	public String getRunningYears(){
-		
+		return runningYears;
 	}
 	
 	/**
 	 * @return 	The ArrayList of all the episodes in the series.
 	 */
 	public ArrayList<TVEpisode> getEpisodes(){
-		
+		return episodes;
 	}
 	
 	/**
@@ -42,17 +45,30 @@ public class TVSeries extends Media{
 	 * @param newYears
 	 */
 	public void setRunningYears(String newYears){
-		
+		this.runningYears = newYears;
 	}
 	
 	/**
 	 * @param newEp The episode to add to the TV series list.
 	 */
 	public void addEpisode(TVEpisode newEp){
-		
+		episodes.add(newEp);
 	}
 	
+	/**
+	 * @return     gives a string of the title, year, and running years of the series
+	 */
 	public String toString(){
 		
+		//TODO: Fix later.
+		
+		String allEps = "";
+		
+		for(TVEpisode e : episodes){
+			allEps += e.toString() + "\n";
+		}
+		
+		return title + " " + year + " " + runningYears + allEps;
 	}
+	
 }
