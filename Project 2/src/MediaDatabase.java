@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,11 +17,11 @@ public class MediaDatabase {
 	public List<Media> database;
 	
 	/** The list to return with search results from the various search methods below. */
-	private List<Media> resultList;
+	private List<Movie> resultList = new ArrayList<Movie>();
 	
 	/** Constructs an empty database. */
 	public MediaDatabase(){
-		
+		List<Media> database = new ArrayList<Media>();
 	}
 	
 	/**
@@ -28,7 +29,7 @@ public class MediaDatabase {
 	 * @param	newMedia	The new media object to add to the database.
 	 */
 	public void addMedia(Media newMedia){
-		
+			database.add(newMedia);
 	}
 	
 	/**
@@ -36,8 +37,13 @@ public class MediaDatabase {
 	 * @param	title	The exact token to search the movie database titles for.
 	 * @return			The list of movies matching the exact token.
 	 */
-	public List<Movie> searchMovieTitleExact(String title){
-		
+	public List<Movie> searchMovieTitleExact(String title){	
+		for(int i = 0; i < database.size(); i++){
+			if(database.get(i).getTitle().equals(title)){
+				resultList.add((Movie) database.get(i));
+			}
+		}
+		return resultList;
 	}
 	
 	/**
@@ -46,7 +52,12 @@ public class MediaDatabase {
 	 * @return			The list of movies containing the token.
 	 */
 	public List<Movie> searchMovieTitlePartial(String title){
-		
+		for(int i = 0; i < database.size(); i++){
+			if(database.get(i).getTitle().contains(title)){
+				resultList.add((Movie) database.get(i));
+			}
+		}
+		return resultList;
 	}
 	
 	/**
@@ -55,7 +66,12 @@ public class MediaDatabase {
 	 * @return			The list of movies whose years match the input token.
 	 */
 	public List<Movie> searchMovieYear(String year){
-		
+		for(int i = 0; i < database.size(); i++){
+			if(database.get(i).getYear().equals(year)){
+				resultList.add((Movie) database.get(i));
+			}
+		}
+		return resultList;
 	}
 	
 	/**
@@ -65,7 +81,14 @@ public class MediaDatabase {
 	 * @return			The list of movies matching both inputs.
 	 */
 	public List<Movie> searchMovieBoth(String title, String year){
-		
+		for(int i = 0; i < database.size(); i++){
+			if(database.get(i).getTitle().equals(title)){
+				if(database.get(i).getYear().equals(title)){
+					resultList.add((Movie) database.get(i));
+				}
+			}
+		}
+		return resultList;
 	}
 	
 	/**
@@ -75,7 +98,22 @@ public class MediaDatabase {
 	 * @return			The list of TV series matching the exact token.
 	 */
 	public List<TVSeries> searchTVTitleExact(String title, boolean includeEpTitles){
+		List<TVSeries> list = new ArrayList<TVSeries>();
 		
+		if(includeEpTitles){
+			for(int i = 0; i < database.size(); i++){
+				if(database.get(i).getTitle().equals(title)){
+					list.add((TVSeries) database.get(i));
+				}
+			}
+		}else{
+			for(int i = 0; i < database.size(); i++){
+				if(database.get(i).getTitle().equals(title)){
+					if((database.get(i)).getEpisodeName().contains("{")){
+						list.add((TVSeries) database.get(i));
+					}
+				}
+		}
 	}
 	
 	/**
