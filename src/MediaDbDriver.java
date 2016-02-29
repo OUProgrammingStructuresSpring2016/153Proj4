@@ -134,9 +134,13 @@ public class MediaDbDriver {
 				
 				if(epData.contains("{{")){ // if episode was suspended
 					
+<<<<<<< HEAD
+					String epTitle = 
+=======
 					String epTitle = epData.substring(epData.indexOf("{"), epData.lastIndexOf("}")+1 );
 					
 					newSeries.addEpisode(new TVEpisode(epTitle, "", "????"));
+>>>>>>> master
 					
 				}
 				
