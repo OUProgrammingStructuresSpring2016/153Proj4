@@ -26,7 +26,6 @@ public class MediaDbDriver {
 		
 		/** The name of the text file to be specified by the user */
 		String fileName;
-
 	}
 	/**
 	 * Reads a text file containing only movies into the media database.

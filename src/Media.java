@@ -24,7 +24,12 @@ public class Media implements Comparable<Media>{
 	 *  @param	year	The release year of the new media object
 	 */
 	public Media(String title, String year){
+<<<<<<< HEAD
 		
+=======
+		this.title = title;
+		this.year = year;
+>>>>>>> master
 	}
 	
 	/**

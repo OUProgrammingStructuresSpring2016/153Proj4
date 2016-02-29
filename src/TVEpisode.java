@@ -26,6 +26,17 @@ public class TVEpisode{
 		this.yearAired= year;
 	}
 	
+<<<<<<< HEAD
+=======
+	public String getEpisodeName(){	
+		return this.episodeName;
+	}
+	
+	public String getYearAired(){
+		return this.yearAired;
+	}
+	
+>>>>>>> master
 	/** toString method, because you'll never know when you need it */
 	public String toString(){
 		if(!seasonAndEpisodeNums.isEmpty())
