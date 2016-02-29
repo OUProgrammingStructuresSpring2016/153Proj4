@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+=======
+>>>>>>> a2d451c94836185cacd08487a4efc708c4c69b94
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,7 +89,11 @@ public class MediaDatabase {
 	public List<Movie> searchMovieBoth(String title, String year){
 		for(int i = 0; i < database.size(); i++){
 			if(database.get(i).getTitle().equals(title)){
+<<<<<<< HEAD
 				if(database.get(i).getYear().equals(year)){
+=======
+				if(database.get(i).getYear().equals(title)){
+>>>>>>> a2d451c94836185cacd08487a4efc708c4c69b94
 					resultList.add((Movie) database.get(i));
 				}
 			}
@@ -101,6 +108,7 @@ public class MediaDatabase {
 	 * @return			The list of TV series matching the exact token.
 	 */
 	public List<TVSeries> searchTVTitleExact(String title, boolean includeEpTitles){
+<<<<<<< HEAD
 			for(int i = 0; i < database.size(); i++){
 				if(database.get(i).getTitle().equals(title)){
 					if(includeEpTitles){;
@@ -112,6 +120,24 @@ public class MediaDatabase {
 					}
 				}
 			}
+=======
+		List<TVSeries> list = new ArrayList<TVSeries>();
+		
+		if(includeEpTitles){
+			for(int i = 0; i < database.size(); i++){
+				if(database.get(i).getTitle().equals(title)){
+					list.add((TVSeries) database.get(i));
+				}
+			}
+		}else{
+			for(int i = 0; i < database.size(); i++){
+				if(database.get(i).getTitle().equals(title)){
+					if((database.get(i)).getEpisodeName().contains("{")){
+						list.add((TVSeries) database.get(i));
+					}
+				}
+		}
+>>>>>>> a2d451c94836185cacd08487a4efc708c4c69b94
 	}
 	
 	/**
