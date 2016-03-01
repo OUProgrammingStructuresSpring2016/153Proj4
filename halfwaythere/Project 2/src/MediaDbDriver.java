@@ -50,6 +50,8 @@ public class MediaDbDriver {
 		
 		mdb.sortDatabase();
 		
+		
+		
 		String matchInput = ""; // instantiated to quiet compiler. To be overwritten below before use.
 		String yearInput = "";
 		String includeTitles = "";
@@ -57,7 +59,7 @@ public class MediaDbDriver {
 		String yearsToSearch = "";
 		String sortInput = "";
 		
-		while(true){
+		while(true){ // loops until user exits
 			
 			System.out.println("Search (m)ovies, (s)eries, or (b)oth?");
 			
@@ -71,7 +73,7 @@ public class MediaDbDriver {
 			
 			System.out.println("Search  (t)itle, (y)ear, or (b)oth?");
 			
-			// what to search by
+			// which parameters to search the databases for
 			String searchInput = inputReader.readLine();
 			
 			if(!searchInput.equals("t") && !searchInput.equals("y") && !searchInput.equals("b")){ // if invalid input

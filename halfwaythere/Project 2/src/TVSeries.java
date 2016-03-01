@@ -106,7 +106,7 @@ public ArrayList<TVEpisode> searchForEpisodeTitleExact(String title){
 		String allEps = "";
 		
 		for(TVEpisode e : episodes){
-			allEps += e.toString() + "\n";
+			allEps += "EPISODE:" + e.toString() + "\n";
 		}
 		
 		return title + " " + year + " " + runningYears + allEps;

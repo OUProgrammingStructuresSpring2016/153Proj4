@@ -37,7 +37,7 @@ public class TVEpisode implements Comparable<TVEpisode>{
 	/** toString method, because you'll never know when you need it */
 	public String toString(){
 		if(!seasonAndEpisodeNums.isEmpty())
-			return "{" + episodeName + " " + seasonAndEpisodeNums + "}" + yearAired;
+			return  (episodeName + seasonAndEpisodeNums + yearAired);
 		
 		return "{" + episodeName + "}" + yearAired;
 	}
