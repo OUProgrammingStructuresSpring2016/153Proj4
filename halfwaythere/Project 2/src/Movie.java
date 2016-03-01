@@ -36,7 +36,7 @@ public class Movie extends Media{
 	 */
 	public String toString(){
 		//TODO review this prints correctly
-		return title + " (" + year + ") " + additionalInfo + " " + year.substring(0,5);
+		return title + " (" + year + ") " + additionalInfo + " " + year;
  	}
 
 	

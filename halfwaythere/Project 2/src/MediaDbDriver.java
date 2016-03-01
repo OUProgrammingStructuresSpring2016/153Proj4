@@ -48,16 +48,79 @@ public class MediaDbDriver {
 		
 		fr.close();
 		
+		mdb.sortDatabase();
+		
+		String matchInput = ""; // instantiated to quiet compiler. To be overwritten below before use.
+		String yearInput = "";
+		String includeTitles = "";
+		String titleToSearch = "";
+		String yearsToSearch = "";
+		String sortInput = "";
+		
 		while(true){
 			
 			System.out.println("Search (m)ovies, (s)eries, or (b)oth?");
 			
-			String input = inputReader.readLine();
+			// which databases to search
+			String dbInput = inputReader.readLine();
+			
+			if(!dbInput.equals("m")&& !dbInput.equals("s")&& !dbInput.equals("b") ){ // if invalid input
+				System.out.println("Please enter a valid response (m, s, or b).");
+				continue;
+			}
+			
+			System.out.println("Search  (t)itle, (y)ear, or (b)oth?");
+			
+			// what to search by
+			String searchInput = inputReader.readLine();
+			
+			if(!searchInput.equals("t") && !searchInput.equals("y") && !searchInput.equals("b")){ // if invalid input
+				System.out.println("Please enter a valid response (t, y, or b). Returning to beginning.");
+				continue;
+			}
+			
+			if(!searchInput.equals("y")){ // if t or b was chosen
+				System.out.println("Search for (e)xact or (p)artial title matches?");
+				matchInput = inputReader.readLine();
+				if(!matchInput.equals("e") && !matchInput.equals("p")){ // if invalid input
+					System.out.println("Please enter a valid response (e or p). Returning to beginning.");
+					continue;
+				}
+			}
+			
+			if( !dbInput.equals("m") && !searchInput.equals("y")){ // user answered either s or b on first question and t or b to the second
+				System.out.println("Include episode titles in search and output? (y/n)");
+				includeTitles = inputReader.readLine();
+				if(!includeTitles.equals("y") && !includeTitles.equals("n") ){ // if invalid input
+					System.out.println("Please enter valid input (y or n). Returning to beginning.");
+					continue;
+				}
+			}
+			
+			if(!searchInput.equals("y")){ // if user answered t or b to second question
+				System.out.println("Title to search for?");
+				titleToSearch = inputReader.readLine();
+			}
+			
+			if(!searchInput.equals("t")){
+				System.out.println("Year (or years) to search for?");
+				yearsToSearch = inputReader.readLine();
+			}
+			
+			
+			System.out.println("Sort by (t)itle or (y)ear?");
+			sortInput = inputReader.readLine();
 			
 			
 			
 			
 			
+			
+			
+			
+			
+			
+			mdb.clearResultsList();
 			
 		}
 		
