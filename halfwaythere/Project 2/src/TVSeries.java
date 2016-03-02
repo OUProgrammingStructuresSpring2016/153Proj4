@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * Project #2
@@ -65,6 +64,7 @@ public class TVSeries extends Media{
 	 */
 	public void addEpisode(TVEpisode newEp){
 		episodes.add(newEp);
+	//	System.out.println(newEp); // test line.
 	}
 	
 	
@@ -92,24 +92,38 @@ public ArrayList<TVEpisode> searchForEpisodeTitleExact(String title){
 			}	
 		}
 		
+		
 		return results;
 		
 	}
+
+public ArrayList<TVEpisode> searchForEpisodeYear(String year){
+	
+	ArrayList<TVEpisode> results = new ArrayList<TVEpisode>();
+	
+	for(int i=0; i<episodes.size(); i++){
+		if(episodes.get(i).getYearAired().contains(year)){
+			results.add(episodes.get(i));
+		}	
+	}
+	
+	return results;
+}
 	
 	/**
-	 * @return     gives a string of the title, year, and running years of the series
+	 * @return     The TVSeries object, complete with episodes.
 	 */
 	public String toString(){
 		
-		//TODO: Fix later.
+		// LATER IS NOW!
 		
 		String allEps = "";
 		
 		for(TVEpisode e : episodes){
-			allEps += "EPISODE:" + e.toString() + "\n";
+			allEps += e.toString() + "\n";
 		}
 		
-		return title + " " + year + " " + runningYears + allEps;
+		return "SERIES: " + title + " " + year + " " + runningYears + "\n" + allEps;
 	}
 	
 }

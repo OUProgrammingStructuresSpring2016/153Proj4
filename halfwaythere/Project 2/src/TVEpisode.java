@@ -19,11 +19,14 @@ public class TVEpisode implements Comparable<TVEpisode>{
 	/** Stores the year that the episode aired on. */
 	private String yearAired;
 	
+	private String tvSeriesName;
+	
 	/** Constructs a new TV episode object given all of the necessary information. */
-	public TVEpisode(String epName, String seasonNums, String year){
+	public TVEpisode(String epName, String seasonNums, String year, String tvSeriesName){
 		this.episodeName= epName;
 		this.seasonAndEpisodeNums = seasonNums;
 		this.yearAired= year;
+		this.tvSeriesName = tvSeriesName;
 	}
 	
 	public String getEpisodeName(){	
@@ -36,10 +39,10 @@ public class TVEpisode implements Comparable<TVEpisode>{
 	
 	/** toString method, because you'll never know when you need it */
 	public String toString(){
-		if(!seasonAndEpisodeNums.isEmpty())
-			return  (episodeName + seasonAndEpisodeNums + yearAired);
+		//if(!seasonAndEpisodeNums.isEmpty())
+			return  ("EPISODE: " + tvSeriesName + ": " + episodeName + " (" + yearAired + ")");
 		
-		return "{" + episodeName + "}" + yearAired;
+		//return  episodeName + " " + yearAired;
 	}
 
 	public int compareTo(TVEpisode arg0) {

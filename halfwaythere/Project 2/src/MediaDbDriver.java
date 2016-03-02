@@ -50,14 +50,15 @@ public class MediaDbDriver {
 		
 		mdb.sortDatabase();
 		
+//		System.out.println(mdb.searchTVBoth("", "2015", false) );
 		
 		
 		String matchInput = ""; // instantiated to quiet compiler. To be overwritten below before use.
-		String yearInput = "";
+		String yearsToSearch = "";
 		String includeTitles = "";
 		String titleToSearch = "";
-		String yearsToSearch = "";
 		String sortInput = "";
+		boolean includeEpTitles = false;
 		
 		while(true){ // loops until user exits
 			
@@ -97,6 +98,7 @@ public class MediaDbDriver {
 					System.out.println("Please enter valid input (y or n). Returning to beginning.");
 					continue;
 				}
+				includeEpTitles = includeTitles.equals("y");
 			}
 			
 			if(!searchInput.equals("y")){ // if user answered t or b to second question
@@ -112,15 +114,86 @@ public class MediaDbDriver {
 			
 			System.out.println("Sort by (t)itle or (y)ear?");
 			sortInput = inputReader.readLine();
+			if(!sortInput.equals("t") && !sortInput.equals("y")){
+				System.out.println("Really? You got this far and still failed? Take it from the top.");
+				continue;
+			}
 			
 			
+				switch(dbInput){
+				case "m":
+					switch(searchInput){
+					case "t":
+						switch(matchInput){
+						case "e":
+							System.out.println(mdb.searchMovieTitleExact(titleToSearch)); // m, t, e
+							break;
+						case "p":
+							System.out.println(mdb.searchMovieTitlePartial(titleToSearch)); // m, t, p
+							break;
+						}
+						break;
+					case "y":
+						System.out.println(mdb.searchMovieYear(yearsToSearch)); // m, y
+						break;
+					case "b":
+						System.out.println(mdb.searchMovieBoth(titleToSearch, yearsToSearch)); // m, b
+						break;
+					}
+					break;
+				case "s":
+					switch(searchInput){
+					case "t":
+						switch(matchInput){
+						case "e":
+							System.out.println(mdb.searchTVTitleExact(titleToSearch, includeEpTitles)); // s, t, e
+							break;
+						case "p":
+							System.out.println(mdb.searchTVTitlePartial(titleToSearch, includeEpTitles)); // s, t, p
+							break;
+						}
+						break;
+					case "y":
+						System.out.println(mdb.searchTVYear(yearsToSearch)); // s, y
+						break;
+					case "b":
+						System.out.println(mdb.searchTVBoth(titleToSearch, yearsToSearch, includeEpTitles)); // s, b
+						break;
+						
+					}
+					break;
+				case "b":
+					switch(searchInput){
+					case "t":
+						switch(matchInput){
+						case "e":
+							System.out.println(mdb.searchMovieTitleExact(titleToSearch));			// b, t, e
+							System.out.println(mdb.searchTVTitleExact(titleToSearch, includeEpTitles));
+							break;
+						case "p":
+							System.out.println(mdb.searchMovieTitlePartial(titleToSearch)); 	  // b, t, p
+							System.out.println(mdb.searchTVTitlePartial(titleToSearch, includeEpTitles));
+							break;
+						}
+						break;
+					case "y":
+						System.out.println(mdb.searchMovieYear(yearsToSearch)); // b, y
+						System.out.println(mdb.searchTVYear(yearsToSearch));
+						break;
+					case "b":
+						System.out.println(mdb.searchMovieBoth(titleToSearch, yearsToSearch)); // b, b
+						System.out.println(mdb.searchTVBoth(titleToSearch, yearsToSearch, includeEpTitles));
+						break;
+					}
+					break;
+				}
 			
 			
-			
-			
-			
-			
-			
+			System.out.println("Save search results as text file? (y/n)");
+			if(inputReader.readLine().equals("y")){
+				System.out.println("What would you like to name the text file?");
+				mdb.outputToFile(sortInput.equals("y"), inputReader.readLine());
+			}
 			
 			mdb.clearResultsList();
 			
@@ -224,7 +297,7 @@ public class MediaDbDriver {
 			if (currentLine.contains("-?") || currentLine.contains("-1")
 					|| currentLine.contains("-2")) {
 
-				int endOfTitleIndex = currentLine.indexOf("\"", 1);
+				int endOfTitleIndex = currentLine.indexOf("\"", 2);
 
 				// ignore first quotation mark and find the second to determine
 				// title
@@ -247,14 +320,14 @@ public class MediaDbDriver {
 
 				String epData = currentLine.substring(currentLine.indexOf("{"));
 
-				String epYear = currentLine.substring(currentLine.length() - 5);
+				String epYear = currentLine.substring(currentLine.length() - 4);
 
 				if (epData.contains("{{")) { // if episode was suspended
 
 					String epTitle = epData.substring(epData.indexOf("{"),
 							epData.lastIndexOf("}") + 1);
 
-					newSeries.addEpisode(new TVEpisode(epTitle, "", "????"));
+					newSeries.addEpisode(new TVEpisode(epTitle, "", "????", newSeries.getTitle()));
 
 				}
 
@@ -267,7 +340,7 @@ public class MediaDbDriver {
 							epData.lastIndexOf(")"));
 
 					newSeries
-							.addEpisode(new TVEpisode("", seasonEpNums, epYear));
+							.addEpisode(new TVEpisode("{no title}", seasonEpNums, epYear, newSeries.getTitle()));
 
 				} else if (epData.contains("#")) { // episode has ALL info
 
@@ -279,14 +352,14 @@ public class MediaDbDriver {
 							epData.lastIndexOf(")"));
 
 					newSeries.addEpisode(new TVEpisode(epTitle, seasonNums,
-							epYear));
+							epYear, newSeries.getTitle()));
 
 				} else { // episode has no season/episode number
 
 					String epTitle = epData.substring(1,
 							epData.lastIndexOf("}"));
 
-					newSeries.addEpisode(new TVEpisode(epTitle, "", epYear));
+					newSeries.addEpisode(new TVEpisode(epTitle, "", epYear, newSeries.getTitle()));
 
 				}
 

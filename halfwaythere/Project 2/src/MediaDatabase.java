@@ -83,6 +83,9 @@ public class MediaDatabase {
 				resultList.add(movieDatabase.get(i));
 			}
 		}
+		if(resultList.isEmpty())
+			System.out.println("No matches found.");
+		
 		return resultList;
 	}
 
@@ -114,8 +117,15 @@ public class MediaDatabase {
 	public List<Media> searchMovieBoth(String title, String year) {
 
 		searchMovieTitlePartial(title);
-		searchMovieYear(year);
-
+		
+		for(int g=0; g<movieDatabase.size(); g++){
+			if(!movieDatabase.get(g).getYear().contains(year))
+				resultList.remove(movieDatabase.get(g));
+		}
+		
+		if(resultList.isEmpty())
+			System.out.println("No matches found.");
+		
 		return resultList;
 	}
 
@@ -148,6 +158,10 @@ public class MediaDatabase {
 					tempSeries.addEpisode(e.searchForEpisodeTitleExact(title)
 							.get(0)); // Since there should only be one matching
 					resultList.add(tempSeries);
+					return resultList;
+				}
+				else{
+					System.out.println("No matches found.");
 					return resultList;
 				}
 			}
@@ -184,6 +198,9 @@ public class MediaDatabase {
 					resultList.add(o);
 				}
 			}
+			if(resultList.isEmpty())
+				System.out.println("No matches found.");
+			
 			return resultList;
 		}
 		else { // including episode titles
@@ -203,6 +220,8 @@ public class MediaDatabase {
 					}
 				}
 			}
+			if(resultList.isEmpty())
+				System.out.println("No matches found.");
 		return resultList;
 		}
 	}
@@ -216,9 +235,22 @@ public class MediaDatabase {
 	 */
 	public List<Media> searchTVYear(String year) {
 		for (int i = 0; i < tvDatabase.size(); i++) {
-			if (tvDatabase.get(i).getYear().contains(year)) {
+			if (tvDatabase.get(i).getYear().contains(year)) { // if series aired during given year, add whole series
 				resultList.add(tvDatabase.get(i));
 			}
+			else{ // otherwise, search each episode in the current series for matching year
+				ArrayList<TVEpisode> matches = new ArrayList<TVEpisode>();
+				matches = tvDatabase.get(i).searchForEpisodeYear(year); // searches all episode titles
+					if (!matches.isEmpty()) {
+						TVSeries tempSeries = new TVSeries(tvDatabase.get(i), true);
+						for(int l=0; l<matches.size(); l++){ // add all matching
+						tempSeries.addEpisode(matches.get(l));	
+						}
+						resultList.add(tempSeries);
+						return resultList;
+					}
+				
+				}
 		}
 		return resultList;
 	}
@@ -235,8 +267,15 @@ public class MediaDatabase {
 	 */
 	public List<Media> searchTVBoth(String title, String year, boolean includeEpTitles) {
 		
-		searchTVTitlePartial(title, includeEpTitles);
+		//TODO: FIX THIS METHOD. IT DOESN'T WORK
+		
 		searchTVYear(year);
+		
+		List<Media> titleMatchList = new ArrayList<Media>();
+		
+		titleMatchList = searchTVTitlePartial(year, includeEpTitles);
+		
+		resultList.retainAll(titleMatchList);
 		
 		return resultList;
 	}
@@ -256,10 +295,10 @@ public class MediaDatabase {
 	 *            year.
 	 * @throws IOException 
 	 */
-	public void outputToFile(boolean doSortByYear) throws IOException {
+	public void outputToFile(boolean doSortByYear, String fileName) throws IOException {
 		if (doSortByYear) {
 			FileOutputStream fileOutputStream = new FileOutputStream(
-					"userFile.txt");
+					fileName);
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(
 					fileOutputStream);
 			objectOutputStream.writeObject(resultList);
