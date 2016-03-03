@@ -115,13 +115,13 @@ public ArrayList<TVEpisode> searchForEpisodeYear(String year){
 	 */
 	public String toString(){
 		
-		// LATER IS NOW!
-		
 		String allEps = "";
 		
 		for(TVEpisode e : episodes){
 			allEps += e.toString() + "\n";
 		}
+		
+		allEps = allEps.trim();
 		
 		return "SERIES: " + title + " " + year + " " + runningYears + "\n" + allEps;
 	}

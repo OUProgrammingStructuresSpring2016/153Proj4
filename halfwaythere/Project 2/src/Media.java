@@ -64,10 +64,15 @@ public class Media implements Comparable<Media>{
 
 		public int compare(Media med1, Media med2) {
 			try{ // turn year String into int, then compare the ints
-				return Math.max(Integer.parseInt(med1.getYear().substring(0,5)), Integer.parseInt(med2.getYear().substring(0, 5)));
+				return Integer.compare(Integer.parseInt(med1.getYear().substring(0,4)), Integer.parseInt(med2.getYear().substring(0, 4)));
 			}
 			catch(NumberFormatException e){ // i.e., one Media's year == "????"
-				return 0;
+				if(med1.getYear().contains("?"))
+					return 1;
+				else if(med2.getYear().contains("?"))
+					return -1;
+				else 
+					return 0;
 			}
 		}
 

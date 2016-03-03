@@ -1,4 +1,6 @@
+import java.io.BufferedWriter;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -60,10 +62,10 @@ public class MediaDatabase {
 		int indexOfMovie = Collections.binarySearch(movieDatabase, new Movie(
 				title, "", ""));
 
-		if (indexOfMovie < 0) {
-			System.out.println("Movie not found.");
-			return resultList;
-		}
+	//	if (indexOfMovie < 0) {
+	//		System.out.println("Movie not found.");
+	//		return resultList;
+	//	}
 
 		resultList.add(movieDatabase.get(indexOfMovie));
 		return resultList;
@@ -285,6 +287,18 @@ public class MediaDatabase {
 		resultList = new ArrayList<Media>();
 
 	}
+	
+	public String resultListToString(){
+		
+		String output = "";
+		
+		for(int q=0; q<resultList.size(); q++){
+			output += resultList.get(q) + "\n";
+		}
+		
+		return output;
+		
+	}
 
 	/**
 	 * Writes the output of the search function to a text file, allowing the
@@ -295,15 +309,20 @@ public class MediaDatabase {
 	 *            year.
 	 * @throws IOException 
 	 */
-	public void outputToFile(boolean doSortByYear, String fileName) throws IOException {
+	public void outputToFile(boolean doSortByYear, String fileName, String textToOutput) throws IOException {
+		
+		FileWriter filer = new FileWriter(fileName);
+		BufferedWriter bw = new BufferedWriter(filer);
+		
 		if (doSortByYear) {
-			FileOutputStream fileOutputStream = new FileOutputStream(
-					fileName);
-			ObjectOutputStream objectOutputStream = new ObjectOutputStream(
-					fileOutputStream);
-			objectOutputStream.writeObject(resultList);
-			objectOutputStream.close();
+			Media.YearComparator comp = new Media.YearComparator();
+			resultList.sort(comp);
 		}
+		// no else statement needed, already sorted by title
+		bw.write(textToOutput);
+		bw.write(resultListToString() );
+		bw.close();
+		
 		return;
 	}
 

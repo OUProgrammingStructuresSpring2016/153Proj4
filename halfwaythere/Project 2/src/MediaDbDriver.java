@@ -54,7 +54,7 @@ public class MediaDbDriver {
 		
 		
 		String matchInput = ""; // instantiated to quiet compiler. To be overwritten below before use.
-		String yearsToSearch = "";
+		String yearsToSearch = "Any";
 		String includeTitles = "";
 		String titleToSearch = "";
 		String sortInput = "";
@@ -119,6 +119,58 @@ public class MediaDbDriver {
 				continue;
 			}
 			
+			String output = "SEARCHED ";
+			
+			if(dbInput.equals("b")){
+				if(includeEpTitles)
+					output += "MOVIES, TV SERIES, AND TV EPISODES";
+				else
+					output += "MOVIES AND TV SERIES";
+				
+				output += "\n TITLE: " + titleToSearch + "\n YEARS: " + yearsToSearch;
+		
+				if(sortInput.equals("y"))
+					output += "\n SORTED BY YEAR";
+				else
+					output += "\n SORTED BY TITLE";
+			}
+			else if(dbInput.equals("m")){
+				
+				output += "MOVIES \n";
+				
+				if(matchInput.equals("p"))
+					output += "PARTIAL TITLE: " + titleToSearch;
+				else
+					output += "EXACT TITLE: " + titleToSearch;
+				
+				output += "\nYEARS: " + yearsToSearch;
+				
+				if(sortInput.equals("y"))
+					output += "\nSORTED BY YEAR";
+				else
+					output += "\nSORTED BY TITLE";
+			}
+			else{
+				if(includeEpTitles)
+					output += "TV SERIES AND TV EPISODES";
+				else
+					output += "TV SERIES";
+				if(matchInput.equals("p"))
+					output += "PARTIAL TITLE: " + titleToSearch;
+				else
+					output += "\nEXACT TITLE: " + titleToSearch;
+				
+				output += "\nYEARS: " + yearsToSearch;
+				
+				if(sortInput.equals("y"))
+					output += "\nSORTED BY YEAR";
+				else
+					output += "\nSORTED BY TITLE";
+			}
+			
+			output += "\n=============================================================================";
+			
+			System.out.println(output);
 			
 				switch(dbInput){
 				case "m":
@@ -126,18 +178,18 @@ public class MediaDbDriver {
 					case "t":
 						switch(matchInput){
 						case "e":
-							System.out.println(mdb.searchMovieTitleExact(titleToSearch)); // m, t, e
+							mdb.searchMovieTitleExact(titleToSearch); // m, t, e
 							break;
 						case "p":
-							System.out.println(mdb.searchMovieTitlePartial(titleToSearch)); // m, t, p
+							mdb.searchMovieTitlePartial(titleToSearch); // m, t, p
 							break;
 						}
 						break;
 					case "y":
-						System.out.println(mdb.searchMovieYear(yearsToSearch)); // m, y
+						mdb.searchMovieYear(yearsToSearch); // m, y
 						break;
 					case "b":
-						System.out.println(mdb.searchMovieBoth(titleToSearch, yearsToSearch)); // m, b
+						mdb.searchMovieBoth(titleToSearch, yearsToSearch); // m, b
 						break;
 					}
 					break;
@@ -146,18 +198,18 @@ public class MediaDbDriver {
 					case "t":
 						switch(matchInput){
 						case "e":
-							System.out.println(mdb.searchTVTitleExact(titleToSearch, includeEpTitles)); // s, t, e
+							mdb.searchTVTitleExact(titleToSearch, includeEpTitles); // s, t, e
 							break;
 						case "p":
-							System.out.println(mdb.searchTVTitlePartial(titleToSearch, includeEpTitles)); // s, t, p
+							mdb.searchTVTitlePartial(titleToSearch, includeEpTitles); // s, t, p
 							break;
 						}
 						break;
 					case "y":
-						System.out.println(mdb.searchTVYear(yearsToSearch)); // s, y
+						mdb.searchTVYear(yearsToSearch); // s, y
 						break;
 					case "b":
-						System.out.println(mdb.searchTVBoth(titleToSearch, yearsToSearch, includeEpTitles)); // s, b
+						mdb.searchTVBoth(titleToSearch, yearsToSearch, includeEpTitles); // s, b
 						break;
 						
 					}
@@ -167,32 +219,33 @@ public class MediaDbDriver {
 					case "t":
 						switch(matchInput){
 						case "e":
-							System.out.println(mdb.searchMovieTitleExact(titleToSearch));			// b, t, e
-							System.out.println(mdb.searchTVTitleExact(titleToSearch, includeEpTitles));
+							mdb.searchMovieTitleExact(titleToSearch);			// b, t, e
+							mdb.searchTVTitleExact(titleToSearch, includeEpTitles);
 							break;
 						case "p":
-							System.out.println(mdb.searchMovieTitlePartial(titleToSearch)); 	  // b, t, p
-							System.out.println(mdb.searchTVTitlePartial(titleToSearch, includeEpTitles));
+							mdb.searchMovieTitlePartial(titleToSearch); 	  // b, t, p
+							mdb.searchTVTitlePartial(titleToSearch, includeEpTitles);
 							break;
 						}
 						break;
 					case "y":
-						System.out.println(mdb.searchMovieYear(yearsToSearch)); // b, y
-						System.out.println(mdb.searchTVYear(yearsToSearch));
+						mdb.searchMovieYear(yearsToSearch); // b, y
+						mdb.searchTVYear(yearsToSearch);
 						break;
 					case "b":
-						System.out.println(mdb.searchMovieBoth(titleToSearch, yearsToSearch)); // b, b
-						System.out.println(mdb.searchTVBoth(titleToSearch, yearsToSearch, includeEpTitles));
+						mdb.searchMovieBoth(titleToSearch, yearsToSearch); // b, b
+						mdb.searchTVBoth(titleToSearch, yearsToSearch, includeEpTitles);
 						break;
 					}
 					break;
 				}
 			
+				System.out.println(mdb.resultListToString());
 			
 			System.out.println("Save search results as text file? (y/n)");
 			if(inputReader.readLine().equals("y")){
 				System.out.println("What would you like to name the text file?");
-				mdb.outputToFile(sortInput.equals("y"), inputReader.readLine());
+				mdb.outputToFile(sortInput.equals("y"), inputReader.readLine(), (output + mdb.resultListToString()) );
 			}
 			
 			mdb.clearResultsList();
