@@ -20,7 +20,6 @@ public class TVSeries extends Media{
 	
 	
 	/** Constructs a new TVSeries given its title, release year, and its running years. */
-	
 	public TVSeries(String title, String year, String runningYears){
 		super(title, year);
 		this.runningYears = runningYears;

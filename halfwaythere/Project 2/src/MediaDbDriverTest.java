@@ -7,9 +7,9 @@ public class MediaDbDriverTest extends TestCase {
 
 	public void testSearchFunction1() {
 		MediaDatabase db = new MediaDatabase();
-		List<Media> test1 = db.searchMovieTitleExact("Test Title");
 		ArrayList<Media> test1Check = new ArrayList<Media>();
 		test1Check.add(new Movie("Test Title", "1990", ""));
+		List<Media> test1 = db.searchMovieTitleExact("Test Title");
 		assertEquals(test1.toString(), test1Check.toString());
 	}
 
@@ -25,7 +25,7 @@ public class MediaDbDriverTest extends TestCase {
 		MediaDatabase db = new MediaDatabase();
 		List<Media> test1 = db.searchMovieYear("1990");
 		List<Movie> test1Check = new ArrayList<Movie>();
-		test1Check.add(new Movie("Test Title", null, null));
+		test1Check.add(new Movie("Test Title", "1990", null));
 		assertEquals(test1.toString(), test1Check.toString());
 	}
 	
@@ -57,7 +57,7 @@ public class MediaDbDriverTest extends TestCase {
 		MediaDatabase db = new MediaDatabase();
 		List<Media> test1 = db.searchTVBoth("Test Title", "1990", false);
 		List<TVSeries> test1Check = new ArrayList<TVSeries>();
-		test1Check.add(new TVSeries("Test Title", null, null));
+		test1Check.add(new TVSeries("Test Title", "1990", null));
 		assertEquals(test1.toString(), test1Check.toString() );
 		}
 	

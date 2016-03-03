@@ -62,10 +62,10 @@ public class MediaDatabase {
 		int indexOfMovie = Collections.binarySearch(movieDatabase, new Movie(
 				title, "", ""));
 
-	//	if (indexOfMovie < 0) {
+		if (indexOfMovie < 0) {
 	//		System.out.println("Movie not found.");
-	//		return resultList;
-	//	}
+			return resultList;
+		}
 
 		resultList.add(movieDatabase.get(indexOfMovie));
 		return resultList;
@@ -320,6 +320,7 @@ public class MediaDatabase {
 		}
 		// no else statement needed, already sorted by title
 		bw.write(textToOutput);
+		bw.write("\n");
 		bw.write(resultListToString() );
 		bw.close();
 		

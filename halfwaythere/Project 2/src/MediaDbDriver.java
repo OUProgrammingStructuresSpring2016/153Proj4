@@ -250,6 +250,9 @@ public class MediaDbDriver {
 			
 			mdb.clearResultsList();
 			
+			System.out.println("Would you like to continue? (y/n)");
+			if(inputReader.readLine().equals("n"))
+				return;
 		}
 		
 		
