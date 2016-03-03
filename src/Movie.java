@@ -1,7 +1,5 @@
-import java.util.Comparator;
 
-
-public class Movie extends Media implements Comparator <String>{
+public class Movie extends Media{
 	/** Stores data for a movie's additional info*/
 	private String additionalInfo;
 	
@@ -13,8 +11,7 @@ public class Movie extends Media implements Comparator <String>{
  * @param additionalInfo		additional info of for the movie
  */
 	public Movie(String title, String year, String additionalInfo){
-		this.title = title;
-		this.year = year;
+		super(title, year);
 		this.additionalInfo = additionalInfo;
 	}
 	
@@ -39,7 +36,8 @@ public class Movie extends Media implements Comparator <String>{
 	 */
 	public String toString(){
 		//TODO review this prints correctly
-		return title + " (" + year + ") " + additionalInfo + " " + year;
+		return title + " (" + year + ") " + additionalInfo + " " + year.substring(0,5);
  	}
+
 	
 }//end of class
