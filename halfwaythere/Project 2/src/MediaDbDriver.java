@@ -92,7 +92,7 @@ public class MediaDbDriver {
 				System.out.println("Include episode titles in search and output? (y/n)");
 				includeTitles = inputReader.readLine();
 				if(!includeTitles.equals("y") && !includeTitles.equals("n") ){ // if invalid input
-					System.out.println("Please enter valid input (y or n). Returning to beginning.");
+					System.out.println("Please enter valid response (y or n). Returning to beginning.");
 					continue;
 				}
 				includeEpTitles = includeTitles.equals("y");
@@ -104,7 +104,7 @@ public class MediaDbDriver {
 			}
 			
 			if(!searchInput.equals("t")){
-				System.out.println("Year (or years) to search for?");
+				System.out.println("Year (single) to search for?");
 				yearsToSearch = inputReader.readLine();
 			}
 			
@@ -112,7 +112,7 @@ public class MediaDbDriver {
 			System.out.println("Sort by (t)itle or (y)ear?");
 			sortInput = inputReader.readLine();
 			if(!sortInput.equals("t") && !sortInput.equals("y")){
-				System.out.println("Really? You got this far and still failed? Take it from the top.");
+				System.out.println("Please enter a valid input (t or y). Returning to beginning.");
 				continue;
 			}
 			
