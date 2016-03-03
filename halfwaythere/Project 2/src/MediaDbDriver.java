@@ -50,9 +50,6 @@ public class MediaDbDriver {
 		
 		mdb.sortDatabase();
 		
-//		System.out.println(mdb.searchTVBoth("", "2015", false) );
-		
-		
 		String matchInput = ""; // instantiated to quiet compiler. To be overwritten below before use.
 		String yearsToSearch = "Any";
 		String includeTitles = "";
@@ -251,8 +248,10 @@ public class MediaDbDriver {
 			mdb.clearResultsList();
 			
 			System.out.println("Would you like to continue? (y/n)");
-			if(inputReader.readLine().equals("n"))
+			if(inputReader.readLine().equals("n")){
+				br.close();
 				return;
+			}
 		}
 		
 		
