@@ -12,7 +12,7 @@ Milestones
 	necessary to arrive at a good design.
  		We met this milestone. We implemented concrete Media, Movie, TVSeries, and TVEpisode classes
  		to represent data on movies and broadcast series. Although we could have made Media abstract,
- 		Daniel made the decision to make Media concrete in the interest of homogeneity and simplicity.
+ 		Daniel made the decision to make Media concrete in the interest of simplicity for other group members.
  		
  4.	Implement both the Comparable and Comparator interfaces to compare one movie or
 	broadcast series to another.
@@ -21,7 +21,7 @@ Milestones
 		in Media to compare Media based on years.
 		
 5.	Use a List to store, retrieve, and display data related to movies and broadcast series as
-	described below
+	described below [in the project description].
 		We mostly met this milestone. The MediaDatabase class uses two ArrayLists to store TVSeries and Movie objects
 		to search. One of our search functions at the moment does not appear to work correctly (searchTVBoth), but 
 		each other search returns the expected value as per the unit tests.
