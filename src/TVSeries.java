@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Comparator;
 
 /**
  * Project #2
@@ -11,7 +10,7 @@ import java.util.Comparator;
  * </P>
  * @version 1.0
  */
-public class TVSeries extends Media implements Comparator <String>{
+public class TVSeries extends Media{
 
 	/** Stores the data for the running years of the show (e.g., "1990-2001") */
 	private String runningYears;
@@ -23,8 +22,7 @@ public class TVSeries extends Media implements Comparator <String>{
 	/** Constructs a new TVSeries given its title, release year, and its running years. */
 	
 	public TVSeries(String title, String year, String runningYears){
-		this.title = title;
-		this.year = year;
+		super(title, year);
 		this.runningYears = runningYears;
 	}
 	
@@ -61,7 +59,16 @@ public class TVSeries extends Media implements Comparator <String>{
 	 * @return     gives a string of the title, year, and running years of the series
 	 */
 	public String toString(){
-		return title + " " + year + " " + runningYears;
+		
+		//TODO: Fix later.
+		
+		String allEps = "";
+		
+		for(TVEpisode e : episodes){
+			allEps += e.toString() + "\n";
+		}
+		
+		return title + " " + year + " " + runningYears + allEps;
 	}
 	
 }

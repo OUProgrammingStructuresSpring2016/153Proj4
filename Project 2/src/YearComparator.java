@@ -9,13 +9,24 @@ import java.util.Comparator;
  * </P>
  * @version 1.0
  */
-public class YearComparator implements Comparator<Media>{
+public class YearComparator implements Comparator<String> {
 	
 	/**
 	 * Compares the int values of two media objects' release year.
 	 */
-	public int compare(Media one, Media two){
-		
+	public int compare(String year, String year2){
+		if(compare(year,year2) >0){
+		//if there is a match
+			return 1; 
+		}
+		if(compare(year,year2) < 0){
+			//no match
+			return -1;
+		}
+		else{
+			return 0;
+		}
+		//TODO make  compare method with the release 
 	}
 	
 }
