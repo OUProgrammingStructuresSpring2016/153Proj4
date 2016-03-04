@@ -269,15 +269,10 @@ public class MediaDatabase {
 	 */
 	public List<Media> searchTVBoth(String title, String year, boolean includeEpTitles) {
 		
-		//TODO: FIX THIS METHOD. IT DOESN'T WORK
 		
-		searchTVYear(year);
+		resultList.add((Media) searchTVYear(year));
 		
-		List<Media> titleMatchList = new ArrayList<Media>();
-		
-		titleMatchList = searchTVTitlePartial(year, includeEpTitles);
-		
-		resultList.retainAll(titleMatchList);
+		resultList = (ArrayList<Media>) searchTVTitlePartial(title, includeEpTitles);
 		
 		return resultList;
 	}
