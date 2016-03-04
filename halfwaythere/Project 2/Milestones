@@ -1,0 +1,34 @@
+Milestones
+
+1. 	Use keyboard input to get information from the user.
+		We met this milestone. The program takes in input from the user.
+		
+2. 	Use text file I/O to read and write text files.
+		We met this milestone. Within MediaDatabase.java, the method outputToFile creates
+		a new text file which saves the user's search results should they request it.
+
+3. 	Create classes to store data on movies and broadcast series. Note that you should
+	create any additional classes (abstract and/or concrete) and/or interfaces you deem
+	necessary to arrive at a good design.
+ 		We met this milestone. We implemented concrete Media, Movie, TVSeries, and TVEpisode classes
+ 		to represent data on movies and broadcast series. Although we could have made Media abstract,
+ 		Daniel made the decision to make Media concrete in the interest of simplicity for other group members.
+ 		
+ 4.	Implement both the Comparable and Comparator interfaces to compare one movie or
+	broadcast series to another.
+		We met this milestone. By implementing Comparable on the Media class (which Movie and TVSeries extend),
+		we can compare titles of Media against each other. Additionally, there is an inner static YearComparator class
+		in Media to compare Media based on years.
+		
+5.	Use a List to store, retrieve, and display data related to movies and broadcast series as
+	described below [in the project description].
+		We mostly met this milestone. The MediaDatabase class uses two ArrayLists to store TVSeries and Movie objects
+		to search. One of our search functions at the moment does not appear to work correctly (searchTVBoth), but 
+		each other search returns the expected value as per the unit tests.
+		
+6.	Use the sort() and binarySearch() methods from the Collections class to sort and
+	search for data related to movies and broadcast series as described below.
+		We met this milestone. The searchTVTitleExact and searchMovieTitleExact methods within 
+		the MediaDatabase class utilize binary search methods to find the specified Media object.
+		Obviously, the list must be sorted before binary searches can occur, which is done in the 
+		MediaDbDriver class.
