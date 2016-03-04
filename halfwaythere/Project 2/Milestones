@@ -24,8 +24,7 @@ Milestones
 	described below [in the project description].
 		We mostly met this milestone. The MediaDatabase class uses two ArrayLists to store TVSeries and Movie objects
 		to search. One of our search functions does not appear to work correctly (searchTVBoth), but 
-		each other search returns the expected value as per the unit tests and general testing of the program. The only other
-		bug is that the results cannot be sorted by year, despite the existence and implementation of a YearComparator.
+		each other search returns the expected value as per the unit tests and general testing of the program.
 		
 6.	Use the sort() and binarySearch() methods from the Collections class to sort and
 	search for data related to movies and broadcast series as described below.

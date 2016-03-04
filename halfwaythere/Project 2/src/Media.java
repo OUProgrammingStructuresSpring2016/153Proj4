@@ -64,8 +64,6 @@ public abstract class Media implements Comparable<Media>{
 
 		public int compare(Media med1, Media med2) {
 			
-		//	return med1.getYear().compareTo(med2.getYear());
-			
 			try{ // turn year into int, then compare the ints
 				return Integer.compare(Integer.parseInt(med1.getYear().substring(0,4)), Integer.parseInt(med2.getYear().substring(0, 4)));
 			}

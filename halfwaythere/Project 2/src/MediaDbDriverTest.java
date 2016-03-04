@@ -74,9 +74,10 @@ public class MediaDbDriverTest extends TestCase {
 	
 	public void testSearchFunction8(){
 		MediaDatabase db = new MediaDatabase();
-		List<Media> test1 = db.searchTVBoth("Test Title", "1990", "p", false);
+		db.addMedia(new TVSeries("Title", "1990", null));
+		List<Media> test1 = db.searchTVBoth("Title", "1990", "p", false);
 		List<TVSeries> test1Check = new ArrayList<TVSeries>();
-		test1Check.add(new TVSeries("Test Title", null, null));
+		test1Check.add(new TVSeries("Title", "1990", null));
 		assertEquals(test1.toString(), test1Check.toString() );
 		}
 	

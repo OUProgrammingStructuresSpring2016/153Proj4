@@ -26,6 +26,12 @@ public class TVSeries extends Media{
 		this.episodes = new ArrayList<TVEpisode>();
 	}
 	
+	public TVSeries (TVSeries sers){
+		super(sers.getTitle(), sers.getYear());
+		this.runningYears = sers.getRunningYears();
+		this.episodes = sers.getEpisodes();
+	}
+	
 	/** Used to construct a series without TVEpisodes so that only TVEpisodes
 	 *	that match a search are included. Used in line 149 of MediaDatabase, for
 	 *	example. 

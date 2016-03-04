@@ -275,26 +275,19 @@ public class MediaDatabase {
 		
 		searchTVYear(year);
 		
-	//	System.out.println(resultListToString() );
-		
 		List<Media> titleMatchList = new ArrayList<Media>();
 		
 		for(int x=0; x<resultList.size(); x++){
-			titleMatchList.add(resultList.get(x));
+			titleMatchList.add(new TVSeries((TVSeries) resultList.get(x)));
 		}
 		
-	//	System.out.println(titleMatchList);
-		
 		clearResultsList();
+
 		
 		if(partialOrExact.equals("p"))
-			searchTVTitlePartial(year, includeEpTitles);
+			searchTVTitlePartial(title, includeEpTitles);
 		else
-			searchTVTitleExact(year, includeEpTitles);
-		
-		System.out.println(resultListToString() );
-		
-	//	resultList.retainAll(titleMatchList);
+			searchTVTitleExact(title, includeEpTitles);
 		
 		return resultList;
 	}
