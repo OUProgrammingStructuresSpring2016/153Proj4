@@ -51,7 +51,7 @@ public class MediaDbDriver {
 		mdb.sortDatabase();
 		
 		String matchInput = ""; // instantiated to quiet compiler. To be overwritten below before use.
-		String yearsToSearch = "Any";
+		String yearsToSearch = "";
 		String includeTitles = "";
 		String titleToSearch = "";
 		String sortInput = "";
@@ -124,12 +124,20 @@ public class MediaDbDriver {
 				else
 					output += "MOVIES AND TV SERIES";
 				
-				output += "\n TITLE: " + titleToSearch + "\n YEARS: " + yearsToSearch;
+				if(searchInput.equals("p"))
+					output += "\nPARTIAL TITLE: " + titleToSearch;
+				else
+					output += "\nEXACT TITLE: " + titleToSearch;
+				
+				if(yearsToSearch.isEmpty())
+					output += "\nYEAR: Any";
+				else
+				output += "\nYEAR: " + yearsToSearch;
 		
 				if(sortInput.equals("y"))
-					output += "\n SORTED BY YEAR";
+					output += "\nSORTED BY YEAR";
 				else
-					output += "\n SORTED BY TITLE";
+					output += "\nSORTED BY TITLE";
 			}
 			else if(dbInput.equals("m")){
 				
@@ -140,7 +148,7 @@ public class MediaDbDriver {
 				else
 					output += "EXACT TITLE: " + titleToSearch;
 				
-				output += "\nYEARS: " + yearsToSearch;
+				output += "\nYEAR: " + yearsToSearch;
 				
 				if(sortInput.equals("y"))
 					output += "\nSORTED BY YEAR";
@@ -153,11 +161,11 @@ public class MediaDbDriver {
 				else
 					output += "TV SERIES";
 				if(matchInput.equals("p"))
-					output += "PARTIAL TITLE: " + titleToSearch;
+					output += "\nPARTIAL TITLE: " + titleToSearch;
 				else
 					output += "\nEXACT TITLE: " + titleToSearch;
 				
-				output += "\nYEARS: " + yearsToSearch;
+				output += "\nYEAR: " + yearsToSearch;
 				
 				if(sortInput.equals("y"))
 					output += "\nSORTED BY YEAR";
@@ -165,7 +173,7 @@ public class MediaDbDriver {
 					output += "\nSORTED BY TITLE";
 			}
 			
-			output += "\n=============================================================================";
+			output += "\n===============================================================================";
 			
 			System.out.println(output);
 			
@@ -206,7 +214,7 @@ public class MediaDbDriver {
 						mdb.searchTVYear(yearsToSearch); // s, y
 						break;
 					case "b":
-						mdb.searchTVBoth(titleToSearch, yearsToSearch, includeEpTitles); // s, b
+						mdb.searchTVBoth(titleToSearch, yearsToSearch, matchInput, includeEpTitles); // s, b
 						break;
 						
 					}
@@ -231,12 +239,16 @@ public class MediaDbDriver {
 						break;
 					case "b":
 						mdb.searchMovieBoth(titleToSearch, yearsToSearch); // b, b
-						mdb.searchTVBoth(titleToSearch, yearsToSearch, includeEpTitles);
+						mdb.searchTVBoth(titleToSearch, yearsToSearch, matchInput, includeEpTitles);
 						break;
 					}
 					break;
 				}
-			
+				
+				// attempts to sort the database by year before printing
+				if(sortInput.equals("y"))
+					mdb.sortResultsByYear();
+				
 				System.out.println(mdb.resultListToString());
 			
 			System.out.println("Save search results as text file? (y/n)");

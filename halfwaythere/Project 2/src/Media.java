@@ -11,7 +11,7 @@ import java.util.Comparator;
  */
 
 
-public class Media implements Comparable<Media>{
+public abstract class Media implements Comparable<Media>{
 
 	/** Stores the title of the media. */
 	protected String title;
@@ -63,7 +63,10 @@ public class Media implements Comparable<Media>{
 	static class YearComparator implements Comparator<Media>{
 
 		public int compare(Media med1, Media med2) {
-			try{ // turn year String into int, then compare the ints
+			
+		//	return med1.getYear().compareTo(med2.getYear());
+			
+			try{ // turn year into int, then compare the ints
 				return Integer.compare(Integer.parseInt(med1.getYear().substring(0,4)), Integer.parseInt(med2.getYear().substring(0, 4)));
 			}
 			catch(NumberFormatException e){ // i.e., one Media's year == "????"
@@ -74,6 +77,7 @@ public class Media implements Comparable<Media>{
 				else 
 					return 0;
 			}
+			
 		}
 
 	}

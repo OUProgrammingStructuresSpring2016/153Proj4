@@ -233,8 +233,12 @@ public class MediaDatabase {
 	 * @return The list of TV series matching the input.
 	 */
 	public List<Media> searchTVYear(String year) {
+		
+		
+			
 		for (int i = 0; i < tvDatabase.size(); i++) {
-			if (tvDatabase.get(i).getYear().contains(year)) { // if series aired during given year, add whole series
+			
+			if (tvDatabase.get(i).getYear().contains(year) || (tvDatabase.get(i).getYear().substring(0,4).compareTo(year) < 0 && tvDatabase.get(i).getYear().substring(5, tvDatabase.get(i).getYear().length()).compareTo(year) > 0) ) { // if series aired during given year, add whole series
 				resultList.add(tvDatabase.get(i));
 			}
 			else{ // otherwise, search each episode in the current series for matching year
@@ -260,21 +264,37 @@ public class MediaDatabase {
 	 * 
 	 * @param title
 	 *            The exact token to search the TV series database for.
+	 * @param year	The token representing the year to search for.
 	 * @param includeEpTitles
 	 *            Determines whether to include episode titles in the search.
 	 * @return The list of TV series matching the exact token.
 	 */
-	public List<Media> searchTVBoth(String title, String year, boolean includeEpTitles) {
+	public List<Media> searchTVBoth(String title, String year, String partialOrExact, boolean includeEpTitles) {
 		
 		//TODO: FIX THIS METHOD. IT DOESN'T WORK
 		
 		searchTVYear(year);
 		
+	//	System.out.println(resultListToString() );
+		
 		List<Media> titleMatchList = new ArrayList<Media>();
 		
-		titleMatchList = searchTVTitlePartial(year, includeEpTitles);
+		for(int x=0; x<resultList.size(); x++){
+			titleMatchList.add(resultList.get(x));
+		}
 		
-		resultList.retainAll(titleMatchList);
+	//	System.out.println(titleMatchList);
+		
+		clearResultsList();
+		
+		if(partialOrExact.equals("p"))
+			searchTVTitlePartial(year, includeEpTitles);
+		else
+			searchTVTitleExact(year, includeEpTitles);
+		
+		System.out.println(resultListToString() );
+		
+	//	resultList.retainAll(titleMatchList);
 		
 		return resultList;
 	}
@@ -323,9 +343,19 @@ public class MediaDatabase {
 		
 		return;
 	}
-
+	
+	/*
+	 * Sorts the database (Movie and TVSeries ArrayLists) based on title.
+	 */
 	public void sortDatabase() {
 		Collections.sort(movieDatabase);
 		Collections.sort(tvDatabase);
+	}
+	
+	/*
+	 * Sorts the database (Movie and TVSeries ArrayLists) based on title.
+	 */
+	public void sortResultsByYear(){
+		Collections.sort(resultList, new Media.YearComparator());
 	}
 }

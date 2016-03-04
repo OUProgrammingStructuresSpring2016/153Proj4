@@ -10,9 +10,9 @@ Milestones
 3. 	Create classes to store data on movies and broadcast series. Note that you should
 	create any additional classes (abstract and/or concrete) and/or interfaces you deem
 	necessary to arrive at a good design.
- 		We met this milestone. We implemented concrete Media, Movie, TVSeries, and TVEpisode classes
- 		to represent data on movies and broadcast series. Although we could have made Media abstract,
- 		Daniel made the decision to make Media concrete in the interest of simplicity for other group members.
+ 		We met this milestone. We implemented concrete Movie, TVSeries, and TVEpisode classes
+ 		to represent data on movies and broadcast series. TVSeries and Movie both extend the
+ 		abstract Media class.
  		
  4.	Implement both the Comparable and Comparator interfaces to compare one movie or
 	broadcast series to another.
@@ -23,8 +23,9 @@ Milestones
 5.	Use a List to store, retrieve, and display data related to movies and broadcast series as
 	described below [in the project description].
 		We mostly met this milestone. The MediaDatabase class uses two ArrayLists to store TVSeries and Movie objects
-		to search. One of our search functions at the moment does not appear to work correctly (searchTVBoth), but 
-		each other search returns the expected value as per the unit tests.
+		to search. One of our search functions does not appear to work correctly (searchTVBoth), but 
+		each other search returns the expected value as per the unit tests and general testing of the program. The only other
+		bug is that the results cannot be sorted by year, despite the existence and implementation of a YearComparator.
 		
 6.	Use the sort() and binarySearch() methods from the Collections class to sort and
 	search for data related to movies and broadcast series as described below.
