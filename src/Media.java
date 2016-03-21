@@ -1,63 +1,92 @@
+import java.util.Comparator;
 
-public class Media extends Database {
-	//private data for Media class
-	//title of the media object
-	private String title;
-	//Year media was released
-	private String year;
+/**
+ * Project #2
+ * CS 2334, Section 010
+ * Feb 19, 2016
+ * <P>
+ * Stores and allows access to data for a general, non-descript media object (e.g. movies and TV shows).
+ * </P>
+ * @version 1.0
+ */
+
+
+public abstract class Media implements Comparable<Media>{
+
+	/** Stores the title of the media. */
+	protected String title;
 	
-	//constructor for the Media Class
-	public Media(){
-		
-	}
+	/** Stores the year the media was released. */
+	protected String year;
 	
-	/**
-	 * Sets the media name. Mutator method
-	 * <P>
-	 * Algorithm:<br>
-	 * 1. Sets the name of the Media to title <br>
-	 * </P>
-	 * @param 	title		Name of the media
+	/** Creates a new instance of a media object using a title and year.
+	 *  @param	title	The title of the new media object
+	 *  @param	year	The release year of the new media object
 	 */
-	public void setTitle(String title){
+	public Media(String title, String year){
+		this.title = title;
+		this.year = year;
 	}
 	
-	
 	/**
-	 * Sets the year the media was released. Mutator method
-	 * <P>
-	 * Algorithm:<br>
-	 * 1. Sets the year of the media. <br>
-	 * 2. Sets to "????" if not present. <br>
-	 * </P>
-	 * @param 	year	Year movie was released. 
-	 */
-	public void setYear(String year){
-	}
-	
-	
-	/**
-	 * Gets the media's title. Accessor method
-	 * <P>
-	 * Algorithm:<br>
-	 * 1. Gets the title of the Media. <br>
-	 * </P>
-	 * @return  String			The media title
+	 * @return	Title of the media.
 	 */
 	public String getTitle(){
-		return null;
+		return this.title;
 	}
 	
 	/**
-	 * Gets year the media was released. Accessor method
-	 * <P>
-	 * Algorithm:<br>
-	 * 1. Gets the release year of the movie.<br>
-	 * </P>
-	 * @return  String		Year released. 
+	 * @return	Release year of the media.
 	 */
 	public String getYear(){
-		return null;
-		
+		return this.year;
 	}
+	
+	/**
+	 * @param	title	The new title for the media.
+	 */
+	public void setTitle(String title){
+		this.title = title;
+	}
+	
+	/**
+	 * @param	year	The new year for the media.
+	 */
+	public void setYear(String year){
+		this.year = year;
+	}
+	/**
+	 * @param	otherMedia	The other media to compare to.
+	 * @return	The String comparison of the Media's titles.
+	 */
+	public int compareTo(Media otherMedia) {	
+		return this.title.compareTo(otherMedia.getTitle());	
+	}
+	
+	static class YearComparator implements Comparator<Media>{
+
+		/**
+		 * @param	med1	The first media to be compared
+		 * @param	med2	The second media to be compared
+		 * @return	The int comparison of the Medias' years
+		 */
+		public int compare(Media med1, Media med2) {
+			
+			try{ // turn year into int, then compare the ints
+				return Integer.compare(Integer.parseInt(med1.getYear().substring(0,4)), Integer.parseInt(med2.getYear().substring(0, 4)));
+			}
+			catch(NumberFormatException e){ // i.e., one Media's year == "????"
+				if(med1.getYear().contains("?"))
+					return 1;
+				else if(med2.getYear().contains("?"))
+					return -1;
+				else 
+					return 0;
+			}
+			
+		}
+
+	}
+
+
 }
