@@ -3,6 +3,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import javax.swing.JFrame;
+
 /**
  * Project #2 CS 2334, Section 010 Feb 19, 2016
  * <P>
@@ -430,6 +432,37 @@ public class MediaDbDriver {
 
 			currentLine = br.readLine();
 		}
-
+		
 	}
+	
+	/**
+	 * Draws a pie chart displaying media makers products
+	 * 
+	 * @param person the media maker to draw for
+	 */
+	public static void drawPie(MediaPerson person)
+	{
+		JFrame frame = new JFrame();
+		frame.setSize(500, 500);
+		frame.setTitle(person.getName());
+		frame.setVisible(true);
+		
+		
+	}
+	
+	/**
+	 * Draws a histogram displaying media makers products
+	 * 
+	 * @param person the media maker to draw for
+	 */
+	public static void drawHistogram(MediaPerson person)
+	{
+		JFrame frame = new JFrame();
+		frame.setSize(500, 500);
+		frame.setTitle(person.getName());
+		pieChart pc = new pieChart(person);
+		frame.add(pc);
+		frame.setVisible(true);
+	}
+	
 }
