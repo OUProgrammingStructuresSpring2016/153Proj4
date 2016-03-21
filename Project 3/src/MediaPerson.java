@@ -70,4 +70,18 @@ public class MediaPerson{
 	public String toString(){
 		
 	}
+	
+	public ArrayList<Media> getActing()
+	{
+		
+	}
+	public ArrayList<Media> getDirecting()
+	{
+		
+	}
+	public ArrayList<Media> getProducing()
+	{
+		
+	}
+	}
 }
