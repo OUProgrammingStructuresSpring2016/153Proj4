@@ -24,10 +24,16 @@ public class MediaPersonDatabase implements Serializable{
 	
 	/**
 	 * Constructs a MediaPersonDatabase based upon a binary file.
+	 * This is what will be used when loading a file to construct a new database.
 	 * @param filename The file name of the binary file to be used
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	public MediaPersonDatabase(String filename){
-		
+	public MediaPersonDatabase(String filename) throws IOException, ClassNotFoundException{
+		FileInputStream fis = new FileInputStream(filename);
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		mpdb = (LinkedHashMap<String, MediaPerson>) ois.readObject();
+		ois.close();
 	}
 	
 	/**
