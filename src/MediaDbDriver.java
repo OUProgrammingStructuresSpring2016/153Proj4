@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import javax.swing.JFrame;
 
 /**
- * Project #2 CS 2334, Section 010 Feb 19, 2016
+ * Project #2 CS 2334, Section 010 March 28, 2016
  * <P>
  * Drives user interaction with a media database through the console.
  * </P>
