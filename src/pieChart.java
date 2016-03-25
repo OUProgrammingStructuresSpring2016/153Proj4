@@ -19,45 +19,10 @@ public class pieChart extends JComponent{
 	    Graphics2D gfx = (Graphics2D) g;
 	    
 	    //tally up
-	    int movieActing = 0,movieProducing=0,movieDirecting=0;
-	    int seriesActing=0,seriesProducing=0,seriesDirecting=0;
+	    int movieActing = mediaPerson.getNumMoviesActed(), movieProducing=mediaPerson.getNumMoviesProduced(),movieDirecting=mediaPerson.getNumMoviesDirected();
+	    int seriesActing = mediaPerson.getNumSeriesActed(),seriesProducing=mediaPerson.getNumSeriesProduced(),seriesDirecting=mediaPerson.getNumSeriesDirected();
 	    	    
 	    
-	    
-	    
-	    //figure out slice sizes
-	    for(int i=0; i<mediaPerson.getActing().size(); i++)
-	    {
-	    	if(mediaPerson.getActing().get(i).getClass() == new Movie("test", "test", "test").getClass())
-	    	{
-	    		movieActing++;
-	    	} else
-	    	{
-	    		seriesActing++;
-	    	}
-	    }
-	    
-	    for(int i=0; i<mediaPerson.getProducing().size(); i++)
-	    {
-	    	if(mediaPerson.getProducing().get(i).getClass() == new Movie("test", "test", "test").getClass())
-	    	{
-	    		movieProducing++;
-	    	} else
-	    	{
-	    		seriesProducing++;
-	    	}
-	    }
-	    
-	    for(int i=0; i<mediaPerson.getDirecting().size(); i++)
-	    {
-	    	if(mediaPerson.getDirecting().get(i).getClass() == new Movie("test", "test", "test").getClass())
-	    	{
-	    		movieDirecting++;
-	    	} else
-	    	{
-	    		seriesDirecting++;
-	    	}
-	    }
 	    //number of radians per each entry
 	    double radRes = 2*3.14 / movieActing+movieProducing+movieDirecting+
 	    		seriesActing+seriesProducing+seriesDirecting;
