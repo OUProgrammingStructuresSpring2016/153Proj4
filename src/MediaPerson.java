@@ -9,7 +9,7 @@ public class MediaPerson{
 	
 	private ArrayList<String> works;
 	
-	private int moviesActed, moviesDirected, moviesProduced, seriesActed, seriesDirected, seriesProduced = 0;
+	private int moviesActed= 0, moviesDirected= 0, moviesProduced= 0, seriesActed= 0, seriesDirected= 0, seriesProduced = 0;
 	
 	/**
 	 * Constructs a new instance of MediaPerson.
@@ -109,16 +109,23 @@ public class MediaPerson{
 	 * @return The String representing this MediaPerson's works, as per project specifications
 	 */
 	public String worksToString(){
-		//TODO: Fix according to project standards
-		return works.toString();
+		String output = "";
+		
+		for(int i=0; i<works.size(); i++){
+			output += works.get(i) + "\n";
+		}
+		
+		output += "--------------------------------------------------------------------------------";
+		
+		return output;
 	}
 	
 	/**
 	 * @return The String representing this MediaPerson, including works, as per project specifications
 	 */
 	public String toString(){
-		//TODO: Fix according to project standards
-		return name + " " + profession + " " + worksToString();
+
+		return name + "\n" + worksToString();
 	}
 	
 }
