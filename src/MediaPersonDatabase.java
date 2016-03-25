@@ -1,6 +1,10 @@
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -45,6 +49,10 @@ public class MediaPersonDatabase implements Serializable{
 					resultList.add(entry.getValue()); 
 				}
 		}
+		
+		if(resultList.isEmpty())
+			System.out.println("No matches found.");
+		
 		return resultList;
 	}
 	
@@ -59,7 +67,30 @@ public class MediaPersonDatabase implements Serializable{
 				resultList.add(entry.getValue()); 
 			}
 		}
+		
+		if(resultList.isEmpty())
+			System.out.println("No matches found.");
+		
 		return resultList;
+	}
+	
+	public void inputBinaryFile(String fileName) throws IOException{
+		byte[] buffer = new byte[1000];
+        FileInputStream inputStream =  new FileInputStream(fileName);
+        inputStream.read(buffer);
+        inputStream.close();        
+	}
+	
+	/**
+	 * Outputs the result list into a binary file for use in loading future databases.
+	 * @param filename The name to give the new binary file.
+	 * @throws IOException 
+	 */
+	public void outputToBinaryFile(String fileName, String textToOutput) throws IOException{
+		FileOutputStream filer = new FileOutputStream(fileName);
+		ObjectOutputStream bw = new ObjectOutputStream(filer);
+		bw.writeObject(textToOutput);
+		bw.close();
 	}
 	
 	/**
@@ -67,25 +98,13 @@ public class MediaPersonDatabase implements Serializable{
 	 * @param filename The name to give the new text file.
 	 * @throws IOException 
 	 */
-	public void outputToTextFile(String fileName, String textToOutput) throws IOException{
+	public static void outputToTextFile(String fileName, String textToOutput) throws IOException{
 		FileWriter filer = new FileWriter(fileName);
 		BufferedWriter bw = new BufferedWriter(filer);
-		
 		bw.write(textToOutput);
-		bw.write("\n");
-		bw.write(resultList.toString());
 		bw.close();
-		
-		return;
 	}
-	
-	/**
-	 * Outputs the result list into a binary file for use in loading future databases.
-	 * @param filename The name to give the new binary file.
-	 */
-	public void outputToBinaryFile(String filename){
-		
-	}
+
 	/**
 	 * Clears the resultList for a fresh use.
 	 */
@@ -102,9 +121,7 @@ public class MediaPersonDatabase implements Serializable{
 		}
 	}
 	
-	public inputBinaryFile(String fileName){
-		
-	}
+
 	
 
 }
