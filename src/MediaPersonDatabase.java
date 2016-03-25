@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,6 +13,9 @@ import java.util.Map;
 
 public class MediaPersonDatabase implements Serializable{
 
+
+	private static final long serialVersionUID = 6316954717315158340L;
+	
 	private LinkedHashMap<String, MediaPerson> mpdb;
 	private ArrayList<MediaPerson> resultList;
 	
