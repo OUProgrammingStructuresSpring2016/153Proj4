@@ -4,6 +4,10 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.security.acl.Permission;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import javax.swing.JComponent;
 
@@ -25,20 +29,27 @@ public class histogram extends JComponent{
 		    int minYear=9999;
 		    int maxYear=0000;
 		    ArrayList<String> works = maker.getWorks();
-		    int years[] = new int[works.size()];
+		    HashMap<Integer, Integer> years = new HashMap<Integer, Integer>();
+		    ArrayList<Integer> yearList = new ArrayList<Integer>();
 		    for (int i=0; i<works.size(); i++) {
 		    	int firstPar = works.get(i).indexOf("(")+1;
 		    	String parsed = works.get(i).substring(firstPar, firstPar+4);
+		    	int parsedInt = Integer.parseInt(parsed);
+
 		    	if (parsed =="????"){
 		    		//TODO this is not perfect
-		    		years[i]=years[i-1];
+		    		//years[i]=years[i-1];
+		    	} else if(years.containsKey(parsedInt)){ //if already there, increment
+		    		years.put(parsedInt,years.get(parsedInt)+1);
 		    	} else {
-		    		years[i] = Integer.parseInt(parsed);
+		    		yearList.add(parsedInt);
+		    		years.put(parsedInt,1);
 		    	}
-		    	if(years[i]>maxYear) maxYear=years[i];
-		    	if(years[i]<minYear) minYear=years[i];
+		    	if(parsedInt>maxYear) maxYear=parsedInt;
+		    	if(parsedInt<minYear) minYear=parsedInt;
 		    }
-		    
+		    //list of unique years, sorted
+		    Collections.sort(yearList);
 		    //count up
 		    int acting = 100,producing=20,directing=50;   
 		    //acting = maker.getNumMoviesActed();
@@ -54,21 +65,15 @@ public class histogram extends JComponent{
 		   int pad_x=50, pad_y=50;
 		   int yearsRes= (maxDim_w-(2*pad_x))/yearsTotal;
 
-		   
+		   //scaling y axis
 		   int actedHeight=1*acting;
 		   int directedHeight=1*directing;
 		   int producedHeight=1*producing;
 		   
-		   //ArrayList<Rectangle> al_acted = new ArrayList<Rectangle>();
-		  // ArrayList<Rectangle> al_directed = new ArrayList<Rectangle>();
-		   //ArrayList<Rectangle> al_produced = new ArrayList<Rectangle>();
-
-
-		   for(int i=0; i<yearsTotal; i++)
+		   //move along x and draw in y direction
+		   for(int i=minYear; i<maxYear; i++)
 		   {
-			   //draw a square
-			   //offset from bottom=10,right=10 
-			  
+		  
 			   //TODO get the #of credits for a particular year
 			   int thisYearActed = 10;
 			   int thisYearDirected = 10;
