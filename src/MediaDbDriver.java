@@ -42,10 +42,16 @@ public class MediaDbDriver {
 			case "t":
 				break question1;
 			case "b":
-				//TODO read binary file.
+				System.out.println("Enter the name of the binary file.");
+				try {
+					mpdb = new MediaPersonDatabase(inputReader.readLine());
+				} catch (ClassNotFoundException e) {
+					System.out.println("ERROR: File not found. Ensure the file name was typed correctly and that the file exists.");
+					continue;
+				}
 				break question1;
 			default:
-				System.out.println("Please use the options indicated in parentheses");
+				System.out.println("Please use the options indicated in parentheses.");
 				break;
 			}
 		}
@@ -155,6 +161,7 @@ public class MediaDbDriver {
 					switch(partialOrExact) {
 					case "p":
 						System.out.println("Please enter a name to search for: ");
+<<<<<<< HEAD
 						String name = inputReader.readLine();
 						ArrayList<MediaPerson> partialMatches = mpdb.searchPartial(name);
 						//TODO print to stdout as per spec
@@ -164,6 +171,10 @@ public class MediaDbDriver {
 						for(MediaPerson person: partialMatches){
 							System.out.println(person.getProfession());
 						}
+=======
+						mpdb.searchPartial(inputReader.readLine());
+						mpdb.resultListToString();
+>>>>>>> ad65967852eeac22fc4cbe16ffb05c08c9fd8325
 						break mop;
 					case "e":
 						System.out.println("Please enter a name to search for: ");
@@ -648,6 +659,8 @@ public class MediaDbDriver {
 			MediaPerson test = db.searchExact(firstName+" "+lastName);
 			if(test != null) person = test;
 			
+			person.addWorkDivider(role.toUpperCase());
+			
 			while(line!=null && line.length()>0 ) {
 	
 				c_idx = n_idx;
@@ -684,6 +697,7 @@ public class MediaDbDriver {
 			}			
 			
 			if(person!=null && person != test)db.addPerson(person);
+			
 			line = br.readLine();
 
 		}

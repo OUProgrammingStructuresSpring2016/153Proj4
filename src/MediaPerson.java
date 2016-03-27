@@ -82,6 +82,15 @@ public class MediaPerson{
 		works.add(work);
 	}
 	
+	/**
+	 * Adds a "divider" String into the works ArrayList to separate works based on role the person played (act, direct, produce)
+	 * for simpler output and use.
+	 * @param role The role to use as the divider in the works ArrayList<String>.
+	 */
+	public void addWorkDivider(String role){
+		works.add(role);
+	}
+	
 	public int getNumMoviesActed(){
 		return moviesActed;
 	}
@@ -128,5 +137,43 @@ public class MediaPerson{
 
 		return name + "\n" + worksToString();
 	}
-	
+	/**
+	 * Finds all of this person's works created in a specific year, then counts up how many of each credit (acting, dir, producing) there are for that particular year.
+	 * @param year
+	 * @return AL<Integer> in following order: year, movies acted, movies directed, movies produced, series acted, series directed, series produced.
+	 */
+	ArrayList<Integer> getCredits(Integer year){
+		Integer mAct=0, mDir=0, mProd=0, sAct=0, sDir=0, sProd=0;
+		ArrayList<Integer> returnList = new ArrayList<Integer>();
+		returnList.add(year);
+		
+		for(String w: works){
+			if(w.contains(year.toString())){
+				if(w.contains("MOVIE:") || w.contains("MOVIE (")){ // is a movie
+					if(works.indexOf(w) < works.indexOf("DIRECTOR"))
+						mAct++;
+					else if(works.indexOf(w) > works.indexOf("PRODUCER"))
+						mProd++;
+					else
+						mDir++;
+				}
+				else{ // is a series
+					if(works.indexOf(w) < works.indexOf("DIRECTOR"))
+						sAct++;
+					else if(works.indexOf(w) > works.indexOf("PRODUCER"))
+						sProd++;
+					else
+						sDir++;
+				}
+			}
+		}
+		returnList.add(mAct);
+		returnList.add(mDir);
+		returnList.add(mProd);
+		returnList.add(sAct);
+		returnList.add(sDir);
+		returnList.add(sProd);
+		
+		return returnList;
+	}
 }
