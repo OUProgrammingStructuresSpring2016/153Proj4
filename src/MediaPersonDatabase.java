@@ -71,17 +71,20 @@ public class MediaPersonDatabase implements Serializable{
 	 * @param name The token to use to search the LinkedHashMap as a key for.
 	 * @return All MediaPerson(s) whose name matches the given token.
 	 */
-	public ArrayList<MediaPerson> searchExact(String name){
+	public MediaPerson searchExact(String name){
 		for(Map.Entry<String, MediaPerson> entry: mpdb.entrySet()){
 			if(entry.getKey().equals(name)){
-				resultList.add(entry.getValue()); 
+				//resultList.add(entry.getValue()); 
+				return entry.getValue();
 			}
 		}
 		
-		if(resultList.isEmpty())
+/*		if(resultList.isEmpty())
 			System.out.println("No matches found.");
 		
 		return resultList;
+		*/
+		return null;
 	}
 	
 	public void inputBinaryFile(String fileName) throws IOException{

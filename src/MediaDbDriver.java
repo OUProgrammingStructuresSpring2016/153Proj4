@@ -2,11 +2,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
 /**
- * Project #2 CS 2334, Section 010 March 28, 2016
+ * Project #3 CS 2334, Section 010 March 28, 2016
  * <P>
  * Drives user interaction with a media database through the console.
  * </P>
@@ -18,14 +19,43 @@ public class MediaDbDriver {
 	public static void main(String[] args) throws IOException {
 		
 		/** Creates a new media database */
+		MediaPerson testPerson = new MediaPerson("test", "actor");
+		testPerson.addWork("UnderGround (2012)", "movie", "actor");
+		testPerson.addWork("World AIDS Day Special (1995) (TV)", "movie", "actor");
+		testPerson.addWork("\"Chappelle's Show\" (2003)", "movie", "actor");
+		drawHistogram(testPerson
+				);
 		MediaDatabase mdb = new MediaDatabase();
+		MediaPersonDatabase mpdb = new MediaPersonDatabase();
 		
 		BufferedReader inputReader = new BufferedReader(
 				new InputStreamReader(System.in) );
 		
+		question1:while(true)
+		{
+			System.out.println("Read (t)ext or (b)inary data?");
+			
+			String binOrTxt = inputReader.readLine();
+			
+			switch (binOrTxt)
+			{
+			case "t":
+				break question1;
+			case "b":
+				//TODO read binary file.
+				break question1;
+			default:
+				System.out.println("Please use the options indicated in parentheses");
+				break;
+			}
+		}
+
+		
 		System.out.println("Enter the name of the text file, with .txt extension, containing the movie data.");
 		
 		String fileName = inputReader.readLine();
+		//TODO undo this
+		fileName="StarTrekMovies.txt";
 
 		/** The FileReader to be wrapped by the BufferedReader */
 		FileReader fr = new FileReader(fileName);
@@ -41,6 +71,8 @@ public class MediaDbDriver {
 		System.out.println("Enter the name of the text file, with .txt extension, containing the TV series data.");
 
 		fileName = inputReader.readLine();
+		//TODO undo this
+		fileName="StarTrekTV.txt";
 		
 		fr = new FileReader(fileName);
 		
@@ -50,6 +82,50 @@ public class MediaDbDriver {
 		
 		fr.close();
 		
+		System.out.println("Enter the name of the text file, with .txt extension, containing the actor data.");
+
+		fileName = inputReader.readLine();
+		//TODO undo this
+		fileName="SomeActors.txt";
+		
+		fr = new FileReader(fileName);
+		
+		br = new BufferedReader(fr);
+
+		readPeopleToMDb(br, mpdb, "actor");
+		
+		fr.close();
+		
+		System.out.println("Enter the name of the text file, with .txt extension, containing the director data.");
+
+		fileName = inputReader.readLine();
+		//TODO undo this
+		fileName="SomeDirectors.txt";
+		
+		fr = new FileReader(fileName);
+		
+		br = new BufferedReader(fr);
+		
+		readPeopleToMDb(br, mpdb, "director");
+		
+		fr.close();
+		
+		System.out.println("Enter the name of the text file, with .txt extension, containing the producer data.");
+
+		fileName = inputReader.readLine();
+		//TODO undo this
+		fileName="SomeProducers.txt";
+		
+		fr = new FileReader(fileName);
+		
+		br = new BufferedReader(fr);
+		
+		readPeopleToMDb(br, mpdb, "producer");
+		
+		fr.close();
+		
+		
+		
 		mdb.sortDatabase();
 		
 		String matchInput = ""; // instantiated to quiet compiler. To be overwritten below before use.
@@ -58,6 +134,90 @@ public class MediaDbDriver {
 		String titleToSearch = "";
 		String sortInput = "";
 		boolean includeEpTitles = false;
+		
+
+		mop:while(true) {
+			System.out.println("Search (m)edia or (p)eople?");
+			String mediaOrPeople = inputReader.readLine();
+			switch(mediaOrPeople) {
+			case "m":
+				break mop;
+			case "p":
+				eop:while(true) {
+					System.out.println("Search for (e)xact or (p)artial matches?");
+					String partialOrExact = inputReader.readLine();
+					switch(partialOrExact) {
+					case "p":
+						System.out.println("Please enter a name to search for: ");
+						ArrayList<MediaPerson> partialMatches = mpdb.searchPartial(inputReader.readLine());
+						//TODO print to stdout as per spec
+						break mop;
+					case "e":
+						System.out.println("Please enter a name to search for: ");
+						MediaPerson personFound = mpdb.searchExact(inputReader.readLine());
+						if(personFound == null) {
+							while(true) {
+								System.out.println("Person not Found. Continue (y/n)?");
+								String cnt = inputReader.readLine();
+								switch(cnt) {
+								case "y":
+									break eop;
+								case "n":
+									System.exit(0);
+								default: 
+									System.out.println("Please enter a valid response (y or n).");
+									break;
+								}
+							}	
+						}
+							
+						tog: while(true) {
+							System.out.println("Display (t)ext or (g)raph?");
+							String textOrGraph = inputReader.readLine();
+							switch(textOrGraph)
+							{
+								case "t":
+									//TODO personFound -> stdout
+									break tog;
+								case "g":
+									
+									while(true) {
+										System.out.println("Display (p)ie chart or (h)istogram?");
+										String pieOrHistogram = inputReader.readLine();
+										switch(pieOrHistogram) {
+										case "p":
+											drawPie(personFound);
+											break tog;
+										case "h":
+											drawHistogram(personFound);
+											break tog;
+										default:
+											System.out.println("Please enter a valid input (p or h).");
+											break;
+										}
+
+									}
+								default:
+									System.out.println("Please enter a valid input (t or g).");
+									break;
+							}
+
+						}
+						
+						break eop;
+					default: 
+						System.out.println("Please enter a valid response (p or e).");
+						break;
+					}
+					
+				}
+			break ;
+			default: 
+				System.out.println("Please enter a valid response (m or p).");
+				break;
+			}
+		}
+
 		
 		while(true){ // loops until user exits
 			
@@ -77,7 +237,7 @@ public class MediaDbDriver {
 			String searchInput = inputReader.readLine();
 			
 			if(!searchInput.equals("t") && !searchInput.equals("y") && !searchInput.equals("b")){ // if invalid input
-				System.out.println("Please enter a valid response (t, y, or b). Returning to beginning.");
+				System.out.println("nter a valid response (t, y, or b). Returning to beginning.");
 				continue;
 			}
 			
@@ -110,6 +270,8 @@ public class MediaDbDriver {
 				yearsToSearch = inputReader.readLine();
 			}
 			
+
+
 			
 			System.out.println("Sort by (t)itle or (y)ear?");
 			sortInput = inputReader.readLine();
@@ -436,6 +598,84 @@ public class MediaDbDriver {
 	}
 	
 	/**
+	 * Reads a text file containing only actors into the media database.
+	 * @param br The buffered reader to parse the .txt file.
+	 * @param db	The MediaPersonDatabase to put the new movies into.
+	 * @throws	IOException	If File not found
+	 */
+	public static void readPeopleToMDb(BufferedReader br,
+			MediaPersonDatabase db, String role) throws IOException {
+
+		String line = br.readLine();
+
+		longRead:while (line != null) {
+			
+			while(line.length()==0){
+				line = br.readLine();
+				if(line == null) break longRead;
+			}
+				
+			
+			String lastName = "", firstName="";
+			MediaPerson person = null;
+			
+			int c_idx=0;
+			int n_idx=0;
+			
+			n_idx = line.indexOf(",");
+			lastName = line.substring(c_idx, n_idx);
+			c_idx = n_idx+2;
+			n_idx = line.indexOf("\t");
+			firstName = line.substring(c_idx,n_idx);
+			person = new MediaPerson(firstName+" "+lastName,role);
+			
+			//check if the person is already entered
+			MediaPerson test = db.searchExact(firstName+" "+lastName);
+			if(test != null) person = test;
+			
+			while(line!=null && line.length()>0 ) {
+	
+				c_idx = n_idx;
+				while(line.charAt(c_idx) =='\t') c_idx++;
+				
+				
+				n_idx = line.indexOf("(",n_idx)-1;
+				String title = line.substring(c_idx,n_idx);
+				c_idx = n_idx+2;
+				n_idx = line.indexOf(")",c_idx);
+				String year = line.substring(c_idx,n_idx);
+				c_idx = n_idx+2;
+				n_idx = c_idx+1;
+				String madeFor = "";
+				if(n_idx<line.length()){
+					if(line.substring(c_idx,n_idx).equals("(")){
+						c_idx++; n_idx++;
+						if(line.substring(c_idx,n_idx).equals("T")){
+							madeFor=" (TV)";
+						} else {
+							madeFor=" (V)";
+						}
+					}
+				}
+				
+				if(line.contains("{") && !line.contains("{{"))
+				{
+					person.addWork("SERIES: "+title+" ("+year+")", "series", role);
+				} else {
+					person.addWork("MOVIE"+madeFor+": "+title+" ("+year+")", "movie", role);
+				}
+				c_idx = 0; n_idx=0;
+				line = br.readLine();
+			}			
+			
+			if(person!=null && person != test)db.addPerson(person);
+			line = br.readLine();
+
+		}
+	}
+	
+	
+	/**
 	 * Draws a pie chart displaying media makers products
 	 * 
 	 * @param person the media maker to draw for
@@ -458,10 +698,10 @@ public class MediaDbDriver {
 	public static void drawHistogram(MediaPerson person)
 	{
 		JFrame frame = new JFrame();
-		frame.setSize(500, 500);
+		frame.setSize(1000, 500);
 		frame.setTitle(person.getName());
-		pieChart pc = new pieChart(person);
-		frame.add(pc);
+		histogram hs = new histogram(person);
+		frame.add(hs);
 		frame.setVisible(true);
 	}
 	
