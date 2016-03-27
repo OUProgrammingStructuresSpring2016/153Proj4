@@ -65,16 +65,16 @@ public class MediaPerson{
 		sw1:switch(typeOfWork){
 		case "movie":
 			switch(role){
-			case "actor": moviesActed++; break sw1;
-			case "director": moviesDirected++; break sw1;
-			case "producer": moviesProduced++; break sw1;
+			case "ACTING": moviesActed++; break sw1;
+			case "DIRECTING": moviesDirected++; break sw1;
+			case "PRODUCING": moviesProduced++; break sw1;
 			default: System.out.println("ERROR: check MediaPerson method addWork() and ensure you use correct formatting."); break;
 			}
 		case "series":
 			switch(role){
-			case "actor": seriesActed++; break sw1;
-			case "director": seriesDirected++; break sw1;
-			case "producer": seriesProduced++; break sw1;
+			case "ACTING": seriesActed++; break sw1;
+			case "DIRECTING": seriesDirected++; break sw1;
+			case "PRODUCING": seriesProduced++; break sw1;
 			default: System.out.println("ERROR: check MediaPerson method addWork() and ensure you use correct formatting."); break;
 			}
 		}

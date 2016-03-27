@@ -17,14 +17,14 @@ import javax.swing.JFrame;
 public class MediaDbDriver {
 
 	public static void main(String[] args) throws IOException {
-		
-		/** Creates a new media database */
-		MediaPerson testPerson = new MediaPerson("test", "actor");
-		testPerson.addWork("UnderGround (2012)", "movie", "actor");
-		testPerson.addWork("World AIDS Day Special (1995) (TV)", "movie", "actor");
-		testPerson.addWork("\"Chappelle's Show\" (2003)", "movie", "actor");
-		drawHistogram(testPerson
-				);
+//		
+//		/** Creates a new media database */
+//		MediaPerson testPerson = new MediaPerson("test", "actor");
+//		testPerson.addWork("UnderGround (2012)", "movie", "actor");
+//		testPerson.addWork("World AIDS Day Special (1995) (TV)", "movie", "actor");
+//		testPerson.addWork("\"Chappelle's Show\" (2003)", "movie", "actor");
+//		drawHistogram(testPerson
+//				);
 		MediaDatabase mdb = new MediaDatabase();
 		MediaPersonDatabase mpdb = new MediaPersonDatabase();
 		
@@ -104,7 +104,7 @@ public class MediaDbDriver {
 		br = new BufferedReader(fr);
 
 		//reads in Actors to mpdb
-		readPeopleToMDb(br, mpdb, "actor");
+		readPeopleToMDb(br, mpdb, "ACTING");
 		
 		fr.close();
 		
@@ -118,7 +118,7 @@ public class MediaDbDriver {
 		br = new BufferedReader(fr);
 		
 		//reads in Directors to mpdb
-		readPeopleToMDb(br, mpdb, "director");
+		readPeopleToMDb(br, mpdb, "DIRECTING");
 		
 		fr.close();
 		
@@ -132,7 +132,7 @@ public class MediaDbDriver {
 		br = new BufferedReader(fr);
 		
 		//reads in Producer file into mpdb
-		readPeopleToMDb(br, mpdb, "producer");
+		readPeopleToMDb(br, mpdb, "PRODUCING");
 		
 		fr.close();
 		
@@ -161,20 +161,16 @@ public class MediaDbDriver {
 					switch(partialOrExact) {
 					case "p":
 						System.out.println("Please enter a name to search for: ");
-<<<<<<< HEAD
 						String name = inputReader.readLine();
 						ArrayList<MediaPerson> partialMatches = mpdb.searchPartial(name);
-						//TODO print to stdout as per spec
+						
 						System.out.println("SEARCHED PEOPLE");
-						System.out.println("PARTIAL NAME:" + name);
+						System.out.println("PARTIAL NAME: " + name);
 						System.out.println("================================================================================");
+						
 						for(MediaPerson person: partialMatches){
 							System.out.println(person.getProfession());
 						}
-=======
-						mpdb.searchPartial(inputReader.readLine());
-						mpdb.resultListToString();
->>>>>>> ad65967852eeac22fc4cbe16ffb05c08c9fd8325
 						break mop;
 					case "e":
 						System.out.println("Please enter a name to search for: ");
@@ -202,7 +198,11 @@ public class MediaDbDriver {
 							{
 								case "t":
 									//TODO personFound -> stdout
-									System.out.println(personFound.toString());
+									System.out.println("SEARCHED PEOPLE");
+									System.out.println("EXACT NAME: " + personFound.getName());
+									System.out.println("================================================================================");
+									
+									System.out.println(personFound.worksToString());
 									break tog;
 								case "g":
 									
