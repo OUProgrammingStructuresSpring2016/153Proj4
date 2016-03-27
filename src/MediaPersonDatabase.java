@@ -1,6 +1,5 @@
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -54,11 +53,15 @@ public class MediaPersonDatabase implements Serializable{
 	 * @return All MediaPerson(s) whose name contains the given token.
 	 */
 	public ArrayList<MediaPerson> searchPartial(String name){
+		resultList = new ArrayList<MediaPerson>();
 		for(Map.Entry<String, MediaPerson> entry: mpdb.entrySet()){
 				if(entry.getKey().contains(name)){
-					resultList.add(entry.getValue()); 
+					MediaPerson person = new MediaPerson(name, entry.getValue().toString()); 
+					resultList.add(person);
+							
 				}
 		}
+		resultList.toString();
 		
 		if(resultList.isEmpty())
 			System.out.println("No matches found.");
@@ -72,6 +75,7 @@ public class MediaPersonDatabase implements Serializable{
 	 * @return All MediaPerson(s) whose name matches the given token.
 	 */
 	public MediaPerson searchExact(String name){
+		resultList = new ArrayList<MediaPerson>();
 		for(Map.Entry<String, MediaPerson> entry: mpdb.entrySet()){
 			if(entry.getKey().equals(name)){
 				//resultList.add(entry.getValue()); 

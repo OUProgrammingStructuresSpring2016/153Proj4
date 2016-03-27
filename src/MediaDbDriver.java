@@ -54,9 +54,10 @@ public class MediaDbDriver {
 		System.out.println("Enter the name of the text file, with .txt extension, containing the movie data.");
 		
 		String fileName = inputReader.readLine();
-		//TODO undo this
-		fileName="StarTrekMovies.txt";
-
+		
+		//TODO REMOVE THIS
+		fileName = "StarTrekMovies.txt";
+				
 		/** The FileReader to be wrapped by the BufferedReader */
 		FileReader fr = new FileReader(fileName);
 
@@ -66,18 +67,21 @@ public class MediaDbDriver {
 		 */
 		BufferedReader br = new BufferedReader(fr);
 		
+		//reads in the Movie file to mdb
 		readMoviesToMDb(br, mdb);
 		
 		System.out.println("Enter the name of the text file, with .txt extension, containing the TV series data.");
 
 		fileName = inputReader.readLine();
-		//TODO undo this
-		fileName="StarTrekTV.txt";
+		
+		//TODO REMOVE THIS
+		fileName = "StarTrekTV.txt";
 		
 		fr = new FileReader(fileName);
 		
 		br = new BufferedReader(fr);
 		
+		//reads in the TV file to mdb
 		readTVToMDb(br, mdb);
 		
 		fr.close();
@@ -85,13 +89,15 @@ public class MediaDbDriver {
 		System.out.println("Enter the name of the text file, with .txt extension, containing the actor data.");
 
 		fileName = inputReader.readLine();
-		//TODO undo this
-		fileName="SomeActors.txt";
+		
+		//TODO REMOVE THIS
+		fileName = "SomeActors.txt";
 		
 		fr = new FileReader(fileName);
 		
 		br = new BufferedReader(fr);
 
+		//reads in Actors to mpdb
 		readPeopleToMDb(br, mpdb, "actor");
 		
 		fr.close();
@@ -99,13 +105,13 @@ public class MediaDbDriver {
 		System.out.println("Enter the name of the text file, with .txt extension, containing the director data.");
 
 		fileName = inputReader.readLine();
-		//TODO undo this
-		fileName="SomeDirectors.txt";
-		
+		//TODO REMOVE THIS
+		fileName = "SomeDirectors.txt";
 		fr = new FileReader(fileName);
 		
 		br = new BufferedReader(fr);
 		
+		//reads in Directors to mpdb
 		readPeopleToMDb(br, mpdb, "director");
 		
 		fr.close();
@@ -113,13 +119,13 @@ public class MediaDbDriver {
 		System.out.println("Enter the name of the text file, with .txt extension, containing the producer data.");
 
 		fileName = inputReader.readLine();
-		//TODO undo this
-		fileName="SomeProducers.txt";
-		
+		//TODO REMOVE THIS
+		fileName = "SomeProducers.txt";
 		fr = new FileReader(fileName);
 		
 		br = new BufferedReader(fr);
 		
+		//reads in Producer file into mpdb
 		readPeopleToMDb(br, mpdb, "producer");
 		
 		fr.close();
@@ -149,8 +155,15 @@ public class MediaDbDriver {
 					switch(partialOrExact) {
 					case "p":
 						System.out.println("Please enter a name to search for: ");
-						ArrayList<MediaPerson> partialMatches = mpdb.searchPartial(inputReader.readLine());
+						String name = inputReader.readLine();
+						ArrayList<MediaPerson> partialMatches = mpdb.searchPartial(name);
 						//TODO print to stdout as per spec
+						System.out.println("SEARCHED PEOPLE");
+						System.out.println("PARTIAL NAME:" + name);
+						System.out.println("================================================================================");
+						for(MediaPerson person: partialMatches){
+							System.out.println(person.getProfession());
+						}
 						break mop;
 					case "e":
 						System.out.println("Please enter a name to search for: ");
@@ -178,6 +191,7 @@ public class MediaDbDriver {
 							{
 								case "t":
 									//TODO personFound -> stdout
+									System.out.println(personFound.toString());
 									break tog;
 								case "g":
 									
@@ -217,6 +231,7 @@ public class MediaDbDriver {
 				break;
 			}
 		}
+
 
 		
 		while(true){ // loops until user exits
