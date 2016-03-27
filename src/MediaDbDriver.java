@@ -42,7 +42,13 @@ public class MediaDbDriver {
 			case "t":
 				break question1;
 			case "b":
-				//TODO read binary file.
+				System.out.println("Enter the name of the binary file.");
+				try {
+					mpdb = new MediaPersonDatabase(inputReader.readLine());
+				} catch (ClassNotFoundException e) {
+					System.out.println("ERROR: File not found. Ensure the file name was typed correctly and that the file exists.");
+					continue;
+				}
 				break question1;
 			default:
 				System.out.println("Please use the options indicated in parentheses");
@@ -149,8 +155,8 @@ public class MediaDbDriver {
 					switch(partialOrExact) {
 					case "p":
 						System.out.println("Please enter a name to search for: ");
-						ArrayList<MediaPerson> partialMatches = mpdb.searchPartial(inputReader.readLine());
-						//TODO print to stdout as per spec
+						mpdb.searchPartial(inputReader.readLine());
+						mpdb.resultListToString();
 						break mop;
 					case "e":
 						System.out.println("Please enter a name to search for: ");
@@ -178,6 +184,7 @@ public class MediaDbDriver {
 							{
 								case "t":
 									//TODO personFound -> stdout
+									System.out.println(personFound.toString());
 									break tog;
 								case "g":
 									
