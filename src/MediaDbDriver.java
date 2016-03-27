@@ -51,7 +51,7 @@ public class MediaDbDriver {
 				}
 				break question1;
 			default:
-				System.out.println("Please use the options indicated in parentheses");
+				System.out.println("Please use the options indicated in parentheses.");
 				break;
 			}
 		}
@@ -640,6 +640,8 @@ public class MediaDbDriver {
 			MediaPerson test = db.searchExact(firstName+" "+lastName);
 			if(test != null) person = test;
 			
+			person.addWorkDivider(role.toUpperCase());
+			
 			while(line!=null && line.length()>0 ) {
 	
 				c_idx = n_idx;
@@ -676,6 +678,7 @@ public class MediaDbDriver {
 			}			
 			
 			if(person!=null && person != test)db.addPerson(person);
+			
 			line = br.readLine();
 
 		}
