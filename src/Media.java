@@ -1,15 +1,15 @@
 import java.util.Comparator;
 
 /**
- * Project #2
+ * Project #3
  * CS 2334, Section 010
- * Feb 19, 2016
+ * Mar 28, 2016
  * <P>
- * Stores and allows access to data for a general, non-descript media object (e.g. movies and TV shows).
+ * An object representing an abstract media object to be extended into actual
+ * media objects (TV series and movies).
  * </P>
  * @version 1.0
  */
-
 
 public abstract class Media implements Comparable<Media>{
 

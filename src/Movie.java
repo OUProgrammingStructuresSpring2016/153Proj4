@@ -1,4 +1,13 @@
-
+/**
+ * Project #3
+ * CS 2334, Section 010
+ * Mar 28, 2016
+ * <P>
+ * A simple object to represent a movie, including release year,
+ * title, and any additional info (i.e., TV movie, etc.).
+ * </P>
+ * @version 1.0
+ */
 public class Movie extends Media{
 	/** Stores data for a movie's additional info*/
 	private String additionalInfo;

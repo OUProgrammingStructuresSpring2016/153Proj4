@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
 /**
- * Project #2
+ * Project #3
  * CS 2334, Section 010
- * Feb 19, 2016
+ * Mar 28, 2016
  * <P>
- * Stores and allows access to data for a TV series, 
- * including the series's episodes.
+ * A simple object to represent a TV series, including
+ * all episodes and seasons of the TV series.
  * </P>
  * @version 1.0
  */

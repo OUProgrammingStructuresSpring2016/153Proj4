@@ -1,7 +1,7 @@
 /**
- * Project #2
+ * Project #3
  * CS 2334, Section 010
- * Feb 19, 2016
+ * Mar 28, 2016
  * <P>
  * A simple object to represent an episode of a TV series, including
  * episode name, episode number, and the year the episode was aired.

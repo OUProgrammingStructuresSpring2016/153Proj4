@@ -10,6 +10,16 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * Project #3
+ * CS 2334, Section 010
+ * Mar 28, 2016
+ * <P>
+ * An object to represent a collection of MediaPeople, along with their works, that is
+ * searchable, saveable, and loadable.
+ * </P>
+ * @version 1.0
+ */
 public class MediaPersonDatabase implements Serializable{
 
 
@@ -118,7 +128,6 @@ public class MediaPersonDatabase implements Serializable{
 		bw.close();
 	}
 	
-	//TODO: Should we move this method somewhere else? As it is, we could place this anywhere (in Driver class, maybe)
 	/**
 	 * Outputs the result list into a text file with the given file name.
 	 * @param filename The name to give the new text file.

@@ -17,14 +17,7 @@ import javax.swing.JFrame;
 public class MediaDbDriver {
 
 	public static void main(String[] args) throws IOException {
-//		
-//		/** Creates a new media database */
-//		MediaPerson testPerson = new MediaPerson("test", "actor");
-//		testPerson.addWork("UnderGround (2012)", "movie", "actor");
-//		testPerson.addWork("World AIDS Day Special (1995) (TV)", "movie", "actor");
-//		testPerson.addWork("\"Chappelle's Show\" (2003)", "movie", "actor");
-//		drawHistogram(testPerson
-//				);
+
 		MediaDatabase mdb = new MediaDatabase();
 		MediaPersonDatabase mpdb = new MediaPersonDatabase();
 		
@@ -147,6 +140,7 @@ public class MediaDbDriver {
 		String sortInput = "";
 		boolean includeEpTitles = false;
 		
+		// the text to output for outputting to a text file.
 		String personTextOutput = "";
 		
 

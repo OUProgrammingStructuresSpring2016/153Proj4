@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Project #2 CS 2334, Section 010 Feb 19, 2016
+ * Project #3 CS 2334, Section 010 Mar 28, 2016
  * <P>
  * Creates, searches, and saves searches of a media database containing movies
  * and TV series.

@@ -2,7 +2,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 
-
+/**
+ * Project #3
+ * CS 2334, Section 010
+ * Mar 28, 2016
+ * <P>
+ * A simple object to represent a person who makes media, including
+ * actors, directors, and producers.
+ * </P>
+ * @version 1.0
+ */
 public class MediaPerson implements Serializable{
 
 	private static final long serialVersionUID = -5852249412583906111L;
@@ -128,8 +137,8 @@ public class MediaPerson implements Serializable{
 		for(int i=0; i<works.size(); i++){
 			output += works.get(i) + "\n";
 		}
-		//TODO: make sure this \n doesnt mess up anything
-		output += "--------------------------------------------------------------------------------\n";
+
+		output += "--------------------------------------------------------------------------------";
 		
 		return output;
 	}
@@ -138,8 +147,8 @@ public class MediaPerson implements Serializable{
 	 * @return The String representing this MediaPerson, including works, as per project specifications
 	 */
 	public String toString(){
-
-		return name + "\n" + worksToString();
+//TODO:
+		return name + "\n" + worksToString() + "\n";
 	}
 	/**
 	 * Finds all of this person's works created in a specific year, then counts up how many of each credit (acting, dir, producing) there are for that particular year.
