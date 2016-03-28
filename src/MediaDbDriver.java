@@ -147,8 +147,11 @@ public class MediaDbDriver {
 		String sortInput = "";
 		boolean includeEpTitles = false;
 		
+		String personTextOutput = "";
+		
 
 		mop:while(true) {
+			mpdb.clearResultsList();
 			System.out.println("Search (m)edia or (p)eople?");
 			String mediaOrPeople = inputReader.readLine();
 			switch(mediaOrPeople) {
@@ -162,12 +165,12 @@ public class MediaDbDriver {
 					case "p":
 						System.out.println("Please enter a name to search for: ");
 						String name = inputReader.readLine();
-						ArrayList<MediaPerson> partialMatches = mpdb.searchPartial(name);
-						
+						ArrayList<MediaPerson> partialMatches = mpdb.searchPartial(name);	
+						personTextOutput += "SEARCHED PEOPLE \n PARTIAL NAME: " + name + "\n================================================================================ \n";
 						System.out.println("SEARCHED PEOPLE");
 						System.out.println("PARTIAL NAME: " + name);
 						System.out.println("================================================================================");
-						
+						personTextOutput += mpdb.resultListToString();
 						for(MediaPerson person: partialMatches){
 							System.out.println(person.getProfession());
 						}
@@ -181,7 +184,7 @@ public class MediaDbDriver {
 								String cnt = inputReader.readLine();
 								switch(cnt) {
 								case "y":
-									break eop;
+									continue mop;
 								case "n":
 									System.exit(0);
 								default: 
@@ -197,12 +200,31 @@ public class MediaDbDriver {
 							switch(textOrGraph)
 							{
 								case "t":
-									//TODO personFound -> stdout
+									personTextOutput += "SEARCHED PEOPLE \nEXACT NAME: " + personFound.getName() + "\n================================================================================";
 									System.out.println("SEARCHED PEOPLE");
 									System.out.println("EXACT NAME: " + personFound.getName());
 									System.out.println("================================================================================");
-									
 									System.out.println(personFound.worksToString());
+									personTextOutput += "\n" + personFound.worksToString();				
+									System.out.println("Save search results? (y/n)");
+									String tob = inputReader.readLine();
+									 if(tob.equals("y")){
+										System.out.println("Save as (t)ext file or (b)inary file?");
+										String ynSave = inputReader.readLine();
+										if(ynSave.equals("t")){
+											System.out.println("What would you like to name the text file?");
+												MediaPersonDatabase.outputToTextFile(inputReader.readLine(), personTextOutput);	
+												System.out.println("Completed.");
+										}
+										else if(ynSave.equals("b")){
+											System.out.println("What would you like to name the binary file?");
+											mpdb.outputToBinaryFile(inputReader.readLine());
+											System.out.println("Completed.");
+										}
+										else continue tog;
+									}
+									else
+										continue mop;
 									break tog;
 								case "g":
 									
@@ -241,6 +263,7 @@ public class MediaDbDriver {
 				System.out.println("Please enter a valid response (m or p).");
 				break;
 			}
+			
 		}
 
 

@@ -91,10 +91,18 @@ public class MediaPersonDatabase implements Serializable{
 		return null;
 	}
 	
-	public void inputBinaryFile(String fileName) throws IOException{
-		byte[] buffer = new byte[1000];
+	/**
+	 * 
+	 * @param fileName The name of the binary file containing `~SEARCH RESULTS~` to be read in
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	
+	public void inputBinaryFile(String fileName) throws IOException, ClassNotFoundException{
+
         FileInputStream inputStream =  new FileInputStream(fileName);
-        inputStream.read(buffer);
+        ObjectInputStream objInput = new ObjectInputStream(inputStream);
+        resultList = (ArrayList<MediaPerson>) objInput.readObject();
         inputStream.close();        
 	}
 	
@@ -103,13 +111,14 @@ public class MediaPersonDatabase implements Serializable{
 	 * @param filename The name to give the new binary file.
 	 * @throws IOException 
 	 */
-	public void outputToBinaryFile(String fileName, String textToOutput) throws IOException{
+	public void outputToBinaryFile(String fileName) throws IOException{
 		FileOutputStream filer = new FileOutputStream(fileName);
 		ObjectOutputStream bw = new ObjectOutputStream(filer);
-		bw.writeObject(textToOutput);
+		bw.writeObject(resultList);
 		bw.close();
 	}
 	
+	//TODO: Should we move this method somewhere else? As it is, we could place this anywhere (in Driver class, maybe)
 	/**
 	 * Outputs the result list into a text file with the given file name.
 	 * @param filename The name to give the new text file.
@@ -132,10 +141,12 @@ public class MediaPersonDatabase implements Serializable{
 	/**
 	 * @return The properly formatted String of MediaPerson(s), as outlined in project guidelines.
 	 */
-	public void resultListToString(){
+	public String resultListToString(){
+		String result = "";
 		for(MediaPerson person: resultList){
-			System.out.println(person.toString());
+			result += person.toString() + "\n--------------------------------------------------------------------------------";
 		}
+		return result;
 	}
 	
 
