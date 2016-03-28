@@ -148,7 +148,7 @@ public class MediaPerson implements Serializable{
 	 */
 	public String toString(){
 //TODO:
-		return name + "\n" + worksToString() + "\n";
+		return name + "\n" + worksToString();
 	}
 	/**
 	 * Finds all of this person's works created in a specific year, then counts up how many of each credit (acting, dir, producing) there are for that particular year.

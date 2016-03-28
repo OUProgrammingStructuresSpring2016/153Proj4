@@ -1,8 +1,15 @@
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -14,7 +21,9 @@ import java.util.List;
  * 
  * @version 1.0
  */
-public class MediaDatabase {
+public class MediaDatabase implements Serializable{
+
+	private static final long serialVersionUID = 3927560263599205482L;
 
 	/** The database to contain all of the Movie data. */
 	public List<Movie> movieDatabase;
@@ -32,6 +41,19 @@ public class MediaDatabase {
 	public MediaDatabase() {
 		movieDatabase = new ArrayList<Movie>();
 		tvDatabase = new ArrayList<TVSeries>();
+	}
+	
+	/**
+	 * Constructs a MediaDatabase from an existing binary file.
+	 * @param filename The name of the binary file to be loaded.
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public MediaDatabase(String filename) throws IOException, ClassNotFoundException{
+		FileInputStream fis = new FileInputStream(filename);
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		movieDatabase = (List<Movie>) ois.readObject();
+		ois.close();
 	}
 
 	/**
@@ -352,5 +374,17 @@ public class MediaDatabase {
 	 */
 	public void sortResultsByYear(){
 		Collections.sort(resultList, new Media.YearComparator());
+	}
+	
+	/**
+	 * Outputs a search result from resultList into a binary file. (Note: not for importing database, but for importing search results.)
+	 * @param filename The name to give the new binary file.
+	 * @throws IOException
+	 */
+	public void outputToBinaryFile(String filename) throws IOException{
+		FileOutputStream filer = new FileOutputStream(filename);
+		ObjectOutputStream bw = new ObjectOutputStream(filer);
+		bw.writeObject(resultList);
+		bw.close();
 	}
 }

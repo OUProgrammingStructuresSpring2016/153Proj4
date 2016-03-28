@@ -285,43 +285,61 @@ public class MediaDbDriver {
 
 
 		
-		while(true){ // loops until user exits
+		mdb:while(true){ // loops until user exits
 			
 			System.out.println("Search (m)ovies, (s)eries, or (b)oth?");
 			
 			// which databases to search
 			String dbInput = inputReader.readLine();
+			String searchInput;
 			
 			if(!dbInput.equals("m")&& !dbInput.equals("s")&& !dbInput.equals("b") ){ // if invalid input
 				System.out.println("Please enter a valid response (m, s, or b).");
-				continue;
+				System.out.println();
+				continue mdb;
 			}
 			
-			System.out.println("Search  (t)itle, (y)ear, or (b)oth?");
 			
-			// which parameters to search the databases for
-			String searchInput = inputReader.readLine();
 			
-			if(!searchInput.equals("t") && !searchInput.equals("y") && !searchInput.equals("b")){ // if invalid input
-				System.out.println("nter a valid response (t, y, or b). Returning to beginning.");
-				continue;
+				System.out.println("Search (t)itle, (y)ear, or (b)oth?");
+			
+				// which parameters to search the databases for
+				searchInput = inputReader.readLine();
+			
+				val1:while(true){
+				if(!searchInput.equals("t") && !searchInput.equals("y") && !searchInput.equals("b")){ // if invalid input
+				System.out.println("Enter a valid response (t, y, or b).");
+				System.out.println();
+				continue val1;
+				}
+				else
+					break val1;
 			}
 			
 			if(!searchInput.equals("y")){ // if t or b was chosen
 				System.out.println("Search for (e)xact or (p)artial title matches?");
+				val2:while(true){
 				matchInput = inputReader.readLine();
 				if(!matchInput.equals("e") && !matchInput.equals("p")){ // if invalid input
-					System.out.println("Please enter a valid response (e or p). Returning to beginning.");
-					continue;
+					System.out.println("Please enter a valid response (e or p).");
+					System.out.println();
+					continue val2;
 				}
+				else break val2;
+			}
 			}
 			
+			
 			if( !dbInput.equals("m") && !searchInput.equals("y")){ // user answered either s or b on first question and t or b to the second
+				val3:while(true){
 				System.out.println("Include episode titles in search and output? (y/n)");
 				includeTitles = inputReader.readLine();
 				if(!includeTitles.equals("y") && !includeTitles.equals("n") ){ // if invalid input
-					System.out.println("Please enter valid response (y or n). Returning to beginning.");
-					continue;
+					System.out.println("Please enter valid response (y or n).");
+					System.out.println();
+					continue val3;
+				}
+				else break val3;
 				}
 				includeEpTitles = includeTitles.equals("y");
 			}
@@ -338,12 +356,15 @@ public class MediaDbDriver {
 			
 
 
-			
+			val4:while(true){
 			System.out.println("Sort by (t)itle or (y)ear?");
 			sortInput = inputReader.readLine();
-			if(!sortInput.equals("t") && !sortInput.equals("y")){
-				System.out.println("Please enter a valid input (t or y). Returning to beginning.");
-				continue;
+			if(!sortInput.equals("t") && !sortInput.equals("y")){ //if invalid input
+				System.out.println("Please enter a valid input (t or y).");
+				System.out.println();
+				continue val4;
+			}
+			else break val4;
 			}
 			
 			String output = "SEARCHED ";
@@ -481,10 +502,25 @@ public class MediaDbDriver {
 				
 				System.out.println(mdb.resultListToString());
 			
-			System.out.println("Save search results as text file? (y/n)");
+				String textOrB;
+				
+			System.out.println("Save search results? (y/n)");
 			if(inputReader.readLine().equals("y")){
-				System.out.println("What would you like to name the text file?");
-				mdb.outputToFile(sortInput.equals("y"), inputReader.readLine(), (output + mdb.resultListToString()) );
+				sv:while(true){
+				System.out.println("Save as (t)ext or (b)inary file?");
+				textOrB = inputReader.readLine();
+				if(!textOrB.equals("t") && !textOrB.equals("b")){
+				 System.out.println("Please enter a valid response (t or b).");
+				 continue sv;
+				}
+				else break sv;
+				}
+			System.out.println("What would you like to name the file?");
+			String dindo = inputReader.readLine();
+				if(textOrB.equals("t"))
+					mdb.outputToFile(sortInput.equals("y"), dindo, (output + mdb.resultListToString()) );
+				else
+					mdb.outputToBinaryFile(dindo);
 			}
 			
 			mdb.clearResultsList();

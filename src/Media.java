@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
@@ -11,7 +12,9 @@ import java.util.Comparator;
  * @version 1.0
  */
 
-public abstract class Media implements Comparable<Media>{
+public abstract class Media implements Comparable<Media>, Serializable{
+
+	private static final long serialVersionUID = 8891247205789573333L;
 
 	/** Stores the title of the media. */
 	protected String title;

@@ -117,7 +117,7 @@ public class MediaPersonDatabase implements Serializable{
 	}
 	
 	/**
-	 * Outputs the result list into a binary file for use in loading future databases.
+	 * Outputs the result list into a binary file. (Note: not for importing database, but for importing search results.)
 	 * @param filename The name to give the new binary file.
 	 * @throws IOException 
 	 */
