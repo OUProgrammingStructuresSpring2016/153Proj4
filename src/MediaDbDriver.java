@@ -166,13 +166,13 @@ public class MediaDbDriver {
 						System.out.println("Please enter a name to search for: ");
 						String name = inputReader.readLine();
 						ArrayList<MediaPerson> partialMatches = mpdb.searchPartial(name);	
-						personTextOutput += "SEARCHED PEOPLE \n PARTIAL NAME: " + name + "\n================================================================================ \n";
+						personTextOutput += "SEARCHED PEOPLE \nPARTIAL NAME: " + name + "\n================================================================================ \n";
 						System.out.println("SEARCHED PEOPLE");
 						System.out.println("PARTIAL NAME: " + name);
 						System.out.println("================================================================================");
-						personTextOutput += mpdb.resultListToString();
 						for(MediaPerson person: partialMatches){
 							System.out.println(person.getProfession());
+							personTextOutput += person.getProfession();
 						}
 					gob:while(true){	
 						System.out.println("Save search results? (y/n)");
@@ -760,6 +760,8 @@ public class MediaDbDriver {
 		JFrame frame = new JFrame();
 		frame.setSize(500, 500);
 		frame.setTitle(person.getName());
+	//	pieChart pc = new pieChart(person);
+	//	frame.add(pc);
 		frame.setVisible(true);
 		
 		

@@ -144,7 +144,7 @@ public class MediaPersonDatabase implements Serializable{
 	public String resultListToString(){
 		String result = "";
 		for(MediaPerson person: resultList){
-			result += person.toString() + "\n--------------------------------------------------------------------------------";
+			result += person.toString();
 		}
 		return result;
 	}

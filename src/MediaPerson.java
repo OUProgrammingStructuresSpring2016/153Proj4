@@ -1,7 +1,11 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class MediaPerson{
+
+public class MediaPerson implements Serializable{
+
+	private static final long serialVersionUID = -5852249412583906111L;
 
 	private String name;
 	
@@ -124,8 +128,8 @@ public class MediaPerson{
 		for(int i=0; i<works.size(); i++){
 			output += works.get(i) + "\n";
 		}
-		
-		output += "--------------------------------------------------------------------------------";
+		//TODO: make sure this \n doesnt mess up anything
+		output += "--------------------------------------------------------------------------------\n";
 		
 		return output;
 	}
