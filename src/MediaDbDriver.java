@@ -174,7 +174,30 @@ public class MediaDbDriver {
 						for(MediaPerson person: partialMatches){
 							System.out.println(person.getProfession());
 						}
-						break mop;
+					gob:while(true){	
+						System.out.println("Save search results? (y/n)");
+						String ssr = inputReader.readLine();
+						 if(ssr.equals("y")){
+							System.out.println("Save as (t)ext file or (b)inary file?");
+							String ynSave = inputReader.readLine();
+							if(ynSave.equals("t")){
+								System.out.println("What would you like to name the text file?");
+									MediaPersonDatabase.outputToTextFile(inputReader.readLine(), personTextOutput);	
+									System.out.println("Completed.");
+									break gob;
+							}
+							else if(ynSave.equals("b")){
+								System.out.println("What would you like to name the binary file?");
+								mpdb.outputToBinaryFile(inputReader.readLine());
+								System.out.println("Completed.");
+								break gob;
+							}
+							else continue gob;
+						 }
+						 else break gob;
+					}
+						break eop;
+						
 					case "e":
 						System.out.println("Please enter a name to search for: ");
 						MediaPerson personFound = mpdb.searchExact(inputReader.readLine());
