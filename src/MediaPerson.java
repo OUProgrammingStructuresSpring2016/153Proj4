@@ -147,7 +147,6 @@ public class MediaPerson implements Serializable{
 	 * @return The String representing this MediaPerson, including works, as per project specifications
 	 */
 	public String toString(){
-//TODO:
 		return name + "\n" + worksToString();
 	}
 	/**

@@ -55,9 +55,6 @@ public class MediaDbDriver {
 		System.out.println("Enter the name of the text file, with .txt extension, containing the movie data.");
 		
 		String fileName = inputReader.readLine();
-		
-		//TODO REMOVE THIS
-		fileName = "StarTrekMovies.txt";
 				
 		/** The FileReader to be wrapped by the BufferedReader */
 		FileReader fr = new FileReader(fileName);
@@ -75,9 +72,6 @@ public class MediaDbDriver {
 
 		fileName = inputReader.readLine();
 		
-		//TODO REMOVE THIS
-		fileName = "StarTrekTV.txt";
-		
 		fr = new FileReader(fileName);
 		
 		br = new BufferedReader(fr);
@@ -91,9 +85,6 @@ public class MediaDbDriver {
 
 		fileName = inputReader.readLine();
 		
-		//TODO REMOVE THIS
-		fileName = "SomeActors.txt";
-		
 		fr = new FileReader(fileName);
 		
 		br = new BufferedReader(fr);
@@ -106,8 +97,6 @@ public class MediaDbDriver {
 		System.out.println("Enter the name of the text file, with .txt extension, containing the director data.");
 
 		fileName = inputReader.readLine();
-		//TODO REMOVE THIS
-		fileName = "SomeDirectors.txt";
 		fr = new FileReader(fileName);
 		
 		br = new BufferedReader(fr);
@@ -120,8 +109,7 @@ public class MediaDbDriver {
 		System.out.println("Enter the name of the text file, with .txt extension, containing the producer data.");
 
 		fileName = inputReader.readLine();
-		//TODO REMOVE THIS
-		fileName = "SomeProducers.txt";
+
 		fr = new FileReader(fileName);
 		
 		br = new BufferedReader(fr);
