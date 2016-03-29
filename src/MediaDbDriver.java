@@ -789,24 +789,12 @@ public class MediaDbDriver {
 	 */
 	public static void drawPie(MediaPerson person)
 	{
-		
-		System.out.println(person.getCredits(2008));
-		System.out.println(person.getNumMoviesActed());
-		System.out.println(person.getNumMoviesDirected());
-		System.out.println(person.getNumMoviesProduced());
-		System.out.println(person.getNumSeriesActed());
-		System.out.println(person.getNumSeriesDirected());
-		System.out.println(person.getNumSeriesProduced());
-		
-		
 		JFrame frame = new JFrame();
-		frame.setSize(1000, 1000);
 		frame.setTitle(person.getName());
-		pieChart pc = new pieChart(person);
-		frame.add(pc);
-		frame.setVisible(true);
-
-		
+		PieChartJ pc = new PieChartJ(person);
+		frame.getContentPane().add(pc);
+		frame.setSize(1000, 1000);
+		frame.setVisible(true);	
 		
 	}
 	
@@ -818,7 +806,7 @@ public class MediaDbDriver {
 	public static void drawHistogram(MediaPerson person)
 	{
 		JFrame frame = new JFrame();
-		frame.setSize(1000, 500);
+		frame.setSize(1000, 1000);
 		frame.setTitle(person.getName());
 		histogram hs = new histogram(person);
 		frame.add(hs);
