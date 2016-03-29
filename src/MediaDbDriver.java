@@ -37,7 +37,9 @@ public class MediaDbDriver {
 			case "b":
 				System.out.println("Enter the name of the binary file.");
 				try {
-					mpdb = new MediaPersonDatabase(inputReader.readLine());
+					String binfilename = inputReader.readLine();
+				//	mdb = new MediaDatabase(binfilename);
+					mpdb = new MediaPersonDatabase(binfilename);
 				} catch (ClassNotFoundException e) {
 					System.out.println("ERROR: File not found. Ensure the file name was typed correctly and that the file exists.");
 					continue;
@@ -787,12 +789,23 @@ public class MediaDbDriver {
 	 */
 	public static void drawPie(MediaPerson person)
 	{
+		
+		System.out.println(person.getCredits(2008));
+		System.out.println(person.getNumMoviesActed());
+		System.out.println(person.getNumMoviesDirected());
+		System.out.println(person.getNumMoviesProduced());
+		System.out.println(person.getNumSeriesActed());
+		System.out.println(person.getNumSeriesDirected());
+		System.out.println(person.getNumSeriesProduced());
+		
+		
 		JFrame frame = new JFrame();
-		frame.setSize(500, 500);
+		frame.setSize(1000, 1000);
 		frame.setTitle(person.getName());
-	//	pieChart pc = new pieChart(person);
-	//	frame.add(pc);
+		pieChart pc = new pieChart(person);
+		frame.add(pc);
 		frame.setVisible(true);
+
 		
 		
 	}

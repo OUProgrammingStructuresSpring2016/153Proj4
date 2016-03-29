@@ -159,21 +159,20 @@ public class MediaPerson implements Serializable{
 		Integer mAct=0, mDir=0, mProd=0, sAct=0, sDir=0, sProd=0;
 		ArrayList<Integer> returnList = new ArrayList<Integer>();
 		returnList.add(year);
-		
 		for(String w: works){
-			if(w.contains(year.toString())){
+			if(w.contains(year.toString() )){
 				if(w.contains("MOVIE:") || w.contains("MOVIE (")){ // is a movie
-					if(works.indexOf(w) < works.indexOf("DIRECTOR"))
+					if(works.indexOf(w) < works.indexOf("DIRECTING"))
 						mAct++;
-					else if(works.indexOf(w) > works.indexOf("PRODUCER"))
+					else if(works.indexOf(w) > works.indexOf("PRODUCING"))
 						mProd++;
 					else
 						mDir++;
 				}
 				else{ // is a series
-					if(works.indexOf(w) < works.indexOf("DIRECTOR"))
+					if(works.indexOf(w) < works.indexOf("DIRECTING"))
 						sAct++;
-					else if(works.indexOf(w) > works.indexOf("PRODUCER"))
+					else if(works.indexOf(w) > works.indexOf("PRODUCING"))
 						sProd++;
 					else
 						sDir++;

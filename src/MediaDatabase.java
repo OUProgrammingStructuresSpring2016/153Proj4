@@ -255,7 +255,11 @@ public class MediaDatabase implements Serializable{
 	 */
 	public List<Media> searchTVYear(String year) {
 		
+		if(year.length()>4){
+			searchMultiYear(year);
+		}
 		
+		else{
 			
 		for (int i = 0; i < tvDatabase.size(); i++) {
 			
@@ -276,7 +280,9 @@ public class MediaDatabase implements Serializable{
 				
 				}
 		}
+		}
 		return resultList;
+		
 	}
 
 	/**
@@ -387,4 +393,55 @@ public class MediaDatabase implements Serializable{
 		bw.writeObject(resultList);
 		bw.close();
 	}
+	
+	/**
+	 * Searches for media items when given multiple years to search through
+	 * 
+	 * @param year User given year to search for 
+	 * @return list of results for multi year search.
+	 */
+		public List<Media> searchMultiYear(String year){
+		
+			
+				for (int i = 0; i < tvDatabase.size(); i++) {
+					if (year.contains("-") == true){
+							String [] splitLine = year.split("-");
+							int  year1 = Integer.parseInt(splitLine[0]); 
+							int year2 = Integer.parseInt( splitLine[1]);
+						
+							int givenYear =(Integer.parseInt(tvDatabase.get(i).getYear().substring(1, 5)));
+							
+						if ((givenYear >= year1 && givenYear <= year2) || (givenYear <= year1  && givenYear>= year2) )   { // if series aired during given year, add whole series
+								resultList.add(tvDatabase.get(i));
+							}
+							
+					}
+			
+					else if( year.contains(",") == true){
+					 String []splitComma = year.split(",");
+			for( int count  = 0; splitComma.length > count; count++){
+						
+					if(	tvDatabase.get(i).getYear().contains(splitComma[count]) || (tvDatabase.get(i).getYear().substring(0,4).compareTo(splitComma[count]) < 0 && tvDatabase.get(i).getYear().substring(5, tvDatabase.get(i).getYear().length()).compareTo(splitComma[count]) > 0)) {//||tvDatabase.get(i).getYear().contains(year2) || (tvDatabase.get(i).getYear().substring(0,4).compareTo(year2) < 0 && tvDatabase.get(i).getYear().substring(5, tvDatabase.get(i).getYear().length()).compareTo(year2) > 0)){
+							resultList.add(tvDatabase.get(i));
+						}
+						
+						else{ // otherwise, search each episode in the current series for matching year
+							ArrayList<TVEpisode> matches = new ArrayList<TVEpisode>();
+							matches = tvDatabase.get(i).searchForEpisodeYear(year); // searches all episode titles
+								if (!matches.isEmpty()) {
+									TVSeries tempSeries = new TVSeries(tvDatabase.get(i), true);
+									for(int l=0; l<matches.size(); l++){ // add all matching
+									tempSeries.addEpisode(matches.get(l));	
+									}
+									resultList.add(tempSeries);
+									return resultList;
+								}
+							
+							}
+					}
+					}
+			
+				} 
+			return resultList;
+	   }//end of searchMultiYear
 }

@@ -80,6 +80,54 @@ public class MediaDbDriverTest extends TestCase {
 		test1Check.add(new TVSeries("Title", "1990", null));
 		assertEquals(test1.toString(), test1Check.toString() );
 		}
-	
+			
+			public void testYearSplit1 (){
+				String yearDashed = "1995-2015" ;
+				
+				String [] splitLine = yearDashed.split("-");
+				int year1 = Integer.parseInt(splitLine[0]);
+				int year2 = Integer.parseInt(splitLine[1]);
+				
+				assertTrue(year1 == 1995);
+				}// end of testYearSplit1
+			
+			public void testYearSplit2(){
+				String yearDashed = "1995-2015" ;
+				
+				String [] splitLine = yearDashed.split("-");
+				int year1 = Integer.parseInt(splitLine[0]);
+				int year2 = Integer.parseInt(splitLine[1]);
+				
+				assertTrue(year2 == 2015);
+				}// end of testYearSplit2
+			
+			public void testYearComma1(){
+				String yearComma = "1999,1988";
+				String [] splitComma = yearComma.split(",");
+				
+				assertTrue(splitComma[0] = "1999", true);
+			}
+			
+			public void testYearComma2(){
+				String yearComma = "1999,1988";
+				String [] splitComma = yearComma.split(",");
+				
+				assertTrue(splitComma[1] = "1988", true);
+			}
+			
+			public void testYearComma3(){
+				String yearComma = "1999,1988,2016";
+				String [] splitComma = yearComma.split(",");
+				
+				assertTrue(splitComma[2] = "2016", true);
+			}
+			
+			public void testYearComma4(){
+				String yearComma = "1999,1988,1999,2001,2008,2013,2014,2015";
+				String [] splitComma = yearComma.split(",");
+				
+				assertTrue(splitComma[5] = "2013", true);
+			}
+
 	
 }
