@@ -18,13 +18,16 @@ import java.util.List;
  * Creates, searches, and saves searches of a media database containing movies
  * and TV series.
  * </P>
- * 
+ * Whoop
  * @version 1.0
  */
 public class MediaDatabase implements Serializable{
 
 	private static final long serialVersionUID = 3927560263599205482L;
 
+	
+	private int uselessInt;
+	
 	/** The database to contain all of the Movie data. */
 	public List<Movie> movieDatabase;
 
