@@ -1,102 +1,138 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
+
 
 public class MediaController {
  
-	private View ViewMDB;
-	private Model DatabaseModel;
+	private ViewMDB theView;
+	private DatabaseModel theModel;
  
- public MediaController(MediaView ViewMDB, MediaModel DatabaseModel){
-	 this.ViewMDB = DatabaseView;
-	 this.DatabaseModel = DatabaseModel;
-	 this.ViewMDB.addSelectionListener(new SelectionListener());
-	 this.ViewMDB.addPieChartListener(new PieChartListener());
-	 this.ViewMDB.addHistogramListener(new HistogramListener());
-	 this.ViewMDB.addDeleteListener(new DeleteListener());
-	 this.ViewMDB.addAddListener(new AddListener());
-	 this.ViewMDB.addEditListener(new EditListener());
-	 this.ViewMDB.addClearListener(new ClearListener());
-	 this.ViewMDB.addExportListener(new ExportListener());
-	 this.ViewMDB.addImportListener(new ImportListener());
-	 this.ViewMDB.addLoadListener(new LoadListener());
-	 this.ViewMDB.addSaveListener(new SaveListener());
+ public MediaController(ViewMDB ViewMDB,DatabaseModel DatabaseModel){
+	 this.theView = ViewMDB;
+	 this.theModel = DatabaseModel;
+	 this.theView.registerSelectionListener(new SelectionListener());
+	 this.theView.registerPieChartListener(new PieChartListener());
+	 this.theView.registerHistogramListener(new HistogramListener());
+	 this.theView.registerDeleteListener(new DeleteListener());
+	 this.theView.registerAddListener(new AddListener());
+	 this.theView.registerEditListener(new EditListener());
+	 this.theView.registerClearListener(new ClearListener());
+	 this.theView.registerImportListener(new ExportListener());
+	 this.theView.registerExportListener(new ImportListener());
+	 this.theView.registerLoadListener(new LoadListener());
+	 this.theView.registerSaveListener(new SaveListener());
 	 
 	 
  }
  class SelectionListener implements ActionListener{
 	 public void actionPerformed(ActionEvent arg0){
-	 	 
+		 if (theModel == null)
+				return;
+		 
+		 
+		 
 	 }
 	 
  }
  class PieChartListener implements ActionListener{
 	 public void actionPerformed(ActionEvent arg0){
+		 if (theModel == null)
+				return;
+		 
+		 //get person from selection on JList
+		 //MediaPerson person = theView.mediaOutput
+		 
+			JFrame frame = new JFrame();
+			frame.setTitle(person.getName());
+			PieChartJ pc = new PieChartJ(person);
+			frame.getContentPane().add(pc);
+			frame.setSize(1000, 1000);
+			frame.setVisible(true);	
+			
 		 
 	 }
 	 
  }
  class HistogramListener implements ActionListener{
 	 public void actionPerformed(ActionEvent arg0){
-		 
+		 if (theModel == null)
+				return;
 	 }
 	 
  }
  class DeleteListener implements ActionListener{
 	 public void actionPerformed(ActionEvent arg0){
+		 if (theModel == null)
+				return;
+		 
+		 
 		 
 	 }
 	 
  }
  class AddListener implements ActionListener{
 	 public void actionPerformed(ActionEvent arg0){
+		 if (theModel == null)
+				return;
+		 
 		 
 	 }
 	 
  }
  class EditListener implements ActionListener{
 	 public void actionPerformed(ActionEvent arg0){
-		 
+		 if (theModel == null)
+				return;
 	 }
 	 
  }
  class ClearListener implements ActionListener{
 	 public void actionPerformed(ActionEvent arg0){
-		 
+		 if (theModel == null)
+				return;
 	 }
 	 
  }
  class ExportListener implements ActionListener{
 	 public void actionPerformed(ActionEvent arg0){
-		 
+		 if (theModel == null)
+				return;
 	 }
 	 
  }
  class ImportListener implements ActionListener{
 	 public void actionPerformed(ActionEvent arg0){
-		 
+		 if (theModel == null)
+				return;
 	 }
 	 
  }
  class LoadListener implements ActionListener{
 	 public void actionPerformed(ActionEvent arg0){
+		 if (theModel == null)
+				return;
+		 
+		 
 		 
 	 }
 	 
  }
  class SaveListener implements ActionListener{
 	 public void actionPerformed(ActionEvent arg0){
-		 
+		 if (theModel == null)
+				return;
 	 }
 	 
  }
- public DatabaseController(){}
+ 
  public void setModel(DatabaseModel model){
-	 this.model = model;
+	 this.theModel = model;
  }
 
- public void setView(ViewMDB View){
-	 this.ViewMDB = view;
+ public void setView(ViewMDB view){
+	 this.theView = view;
  }
  
 
