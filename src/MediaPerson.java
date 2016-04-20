@@ -20,9 +20,9 @@ public class MediaPerson implements Serializable{
 	
 	private String profession;
 	
-	private ArrayList<Media> works;
-	
 	private int actingStartIndex, directingStartIndex, producingStartIndex;
+	private ArrayList<Media> works;
+
 	
 	private int moviesActed= 0, moviesDirected= 0, moviesProduced= 0, seriesActed= 0, seriesDirected= 0, seriesProduced = 0;
 	
@@ -47,6 +47,8 @@ public class MediaPerson implements Serializable{
 
 	public void setProducingStartIndex(int index){
 		producingStartIndex = index;
+		works = new ArrayList<Media>();
+
 	}
 	/**
 	 * @return This MediaPerson's name
@@ -78,6 +80,7 @@ public class MediaPerson implements Serializable{
 	/**
 	 * @return The ArrayList containing this MediaPerson's works
 	 */
+
 	public ArrayList<Media> getWorks(){
 		return works;
 	}
@@ -86,7 +89,10 @@ public class MediaPerson implements Serializable{
 	 * Adds a work to that the MediaPerson created/participated in.
 	 * Also tallies the number of works and what role the person has.
 	 */
+
 	public void addWork(Media work, String typeOfWork, String role){	
+
+
 		
 		//sw1 is the label to switch out of the inner switch statement
 		sw1:switch(typeOfWork){
@@ -114,9 +120,15 @@ public class MediaPerson implements Serializable{
 	 * for simpler output and use.
 	 * @param role The role to use as the divider in the works ArrayList<String>.
 	 */
+
 //	public void addWorkDivider(String role){
 //		works.add(role);
 //	}
+
+	public void addWorkDivider(Media role){
+		works.add(role);
+	}
+
 	
 	public int getNumMoviesActed(){
 		return moviesActed;
@@ -163,6 +175,7 @@ public class MediaPerson implements Serializable{
 	public String toString(){
 		return name + "\n" + worksToString();
 	}
+	
 	/**
 	 * Finds all of this person's works created in a specific year, then counts up how many of each credit (acting, dir, producing) there are for that particular year.
 	 * @param year
@@ -178,6 +191,12 @@ public class MediaPerson implements Serializable{
 					if(works.indexOf(w) <= directingStartIndex)
 						mAct++;
 					else if(works.indexOf(w) >= producingStartIndex)
+		for(Media w: works){
+			if(w.contains(year.toString() )){
+				if(w.contains("MOVIE:") || w.contains("MOVIE (")){ // is a movie
+					if(works.indexOf(w) < works.indexOf("DIRECTING"))
+						mAct++;
+					else if(works.indexOf(w) > works.indexOf("PRODUCING"))
 						mProd++;
 					else
 						mDir++;
@@ -186,6 +205,10 @@ public class MediaPerson implements Serializable{
 					if(works.indexOf(w) <= directingStartIndex)
 						sAct++;
 					else if(works.indexOf(w) >= producingStartIndex)
+
+					if(works.indexOf(w) < works.indexOf("DIRECTING"))
+						sAct++;
+					else if(works.indexOf(w) > works.indexOf("PRODUCING"))
 						sProd++;
 					else
 						sDir++;
@@ -202,3 +225,4 @@ public class MediaPerson implements Serializable{
 		return returnList;
 	}
 }
+

@@ -37,10 +37,7 @@ public class MediaDbDriver {
 		
 	}
 
-	
-	
-	
-	
+
 	/**
 	 * Reads a text file containing only movies into the media database.
 	 * @param br The buffered reader to parse the .txt file.
@@ -212,10 +209,11 @@ public class MediaDbDriver {
 			MediaPersonDatabase db, String role) throws IOException {
 
 		int workCounter = 0;
+
 		String line = br.readLine();
 
 		longRead:while (line != null) {
-			
+		
 			workCounter = 0;
 			
 			while(line.length()==0){
@@ -241,6 +239,7 @@ public class MediaDbDriver {
 			MediaPerson test = db.searchExact(firstName+" "+lastName);
 			if(test != null) person = test;
 			
+
 			switch(role){
 			case "acting": person.setActingStartIndex(workCounter);
 			break;
@@ -248,6 +247,8 @@ public class MediaDbDriver {
 			break;
 			case "producing": person.setProducingStartIndex(workCounter);
 			}
+			person.addWorkDivider(role.toUpperCase());
+
 			
 			while(line!=null && line.length()>0 ) {
 	
@@ -281,6 +282,11 @@ public class MediaDbDriver {
 				} else {
 					person.addWork(new Movie(title, year, madeFor), "movie", role);
 					workCounter++;
+
+					person.addWork("SERIES: "+title+" ("+year+")", "series", role);
+				} else {
+					person.addWork("MOVIE"+madeFor+": "+title+" ("+year+")", "movie", role);
+
 				}
 				c_idx = 0; n_idx=0;
 				line = br.readLine();

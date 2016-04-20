@@ -2,6 +2,7 @@ import java.io.Serializable;
 import java.util.Comparator;
 import java.util.HashMap;
 
+
 /**
  * Project #3
  * CS 2334, Section 010
@@ -23,8 +24,10 @@ public abstract class Media implements Comparable<Media>, Serializable{
 	/** Stores the year the media was released. */
 	protected String year;
 	
+
 	protected HashMap<String, MediaPerson> credits;
 	
+
 	/** Creates a new instance of a media object using a title and year.
 	 *  @param	title	The title of the new media object
 	 *  @param	year	The release year of the new media object
