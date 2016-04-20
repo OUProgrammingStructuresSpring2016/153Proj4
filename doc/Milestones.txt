@@ -1,0 +1,22 @@
+1. Implement Serializable for the classes necessary to save and load all application data. 
+		We met this milestone fully. Every relevant class to load and save searches and databases implements Serializable.
+		
+2. Use object serialization to save and load the application data to and from a binary file.
+		We met this milestone fully. Application data and search results can be saved as binary (and text) files,
+		and can be loaded for use. (Note: Nowhere in the instructions does it call for allowing the user to
+		save the database, which is rather confusing, as it means the ability to load a binary file instead of 5
+		text files is useless at the moment.)
+		
+3. Implement a simple graphical display for showing counts of the application data
+		We met this milestone fully. A (very) simple pie chart, made with help from an online tutorial
+		(http://www.java2s.com/Tutorial/Java/0261__2D-Graphics/DrawingaPieChart.htm) and a homemade
+		Histogram class appear on user request after successfully searching for an exact person.
+
+4. Create appropriate classes to store information on media makers.
+		We met this milestone fully. The MediaPerson class encompasses everything necessary to represent a person
+		who is any combination of actor, producer, or director. It also keeps the person's works and how many
+		of each kind of work there are.
+		
+5. Use LinkedHashMaps to save to and retrieve information on media makers.
+		We met this milestone fully. The MediaPersonDatabase class utilizes a LinkedHashMap to retrieve data
+		on media makers.
