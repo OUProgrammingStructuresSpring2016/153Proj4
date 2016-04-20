@@ -9,7 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-  
+import javax.swing.ButtonGroup;
   public class ViewMDB extends JFrame{
   
   
@@ -76,7 +76,20 @@ import javax.swing.JRadioButton;
   		selectPanel.add(selection);
   		selectPanel.add(mediaOutput);
   		
+  		//Make sure only 1 button is selected
+  			ButtonGroup buttons = new ButtonGroup();
+	//make sure only 1 button is chosen
+	buttons.add(media);
+	buttons.add(movies);
+	buttons.add(series);
+	buttons.add(episodes);
+	buttons.add(makers);
+	buttons.add(actors);
+	buttons.add(directors);
+	buttons.add(producers);
   		//add mediaType label  and the radio buttons to mediaTypeJP
+  		
+  		
   		mediaTypeJP.setLayout(new GridLayout(0,1));
   		mediaTypeJP.add(mediaType);
   		mediaTypeJP.add(media);
