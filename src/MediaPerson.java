@@ -1,5 +1,4 @@
 package src;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -183,7 +182,9 @@ public class MediaPerson implements Serializable{
 	 * @param year
 	 * @return AL<Integer> in following order: year, movies acted, movies directed, movies produced, series acted, series directed, series produced.
 	 */
+
 	public ArrayList<Integer> getCredits(Integer year){
+
 		Integer mAct=0, mDir=0, mProd=0, sAct=0, sDir=0, sProd=0;
 		ArrayList<Integer> returnList = new ArrayList<Integer>();
 		returnList.add(year);
@@ -228,6 +229,7 @@ public class MediaPerson implements Serializable{
 				}
 			}
 		}
+
 	}
 }
 

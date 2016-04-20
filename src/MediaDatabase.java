@@ -1,5 +1,4 @@
 package src;
-
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -30,7 +29,6 @@ import java.util.List;
 public class MediaDatabase implements Serializable{
 
 	private static final long serialVersionUID = 3927560263599205482L;
-
 	/** The database to contain all of the Movie data. */
 	public List<Movie> movieDatabase;
 

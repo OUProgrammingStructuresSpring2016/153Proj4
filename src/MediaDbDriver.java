@@ -1,5 +1,4 @@
 package src;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,10 +16,12 @@ import javax.swing.JFrame;
  * @version 1.0
  */
 public class MediaDbDriver {
+
 		private static DatabaseModel model;
 		private static ViewMDB databaseView;
 		private static SelectionView  selectionView;
 		private static MediaController controller; 
+
 	
 
 	public static void main(String[] args) {
@@ -31,6 +32,7 @@ public class MediaDbDriver {
 		databaseView = new ViewMDB();
 		selectionView = new SelectionView();
 		controller = new MediaController(databaseView, model);
+
 		
 		databaseView.setModel(model);
 		selectionView.setModel(model);
