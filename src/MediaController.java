@@ -7,7 +7,9 @@ public class MediaController {
 	 this.DatabaseView = DatabaseView;
 	 this.DatabaseModel = DatabaseModel;
 	 this.DatabaseView.addSelectionListener(new SelectionListener());
-	
+	 this.DatabaseView.addPieChartListener(new PiechartListener());
+	 this.DatabaseView.addHistogramListener(new HistogramListener());
+	 
  }
  class SelectionListener implements ActionListener{
 	 public void actionPerformed(ActionEvent ){
