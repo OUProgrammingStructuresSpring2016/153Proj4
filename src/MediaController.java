@@ -10,67 +10,67 @@ public class MediaController {
 	
  }
  class SelectionListener implements ActionListener{
-	 public void actionPerformed(ActionEvent arg0){
+	 public void actionPerformed(ActionEvent ){
 	 	 
 	 }
 	 
  }
  class PieChartListener implements ActionListener{
-	 public void actionPerformed(ActionEvent arg0){
+	 public void actionPerformed(ActionEvent ){
 		 
 	 }
 	 
  }
  class HistogramListener implements ActionListener{
-	 public void actionPerformed(ActionEvent arg0){
+	 public void actionPerformed(ActionEvent ){
 		 
 	 }
 	 
  }
  class DeleteListener implements ActionListener{
-	 public void actionPerformed(ActionEvent arg0){
+	 public void actionPerformed(ActionEvent ){
 		 
 	 }
 	 
  }
  class AddListener implements ActionListener{
-	 public void actionPerformed(ActionEvent arg0){
+	 public void actionPerformed(ActionEvent ){
 		 
 	 }
 	 
  }
  class EditListener implements ActionListener{
-	 public void actionPerformed(ActionEvent arg0){
+	 public void actionPerformed(ActionEvent ){
 		 
 	 }
 	 
  }
  class ClearListener implements ActionListener{
-	 public void actionPerformed(ActionEvent arg0){
+	 public void actionPerformed(ActionEvent ){
 		 
 	 }
 	 
  }
  class ExportListener implements ActionListener{
-	 public void actionPerformed(ActionEvent arg0){
+	 public void actionPerformed(ActionEvent ){
 		 
 	 }
 	 
  }
  class ImportListener implements ActionListener{
-	 public void actionPerformed(ActionEvent arg0){
+	 public void actionPerformed(ActionEvent ){
 		 
 	 }
 	 
  }
  class LoadListener implements ActionListener{
-	 public void actionPerformed(ActionEvent arg0){
+	 public void actionPerformed(ActionEvent ){
 		 
 	 }
 	 
  }
  class SaveListener implements ActionListener{
-	 public void actionPerformed(ActionEvent arg0){
+	 public void actionPerformed(ActionEvent ){
 		 
 	 }
 	 
