@@ -1,4 +1,3 @@
-package src;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -182,9 +181,7 @@ public class MediaPerson implements Serializable{
 	 * @param year
 	 * @return AL<Integer> in following order: year, movies acted, movies directed, movies produced, series acted, series directed, series produced.
 	 */
-
-	public ArrayList<Integer> getCredits(Integer year){
-
+	ArrayList<Integer> getCredits(Integer year){
 		Integer mAct=0, mDir=0, mProd=0, sAct=0, sDir=0, sProd=0;
 		ArrayList<Integer> returnList = new ArrayList<Integer>();
 		returnList.add(year);
@@ -193,31 +190,21 @@ public class MediaPerson implements Serializable{
 				if(w instanceof Movie){ // is a movie
 					if(works.indexOf(w) <= directingStartIndex)
 						mAct++;
+					else if(works.indexOf(w) >= producingStartIndex)	
+						mProd++;
+					else
+						mDir++;
+				}
+				else{ // is a series
+					if(works.indexOf(w) <= directingStartIndex)
+						sAct++;
 					else if(works.indexOf(w) >= producingStartIndex)
-			for(Media w: works){
-				if(w.contains(year.toString() )){
-					if(w.contains("MOVIE:") || w.contains("MOVIE (")){ // is a movie
-						if(works.indexOf(w) < works.indexOf("DIRECTING"))
-							mAct++;
-						else if(works.indexOf(w) > works.indexOf("PRODUCING"))
-							mProd++;
-						else
-							mDir++;
-					}
-					else{ // is a series
-						if(works.indexOf(w) <= directingStartIndex)
-							sAct++;
-						else if(works.indexOf(w) >= producingStartIndex)
-	
-						if(works.indexOf(w) < works.indexOf("DIRECTING"))
-							sAct++;
-						else if(works.indexOf(w) > works.indexOf("PRODUCING"))
-							sProd++;
-						else
-							sDir++;
-					}
+						sProd++;
+					else
+						sDir++;
 				}
 			}
+		}
 		returnList.add(mAct);
 		returnList.add(mDir);
 		returnList.add(mProd);
@@ -226,10 +213,6 @@ public class MediaPerson implements Serializable{
 		returnList.add(sProd);
 		
 		return returnList;
-				}
-			}
-		}
-
 	}
 }
 
