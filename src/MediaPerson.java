@@ -120,15 +120,6 @@ public class MediaPerson implements Serializable{
 	 * for simpler output and use.
 	 * @param role The role to use as the divider in the works ArrayList<String>.
 	 */
-
-//	public void addWorkDivider(String role){
-//		works.add(role);
-//	}
-
-	public void addWorkDivider(Media role){
-		works.add(role);
-	}
-
 	
 	public int getNumMoviesActed(){
 		return moviesActed;
