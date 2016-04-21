@@ -1,7 +1,9 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,23 +27,30 @@ public class EditView extends JFrame implements ActionListener {
 	/** JPanel to add buttons into */ 
 	protected JPanel buttons = new JPanel();
 	
-	//JPanel to add the Title label and textbox into 
-	private JPanel jpTitles = new JPanel (); 
-	private JLabel  lblTitle = new JLabel("Title: ");
+	/** JPanel to hold the title of an object */
+	protected JPanel jpTitles = new JPanel (); 
+	/** Label for the title text box */
+	protected JLabel  lblTitle = new JLabel("Title: ");
+	/**Textfield to display a title of a media or media maker */
 	public JTextField tfTitle = new JTextField (); 
 	
-	//JPanel to add the Year's textbox and label  
-	private JPanel jpYear = new JPanel ();
-	private JLabel jlYear = new JLabel("Year: ");
+	/**JPanel to add the Year's textbox and label   */
+	protected JPanel jpYear = new JPanel ();
+	/**Label for the Year textfield */
+	protected JLabel jlYear = new JLabel("Year: ");
+	/**Textfield to display media's year . It will be renamed Profession for media makers */
 	public JTextField tfYear = new JTextField();
 	
-	JFrame  frame = new JFrame();
-	JPanel frameJP = new JPanel();
+	/** JPanel that will hold all the elements of the frame */ 
+	protected JPanel frameJP = new JPanel();
+	
+	
 	/** 
 	 * Constructor for Movies and Series 
 	 */
 	public EditView(){
 	
+		//The buttons to confirm or cancel the user's request
 		buttons.setLayout(new GridLayout(4,2));
 		buttons.add(confirm);
 		buttons.add(cancel);
@@ -53,10 +62,7 @@ public class EditView extends JFrame implements ActionListener {
 			//Year related fields
 		jpYear.setLayout(new GridLayout(0,1));
 		
-		
-		
-		
-		
+
 		frameJP.setLayout(new GridLayout(0,1));
 	
 		//set the title
@@ -81,20 +87,26 @@ public class EditView extends JFrame implements ActionListener {
 		setSize(300, 300);
 		setLocationRelativeTo(null);
 		setVisible(true);
+		cancel.addActionListener(this);
+		confirm.addActionListener(this);
 		
 	}
 	
-	
-	
+	/** Registration for the Action listener for the Confirm button */
+	//TODO Double check what daniel named the action Listener
+	public void registerConfirmB (ActionListener al) {
+		
+	}
 
 
+	/** 
+	 * Will check Action performed when button is pressed 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+	
+	
 	}
-	
-	
 	
 	
 }
