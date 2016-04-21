@@ -154,52 +154,81 @@ public	JRadioButton producers = new JRadioButton("Producers");
   		}
   	}
   	
-  	public void registerSelectionListener(ActionListener al){ //TODO: register the listener for the radio button menu
-  		
+   	public void registerMediaRB(ActionListener al){ //TODO: register the listener for Media Radio button
+  		media.addActionListener(al);
+  	}
+  	
+	public void registerMovieRB(ActionListener al){ //TODO: register the listener for Movie Radio button
+  		movies.addActionListener(al);
+  	}
+	
+	public void registerSeriesRB(ActionListener al){ //TODO: register the listener for Series Radio button
+  		series.addActionListener(al);
+  	}
+	
+	public void registerEpisodesRB(ActionListener al){ //TODO: register the listener for Episodes Radio button
+  		episodes.addActionListener(al);
+  	}
+	
+	public void registerMakersRB(ActionListener al){ //TODO: register the listener for Maker Radio button
+  		makers.addActionListener(al);
+  	}
+	
+	public void registerActorsRB(ActionListener al){ //TODO: register the listener for Actors Radio button
+  		actors.addActionListener(al);
+  	}
+	
+	public void registerDirectorsRB(ActionListener al){ //TODO: register the listener for Directors Radio button
+  		directors.addActionListener(al);
+  	}
+	
+	public void registerProducersRB(ActionListener al){ //TODO: register the listener for Producers Radio button
+  		producers.addActionListener(al);
   	}
   	
   	public void registerPieChartListener(ActionListener al){ //TODO: register the listener for the Display -> Pie Chart option
-  		
+  		pieChart.addActionListener(al);
   	}
   	
   	public void registerHistogramListener(ActionListener al){ //TODO: register the listener for Histogram option
-  		
+  		histogram.addActionListener(al);
   	}
   	
   	public void registerDeleteListener(ActionListener al){ //TODO: register the listener for the Edit -> Delete option
-  		
+  		delete.addActionListener(al);
   	}
   	
   	public void registerClearListener(ActionListener al){ //TODO: register the listener for the Edit -> Clear option
-  		
+  		clear.addActionListener(al);
   	}
   	
   	public void registerAddListener(ActionListener al){ //TODO: register the listener for the Edit -> Add option
-  		
+  		add.addActionListener(al);
   	}
   	
   	public void registerEditListener(ActionListener al){ //TODO: register the listener for the Edit -> Edit Entry
-  		
+  		edit.addActionListener(al);
   	}
   	
   	public void registerClearAllListener(ActionListener al){ //TODO: take a guess
-  		
+  		clearALL.addActionListener(al);
   	}
   	
   	public void registerExportListener(ActionListener al){ //TODO: register the listener for the File => Export
-  		
+  		export.addActionListener(al);
   	}
   	
   	public void registerImportListener(ActionListener al){ //TODO: register the listener for File -> Import
-  		
+  		importS.addActionListener(al);
   	}
   	
   	public void registerSaveListener(ActionListener al){ //TODO: File -> Save
-  		
+  		save.addActionListener(al);
   	}
   	
   	public void registerLoadListener(ActionListener al){ //TODO: File -> Load
-  		
+  		load.addActionListener(al);
   	}
+
   	
   }
