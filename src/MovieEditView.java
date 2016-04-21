@@ -1,5 +1,3 @@
-package aaaaaaaaaaaaaaaaaaa;
-
 import java.awt.event.ActionListener;
 	
 /**Edit view for Movie entries when user picks Edit option
