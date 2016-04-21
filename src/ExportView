@@ -1,3 +1,4 @@
+
 import java.awt.Button;
 import java.awt.Frame;
 import java.awt.GridLayout;
@@ -13,14 +14,25 @@ import javax.swing.JPanel;
  *if they want to save their results as binary or text
  */
 public class ExportView extends JFrame implements ActionListener{
-	//private Frame exportF = new Frame("Export");
+	/** Frame for this view */
+	private Frame exportF = new Frame("Export");
+
+	/**JPanel to hold the elements for this frame */
 	private JPanel jpExport = new JPanel();
+	
+	/**Label that will ask the user a question */
 	private JLabel jlExport = new JLabel("How would you like to save your results?");
+	
+	/**Button for if user wants to save as a text file */
 	public Button  bText = new Button("Text");
+	
+	/**Button for if user wants to save as binary file */
 	public Button bBinary = new Button ("Binary");
+	
+	/**Cancel buton */
 	public Button bCancel = new Button ("Cancel");
 	
-	
+	/**Constructor for Export View */
 	public ExportView(){
 		jpExport.setLayout(new GridLayout(4,2, 5, 15));
 		
@@ -34,7 +46,7 @@ public class ExportView extends JFrame implements ActionListener{
 		
 	}
 
-
+/** Action performed when button is pressed */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
