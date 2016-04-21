@@ -1,0 +1,45 @@
+import java.awt.Button;
+import java.awt.Frame;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+/**
+ * This view will prompt the user 
+ *if they want to save their results as binary or text
+ */
+public class ExportView extends JFrame implements ActionListener{
+	//private Frame exportF = new Frame("Export");
+	private JPanel jpExport = new JPanel();
+	private JLabel jlExport = new JLabel("How would you like to save your results?");
+	public Button  bText = new Button("Text");
+	public Button bBinary = new Button ("Binary");
+	public Button bCancel = new Button ("Cancel");
+	
+	
+	public ExportView(){
+		jpExport.setLayout(new GridLayout(4,2, 5, 15));
+		
+		jpExport.add(jlExport);
+		jpExport.add(bText);
+		jpExport.add(bBinary);
+		jpExport.add(bCancel);
+		add(jpExport);
+		setSize(300,300);
+		setLocationRelativeTo(null);
+		
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+}
