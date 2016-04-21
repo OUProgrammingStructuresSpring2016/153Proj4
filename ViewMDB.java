@@ -24,7 +24,7 @@ import javax.swing.ButtonGroup;
   
   private	JLabel mediaType = new JLabel (" Media Type ");
   private	JLabel selection = new JLabel(" Selection");
-  private	JList  mediaOutput = new JList(); 
+  public	JList  mediaOutput = new JList(); 
   
   //add the mediaType label and the radio buttons to this panel
   private JPanel mediaTypeJP = new JPanel(); 
@@ -34,14 +34,14 @@ import javax.swing.ButtonGroup;
   
   	
   	/**Radio buttons for the GUI */
-  private	JRadioButton media = new JRadioButton("Media");
-  private	JRadioButton movies = new JRadioButton("Movies");
-  private	JRadioButton series = new JRadioButton("Series");
-  private	JRadioButton episodes = new JRadioButton("Episodes");
-  private	JRadioButton makers = new JRadioButton("Makers");
-  private	JRadioButton actors = new JRadioButton("Actors");
-  private	JRadioButton directors = new JRadioButton("Directors");
-  private	JRadioButton producers = new JRadioButton("Producers");
+public	JRadioButton media = new JRadioButton("Media");
+public	JRadioButton movies = new JRadioButton("Movies");
+public	JRadioButton series = new JRadioButton("Series");
+public	JRadioButton episodes = new JRadioButton("Episodes");
+public	JRadioButton makers = new JRadioButton("Makers");
+public	JRadioButton actors = new JRadioButton("Actors");
+public	JRadioButton directors = new JRadioButton("Directors");
+public	JRadioButton producers = new JRadioButton("Producers");
   	
   	/** Components for the File menu */
   private	JMenu file = new JMenu("File");
