@@ -7,10 +7,14 @@ import java.awt.event.ActionListener;
  *
  */
 public class MediaMakerEditView extends EditView implements ActionListener {
-
+	/**
+	 * Constructor for Media Maker edit view  
+	 */
+	 
 	public MediaMakerEditView(){
+		lblTitle.setText("Name: ");
+		jlYear.setText("Profession:  ");
 		setTitle("Media Maker Edit View");
-		
 	}
 	
 }
