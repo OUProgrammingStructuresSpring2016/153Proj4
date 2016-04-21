@@ -1,5 +1,3 @@
-package aaaaaaaaaaaaaaaaaaa;
-
 import java.awt.event.ActionListener;
 
 /** Series Edit view for when user hits the edit option to edit an entry of Series
