@@ -2,7 +2,6 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,7 +10,8 @@ import javax.swing.JTextField;
 
 /**
  * This class is the view for the Edit menu option.
- * It will allow the user to make a change to an entry in the JList
+ * It will allow the user to make a change to an entry in the JList when they 
+ * hit the EDIT menu item
  *
  */
 
@@ -23,7 +23,7 @@ public class EditView extends JFrame implements ActionListener {
 	public JButton cancel = new JButton ("Cancel");
 	
 	/** JPanel to add buttons into */ 
-	private JPanel buttons = new JPanel();
+	protected JPanel buttons = new JPanel();
 	
 	//JPanel to add the Title label and textbox into 
 	private JPanel jpTitles = new JPanel (); 
@@ -35,40 +35,32 @@ public class EditView extends JFrame implements ActionListener {
 	private JLabel jlYear = new JLabel("Year: ");
 	public JTextField tfYear = new JTextField();
 	
-	
+	JFrame  frame = new JFrame();
+	JPanel frameJP = new JPanel();
 	/** 
-	 * Constructor for Edit View for a Media such as movie, series
+	 * Constructor for Movies and Series 
 	 */
 	public EditView(){
-		//Make the buttons that will hold Confirm and Cancel options. Then a JPanel to add them into
-		JButton confirm = new JButton("Confirm");
-		JButton cancel = new JButton("Cancel");
-		JPanel buttons = new JPanel();
-		buttons.setLayout(new GridLayout(3,2));
-		
+	
+		buttons.setLayout(new GridLayout(4,2));
 		buttons.add(confirm);
 		buttons.add(cancel);
 		
 		//Title related fields
-		JPanel jpTitles = new JPanel (); 
 		jpTitles.setLayout(new GridLayout(0,1));
-		JLabel  lblTitle = new JLabel("Title: ");
-		JTextField tfTitle = new JTextField (); 
 		
 			
 			//Year related fields
-		JPanel jpYear = new JPanel ();
 		jpYear.setLayout(new GridLayout(0,1));
-		JLabel jlYear = new JLabel("Year: ");
-		JTextField tfYear = new JTextField();
 		
-			//create the frame and a JPanel to hold items
-		JFrame frame = new JFrame();
-		JPanel frameJP = new JPanel();
+		
+		
+		
+		
 		frameJP.setLayout(new GridLayout(0,1));
 	
 		//set the title
-		frame.setTitle("Movie Entry View)");
+		setTitle("Media Entry View)");
 		
 		//add the  title elements to the jpTitles, then add the jpTitles to the frame JPanel
 		jpTitles.add(lblTitle);
@@ -80,19 +72,21 @@ public class EditView extends JFrame implements ActionListener {
 		jpYear.add(tfYear);
 		frameJP.add(jpYear,BorderLayout.CENTER);
 		
+		
 		//Add the botton the the Jpanel for the Frame , then add the JPanel to the frame
 		frameJP.add(buttons, BorderLayout.SOUTH);
-		frame.add(frameJP);
+		add(frameJP);
 	
-		//Set size, locatio, and visibility of the Edit View
-		frame.setSize(300, 300);
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
+		//Set size, location, and visibility of the Edit View
+		setSize(300, 300);
+		setLocationRelativeTo(null);
+		setVisible(true);
 		
 	}
 	
 	
 	
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
