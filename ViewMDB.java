@@ -48,7 +48,8 @@ public	JRadioButton producers = new JRadioButton("Producers");
   private	JMenuItem load = new JMenuItem("Load");
   private	JMenuItem save = new JMenuItem("Save");
   private	JMenuItem exit = new JMenuItem("Exit");
-  	
+  private	JMenuItem export = new JMenuItem("Export");
+  private	JMenuItem importS = new JMenuItem("Import");
   	
   	
   	/** Components for the Edit menu */
@@ -106,6 +107,8 @@ public	JRadioButton producers = new JRadioButton("Producers");
   		//File menu
   		file.add(load);
   		file.add(save);
+  		file.add(importS);
+  		file.add(export);
   		file.add(exit);
   		
   		
