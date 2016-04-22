@@ -135,7 +135,11 @@ public class MediaController {
 		} 
 	}
 
+/**Class for the Directors radio button listener */
 	class DirectorsRadioButtonListener implements ActionListener{
+		/** Looks for the action performed 
+		 * @param arg0  Arguments to run through the action event 
+		 */
 		public void actionPerformed(ActionEvent arg0){
 			if (theModel == null)
 				return;	 	 
@@ -305,7 +309,6 @@ public class MediaController {
 				return;
 			
 			
-
 			if(theView.movies.isSelected()){
 				theModel.mdb.movieDatabase = new ArrayList<Movie>();
 				theView.repaint();
@@ -328,8 +331,11 @@ public class MediaController {
 		}
 
 	}
-
+	/**class for the Clear all menu item */
 	class ClearAllListener implements ActionListener{
+		/** Action performed to know if this item was pressed
+		 * @param arg0 arguments to pass through this method 
+		 */
 		public void actionPerformed(ActionEvent arg0){
 			if (theModel == null)
 				return;
@@ -343,7 +349,11 @@ public class MediaController {
 
 	}
 
+/** Class for the export menu item */
 	class ExportListener implements ActionListener{
+		/** action performed method
+		 * @param arg0 arguments to pass this method 
+		 */
 		public void actionPerformed(ActionEvent arg0){
 			if (theModel == null)
 				return;
@@ -353,7 +363,12 @@ public class MediaController {
 		}
 
 	}
+	/**Import listeners for this menu item */
 	class ImportListener implements ActionListener{
+		
+		/** action performed method 
+		 * @param arg0 arguments to pass this method 
+		 */
 		public void actionPerformed(ActionEvent arg0){
 			if (theModel == null)
 				return;
@@ -363,17 +378,12 @@ public class MediaController {
 		}
 
 	}
+	
+	/** class for the Load menu item */
 	class LoadListener implements ActionListener{
-		public void actionPerformed(ActionEvent arg0){
-			if (theModel == null)
-				return;
-
-			ioView.setVisible(true);
-
-		}
-
-	}
-	class SaveListener implements ActionListener{
+		/** action performed method 
+		 * @param arg0 argument to pass through this method 
+		 */
 		public void actionPerformed(ActionEvent arg0){
 			if (theModel == null)
 				return;
@@ -384,7 +394,26 @@ public class MediaController {
 
 	}
 	
+	/** save menuItem listener */
+	class SaveListener implements ActionListener{
+		/** action performed method
+		 * @param arg0 arguments to pass 
+		 */
+		public void actionPerformed(ActionEvent arg0){
+			if (theModel == null)
+				return;
+
+			ioView.setVisible(true);
+
+		}
+
+	}
+	
+	/**Class for the export text listener */
 	class ExportAsTextListener implements ActionListener{
+		/** action performed method :)
+		 * @param arg0 argument to pass 
+		 */
 		public void actionPerformed(ActionEvent arg0) {
 			if (theModel == null)
 				return;
@@ -410,7 +439,11 @@ public class MediaController {
 		
 	}
 	
+	/**Class for the binary export button */
 	class ExportAsBinaryListener implements ActionListener{
+		/** action performed method 
+		 * @param arg0 argument to pass this method 
+		 */
 		public void actionPerformed(ActionEvent arg0) {
 			if (theModel == null)
 				return;
@@ -429,8 +462,13 @@ public class MediaController {
 		
 	}
 	
-	// Confirm button for the Edit views
+	
+	/** Confirm button for the edit views */
 	class ConfirmButtonListener implements ActionListener{
+		/**
+		 * Action performed method 
+		 * @param arg0 argument for this method 
+		 */
 		public void actionPerformed(ActionEvent arg0) {
 			
 
@@ -466,7 +504,11 @@ public class MediaController {
 		
 	}
 	
+	/** Saves result as binary output/input */
 	class SaveBinaryIOListener implements ActionListener{
+		/** action performed for this event 
+		 * @param arg0 the argument to pass through the listener 
+		 */
 		public void actionPerformed(ActionEvent arg0) {
 			
 			try {
@@ -483,7 +525,11 @@ public class MediaController {
 		
 	}
 	
+	/** Class to load the Binary input and output listeners */
 	class LoadBinaryIOListener implements ActionListener{
+		/** Action performed for this event 
+		 * @param arg0 the arguments to pass through this method 
+		 */
 		public void actionPerformed(ActionEvent arg0) {
 			
 			try {
@@ -501,7 +547,11 @@ public class MediaController {
 		
 	}
 	
+	/** Class to Confirms the buttoner listener */
 	class ImportViewConfirmButtonListener implements ActionListener{
+		/** Action performed for this event 
+		 * @param arg0 arguments to pass through the event 
+		 */
 		public void actionPerformed(ActionEvent arg0) {
 			
 			FileReader fr = null;
@@ -559,10 +609,17 @@ public class MediaController {
 		
 	}
 
+	/**
+	 * sets the Model 
+	 * @param model The model to set everything as 
 	public void setModel(DatabaseModel model){
 		this.theModel = model;
 	}
 
+	/**
+	 * Set the view :D 
+	 * @param view The view 
+	 */
 	public void setView(ViewMDB view){
 		this.theView = view;
 	}
