@@ -62,10 +62,6 @@ public class EntryView extends JFrame implements ActionListener {
 			//Year related fields
 		jpYear.setLayout(new GridLayout(0,1));
 		
-		
-		
-		
-		
 		frameJP.setLayout(new GridLayout(0,1));
 	
 		//set the title
@@ -104,8 +100,4 @@ public class EntryView extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
-	
-	
 }
