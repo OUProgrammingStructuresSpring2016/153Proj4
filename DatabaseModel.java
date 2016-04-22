@@ -9,6 +9,9 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Model for the database 
+ */
 public class DatabaseModel extends Database implements Serializable{
 	
 	private static final long serialVersionUID = -380182387196408449L;
@@ -18,10 +21,22 @@ public class DatabaseModel extends Database implements Serializable{
 	//ArrayList of ActionListeners to be registered later on
 	ArrayList<ActionListener> actionListenerList; 
 	
+	/** Constructor for the Database model
+	 * 
+	 *@param mdb Media database to pass through the model 
+	 *@param mpdb media Person database to pass through the model 
+	 */
+	 
 	public DatabaseModel(MediaDatabase mdb, MediaPersonDatabase mpdb){
 		super(mdb, mpdb);
 	}
 	
+	/**
+	 * Database model taking from a file name 
+	 *@param fileName name of the file to add to the database 
+	 *@throws IOException exception from In/Output
+	 *@throws  ClassNotFoundException exception from possible class issues
+	 */
 	public DatabaseModel(String fileName) throws IOException, ClassNotFoundException{
 		super(null, null);
 		
@@ -36,7 +51,9 @@ public class DatabaseModel extends Database implements Serializable{
 	}
 	
 	//methods that belong to the DatabaseModel Class
-	/** Register an action event listener */
+	/** Register an action event listener 
+	*@param al ActionListener for the method
+	*/
 	public synchronized void addActionListener(ActionListener aL){
 		if (actionListenerList == null) {
 			actionListenerList = new ArrayList<ActionListener>();
@@ -44,13 +61,18 @@ public class DatabaseModel extends Database implements Serializable{
 		actionListenerList.add(aL);
 	}
 	
-	/** Remove an action event listener */
+	/** Remove an action event 
+	*@param al ActionListener for thie method
+	*/
 	public synchronized void removeActionListener(ActionListener aL){
 		if (actionListenerList != null && actionListenerList.contains(aL)) {
 			actionListenerList.remove(aL);
 		}
 	}
 	
+	/** Process the event if something happens
+	 * @param e ActionEvent for this method 
+	 */
 	public void processEvent(ActionEvent e){
 		ArrayList<ActionListener> list;
 		synchronized (this) {
@@ -65,6 +87,11 @@ public class DatabaseModel extends Database implements Serializable{
 		}
 	}
 	
+	/**
+	 * Save the database 
+	 * @param fileName Name of file to save 
+	 * @throws IOException If file not found
+	 */
 	public void saveDatabase(String fileName) throws IOException{
 		FileOutputStream filer = new FileOutputStream(fileName);
 		ObjectOutputStream bw = new ObjectOutputStream(filer);
@@ -76,6 +103,8 @@ public class DatabaseModel extends Database implements Serializable{
 	 * Reads a text file containing only actors into the media database.
 	 * @param br The buffered reader to parse the .txt file.
 	 * @param db	The MediaPersonDatabase to put the new movies into.
+	 * @param mdb Media Database to be used
+	 * @param role The role of a person (actor,director, producer)
 	 * @throws	IOException	If File not found
 	 */
 	public static void readPeopleToMDb(BufferedReader br,
