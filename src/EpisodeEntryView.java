@@ -1,5 +1,3 @@
-package hereAretheENTRYVIEWS;
-
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
@@ -8,15 +6,21 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import aaaaaaaaaaaaaaaaaaa.EditView;
-
+/**
+ * View for the Episode Entry when someone presses ADD and has Episodes selected
+ */
 public class EpisodeEntryView extends EntryView implements ActionListener {
 
+	/**JPanel to hold the Episode Number */ 
 	private JPanel jpEpisodeNum = new JPanel();
-	private 	JLabel jlEpiNum = new JLabel("Episode Number: ");
+	/** Label for the episode Num text Box*/
+	private	JLabel jlEpiNum = new JLabel("Episode Number: ");
+	/**Text box to hold the episode # */
 	public JTextField tfEpiNum = new JTextField();
 	
+	/**Label for the Series text box */
 	private JLabel jlSeries = new JLabel ("Series: ");
+	/** textbox to hold series name */
 	public JTextField seriesTF = new JTextField();
 	
 	/** Constructor for episode edit view */
