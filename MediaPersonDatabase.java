@@ -57,6 +57,9 @@ public class MediaPersonDatabase implements Serializable{
 		mpdb.put(p.getName() ,p);
 	}
 	
+	/** removes media person from the list 
+	 * @param brittanySpears
+	 */
 	public boolean removePerson(MediaPerson brittanySpears){
 		return mpdb.remove(brittanySpears.getName(), brittanySpears);
 	}
@@ -108,8 +111,8 @@ public class MediaPersonDatabase implements Serializable{
 	/**
 	 * 
 	 * @param fileName The name of the binary file containing `~SEARCH RESULTS~` to be read in
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException	Input out put problem
+	 * @throws ClassNotFoundException Issue with class
 	 */
 	
 	public void inputBinaryFile(String fileName) throws IOException, ClassNotFoundException{
@@ -123,7 +126,7 @@ public class MediaPersonDatabase implements Serializable{
 	/**
 	 * Outputs the result list into a binary file. (Note: not for importing database, but for importing search results.)
 	 * @param filename The name to give the new binary file.
-	 * @throws IOException 
+	 * @throws IOException  Error if file not found
 	 */
 	public void outputToBinaryFile(String fileName) throws IOException{
 		FileOutputStream filer = new FileOutputStream(fileName);
@@ -134,7 +137,8 @@ public class MediaPersonDatabase implements Serializable{
 	
 	/**
 	 * Outputs the result list into a text file with the given file name.
-	 * @param filename The name to give the new text file.
+	 * @param filename The name to give the new text file
+	 * @param textToOutput The text to put out
 	 * @throws IOException 
 	 */
 	public static void outputToTextFile(String fileName, String textToOutput) throws IOException{
