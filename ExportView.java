@@ -49,17 +49,25 @@ public class ExportView extends JFrame implements ActionListener{
 		
 	}
 
-/** Action performed when button is pressed */
+/** Action performed when button is pressed
+*@param e Action event for when button is pressed
+*/
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 	
+	/** Registration of the text save button 
+	 * @param al ActionListener for this button 
+	 */
 	public void registerTextButtonListener(ActionListener al){
 		bText.addActionListener(al);
 	}
 	
+	/**Registration of the binary button 
+	 * @param al Actionlistener for this button 
+	 */
 	public void registerBinaryButtonListener(ActionListener al){
 		bBinary.addActionListener(al);
 	}
