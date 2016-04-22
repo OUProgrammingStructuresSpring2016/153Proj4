@@ -8,6 +8,9 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * The model for the database 
+ */
 public class DatabaseModel extends Database implements Serializable{
 	
 	private static final long serialVersionUID = -380182387196408449L;
@@ -17,10 +20,20 @@ public class DatabaseModel extends Database implements Serializable{
 	//ArrayList of ActionListeners to be registered later on
 	ArrayList<ActionListener> actionListenerList; 
 	
+	/**Constructor for the database 
+	*
+	*@param mdb The datapase to be added to passed through the model
+	*@param mpdb The media person database to be passed through the model 
+	*/
 	public DatabaseModel(MediaDatabase mdb, MediaPersonDatabase mpdb){
 		super(mdb, mpdb);
 	}
 	
+	/** Constructor for the database 
+	 * 
+	 *@param fileName File to be passed through the database
+	 *@exception IOException Exception from In/Out-put 
+	 */
 	public DatabaseModel(String fileName) throws IOException, ClassNotFoundException{
 		super(null, null);
 		
@@ -50,6 +63,9 @@ public class DatabaseModel extends Database implements Serializable{
 		}
 	}
 	
+	/** Process events for the action listener
+	 *@param e Action Listener listening for something to happen! 
+	 */
 	public void processEvent(ActionEvent e){
 		ArrayList<ActionListener> list;
 		synchronized (this) {
@@ -64,6 +80,11 @@ public class DatabaseModel extends Database implements Serializable{
 		}
 	}
 	
+	/**
+	 * Saves to the database 
+	 *@param fileName File to save
+	 *@exception IOException Exception from In/Out-put 
+	 */ 
 	public void saveDatabase(String fileName) throws IOException{
 		FileOutputStream filer = new FileOutputStream(fileName);
 		ObjectOutputStream bw = new ObjectOutputStream(filer);
