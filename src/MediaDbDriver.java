@@ -16,14 +16,19 @@ import javax.swing.JFrame;
  * @version 1.0
  */
 public class MediaDbDriver {
-
+		/** Model for the database */
 		private static DatabaseModel model;
+		/** view for the database */
 		private static ViewMDB databaseView;
+		/**View for the selection */
 		private static SelectionView  selectionView;
+		/** Controlled of the media */
 		private static MediaController controller; 
 
 	
-
+	/**Main method for this whole project 
+	 *@param args Command arguments 
+	 */
 	public static void main(String[] args) {
 		
 		MediaDatabase mdb = new MediaDatabase();
