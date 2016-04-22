@@ -36,6 +36,7 @@ public class ImportView extends JFrame implements ActionListener{
 	public JRadioButton directors = new JRadioButton("Directors");
 	public JRadioButton producers = new JRadioButton("Producers");
 	
+	/**Box that holds files to pick from */
 	public JComboBox fileCB;
 	
 	/** 
@@ -102,7 +103,9 @@ public class ImportView extends JFrame implements ActionListener{
 		
         
     }
-	
+	/**Registers the action listener for the Confirm button 
+	 * @param al Action listener for this button 
+	 */
 	public void registerConfirmButtonListener(ActionListener al){
 		confirm.addActionListener(al);
 	}
