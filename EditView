@@ -51,7 +51,7 @@ public class EditView extends JFrame implements ActionListener {
 	public EditView(){
 	
 		//The buttons to confirm or cancel the user's request
-		buttons.setLayout(new GridLayout(4,2));
+		buttons.setLayout(new GridLayout(2,2,3,8));
 		buttons.add(confirm);
 		buttons.add(cancel);
 		
