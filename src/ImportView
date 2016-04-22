@@ -36,6 +36,7 @@ public class ImportView extends JFrame implements ActionListener{
 	public JRadioButton directors = new JRadioButton("Directors");
 	public JRadioButton producers = new JRadioButton("Producers");
 	
+	/** Combo box to hold the file names */ 
 	public JComboBox fileCB;
 	
 	/** 
@@ -96,6 +97,7 @@ public class ImportView extends JFrame implements ActionListener{
 		
 	}
 	
+	/** Actioned performed for the action event */
 	@Override
 	  public void actionPerformed(ActionEvent e) {
         
