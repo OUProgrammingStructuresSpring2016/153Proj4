@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
  */
 public class MediaMakerEditView extends EditView implements ActionListener {
 
+	/**Constructor for the Media Maker edit view */
 	public MediaMakerEditView(){
 		setTitle("Media Maker Edit View");
 		
