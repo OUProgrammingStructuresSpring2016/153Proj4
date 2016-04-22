@@ -1,4 +1,3 @@
-
 import java.awt.Button;
 import java.awt.Frame;
 import java.awt.GridLayout;
@@ -14,9 +13,7 @@ import javax.swing.JPanel;
  *if they want to save their results as binary or text
  */
 public class ExportView extends JFrame implements ActionListener{
-	/** Frame for this view */
-	private Frame exportF = new Frame("Export");
-
+	
 	/**JPanel to hold the elements for this frame */
 	private JPanel jpExport = new JPanel();
 	
@@ -34,6 +31,9 @@ public class ExportView extends JFrame implements ActionListener{
 	
 	/**Constructor for Export View */
 	public ExportView(){
+	
+		setTitle("Export View");
+		
 		jpExport.setLayout(new GridLayout(4,2, 5, 15));
 		
 		jpExport.add(jlExport);
