@@ -40,8 +40,8 @@ public class MediaPersonDatabase implements Serializable{
 	 * Constructs a MediaPersonDatabase based upon a binary file.
 	 * This is what will be used when loading a file to construct a new database.
 	 * @param filename The file name of the binary file to be used
-	 * @throws IOException 
-	 * @throws ClassNotFoundException 
+	 * @throws IOException  Input Output error
+	 * @throws ClassNotFoundException   Exception if there is a class not found 
 	 */
 	public MediaPersonDatabase(String filename) throws IOException, ClassNotFoundException{
 		FileInputStream fis = new FileInputStream(filename);
@@ -105,8 +105,8 @@ public class MediaPersonDatabase implements Serializable{
 	/**
 	 * 
 	 * @param fileName The name of the binary file containing `~SEARCH RESULTS~` to be read in
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException  Input Output error
+	 * @throws ClassNotFoundException  Class not found error 
 	 */
 	
 	public void inputBinaryFile(String fileName) throws IOException, ClassNotFoundException{
@@ -120,7 +120,7 @@ public class MediaPersonDatabase implements Serializable{
 	/**
 	 * Outputs the result list into a binary file. (Note: not for importing database, but for importing search results.)
 	 * @param filename The name to give the new binary file.
-	 * @throws IOException 
+	 * @throws IOException  Input output error 
 	 */
 	public void outputToBinaryFile(String fileName) throws IOException{
 		FileOutputStream filer = new FileOutputStream(fileName);
@@ -132,7 +132,7 @@ public class MediaPersonDatabase implements Serializable{
 	/**
 	 * Outputs the result list into a text file with the given file name.
 	 * @param filename The name to give the new text file.
-	 * @throws IOException 
+	 * @throws IOException  Possible error with input output
 	 */
 	public static void outputToTextFile(String fileName, String textToOutput) throws IOException{
 		FileWriter filer = new FileWriter(fileName);
