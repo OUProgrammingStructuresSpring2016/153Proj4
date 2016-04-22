@@ -45,8 +45,8 @@ public class MediaDatabase implements Serializable{
 	/**
 	 * Constructs a MediaDatabase from an existing binary file.
 	 * @param filename The name of the binary file to be loaded.
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException Issue if file not found
+	 * @throws ClassNotFoundException Issue if class not found
 	 */
 	public MediaDatabase(String filename) throws IOException, ClassNotFoundException{
 		FileInputStream fis = new FileInputStream(filename);
@@ -56,8 +56,7 @@ public class MediaDatabase implements Serializable{
 	}
 
 	/**
-	 * @param newMedia
-	 *            The new media object to add to the database.
+	 * @param newMedia   The new media object to add to the database.
 	 */
 	public void addMedia(Media newMedia) {
 
@@ -69,6 +68,9 @@ public class MediaDatabase implements Serializable{
 
 	}
 	
+	/** Removes media from the database 
+	 * @param removeMe media to remove 
+	 */
 	public boolean removeMedia(Media removeMe){
 		if(removeMe instanceof Movie){
 			return movieDatabase.remove(removeMe);
@@ -80,9 +82,8 @@ public class MediaDatabase implements Serializable{
 	/**
 	 * Searches for one movie whose title exactly matches the given input token.
 	 * 
-	 * @param title
-	 *            The exact token to search the movie database titles for.
-	 * @return The list of movies matching the exact token.
+	 * @param title  The exact token to search the movie database titles for.
+	 * @return resultList The list of movies matching the exact token.
 	 */
 	public List<Media> searchMovieTitleExact(String title) {
 
@@ -120,9 +121,8 @@ public class MediaDatabase implements Serializable{
 	/**
 	 * Searches for all movies whose release years match the given input token.
 	 * 
-	 * @param year
-	 *            The token to search the movie database years for.
-	 * @return The list of movies whose years match the input token.
+	 * @param year  The token to search the movie database years for.
+	 * @return resultList list of movies whose years match the input token.
 	 */
 	public List<Media> searchMovieYear(String year) {
 		for (int i = 0; i < movieDatabase.size(); i++) {
@@ -136,11 +136,9 @@ public class MediaDatabase implements Serializable{
 	/**
 	 * Searches for all movies whose titles and years match the given inputs.
 	 * 
-	 * @param title
-	 *            The exact token to search the movie database for.
-	 * @param year
-	 *            The token to search the movie database years for.
-	 * @return The list of movies matching both inputs.
+	 * @param title  The exact token to search the movie database for.
+	 * @param year The token to search the movie database years for.
+	 * @return resultList The list of movies matching both inputs.
 	 */
 	public List<Media> searchMovieBoth(String title, String year) {
 
@@ -161,11 +159,9 @@ public class MediaDatabase implements Serializable{
 	 * Searches for all TV series (and possibly episode titles) whose titles
 	 * exactly match the given input token.
 	 * 
-	 * @param title
-	 *            The exact token to search the TV series database for.
-	 * @param includeEpTitles
-	 *            Determines whether to include episode titles in the search.
-	 * @return The list of TV series matching the exact token.
+	 * @param title The exact token to search the TV series database for.
+	 * @param includeEpTitles   Determines whether to include episode titles in the search.
+	 * @return resultList The list of TV series matching the exact token.
 	 */
 	public List<Media> searchTVTitleExact(String title, boolean includeEpTitles) {
 
@@ -211,11 +207,9 @@ public class MediaDatabase implements Serializable{
 	 * Searches for all TV series (and possibly episode titles) whose titles
 	 * contain the given input token.
 	 * 
-	 * @param title
-	 *            The token to search the TV series database for.
-	 * @param includeEpTitles
-	 *            Determines whether to include episode titles in the search.
-	 * @return The list of TV series containing the token.
+	 * @param title  The token to search the TV series database for.
+	 * @param includeEpTitles Determines whether to include episode titles in the search.
+	 * @return resultList The list of TV series containing the token.
 	 */
 	public List<Media> searchTVTitlePartial(String title,
 			boolean includeEpTitles) {
@@ -258,7 +252,7 @@ public class MediaDatabase implements Serializable{
 	 * Searches for all TV series whose release year matches the input.
 	 * 
 	 * @param year	The year to search the database for.
-	 * @return The list of TV series matching the input.
+	 * @return resultList The list of TV series matching the input.
 	 */
 	public List<Media> searchTVYear(String year) {
 		
@@ -298,9 +292,9 @@ public class MediaDatabase implements Serializable{
 	 * 
 	 * @param title The exact token to search the TV series database for.
 	 * @param year	The token representing the year to search for.
-	 * @param partialOrExact	Whether to include partial matches or only exact matches.
+	 * @param partialOrExact Whether to include partial matches or only exact matches.
 	 * @param includeEpTitles Determines whether to include episode titles in the search.
-	 * @return The list of TV series matching the exact token.
+	 * @return resultList The list of TV series matching the exact token.
 	 */
 	public List<Media> searchTVBoth(String title, String year, String partialOrExact, boolean includeEpTitles) {
 		
@@ -333,7 +327,7 @@ public class MediaDatabase implements Serializable{
 	}
 	
 	/**
-	 * @return	The contents of the resultList ArrayList as per project standards.
+	 * @return output	The contents of the resultList ArrayList as per project standards.
 	 */
 	public String resultListToString(){
 		
@@ -392,7 +386,7 @@ public class MediaDatabase implements Serializable{
 	/**
 	 * Outputs a search result from resultList into a binary file. (Note: not for importing database, but for importing search results.)
 	 * @param filename The name to give the new binary file.
-	 * @throws IOException
+	 * @throws IOException If file not found
 	 */
 	public void outputToBinaryFile(String filename) throws IOException{
 		FileOutputStream filer = new FileOutputStream(filename);
@@ -405,7 +399,7 @@ public class MediaDatabase implements Serializable{
 	 * Searches for media items when given multiple years to search through
 	 * 
 	 * @param year User given year to search for 
-	 * @return list of results for multi year search.
+	 * @return resultList list of results for multi year search.
 	 */
 		public List<Media> searchMultiYear(String year){
 		
