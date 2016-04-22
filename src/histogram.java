@@ -6,10 +6,19 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import javax.swing.JComponent;
 
+/**
+ *Histogram to show the works of a media person 
+ */
+ 
 public class histogram extends JComponent{
 	
 	private static final long serialVersionUID = -9171932284611597141L;
 	MediaPerson maker;
+	/**
+	 * Method to create the histogram of a media maker
+	 * 
+	 * @param person The media maker 
+	 * /
 	public histogram(MediaPerson person)
 	{
 		maker=person;
