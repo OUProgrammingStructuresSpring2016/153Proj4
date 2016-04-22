@@ -84,10 +84,15 @@ public class EditView extends JFrame implements ActionListener {
 		
 	}
 	
+	/**
+	 * Registration for Confirm Button
+	 * @param al ActionListener for this button 
+	 */
 	public void registerConfirmButtonListener(ActionListener al){ 
 		confirm.addActionListener(al);
 	}
-
+	
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
