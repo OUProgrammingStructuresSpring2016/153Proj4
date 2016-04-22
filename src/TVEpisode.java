@@ -20,6 +20,7 @@ public class TVEpisode implements Comparable<TVEpisode>{
 	/** Stores the year that the episode aired on. */
 	private String yearAired;
 	
+	/** name of TV Series */
 	private String tvSeriesName;
 	
 	/**
