@@ -1,0 +1,81 @@
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+
+	/**
+	 * The view for when someone is loading or importing a file
+	 */
+public class ImportView extends JFrame implements ActionListener{
+
+	/** 
+	 * Constructor for import view
+	 */
+	public ImportView (){
+		setTitle("Import/Load View");
+		
+		//File options
+		String [] fileString = {"SomeActors.txt","SomeDirectors.txt","SomeProducers.txt","StarTrekMovies.txt","StarTrek.txt"};
+		
+		//Buttons to allow the user to pick what type of media they are uploading 
+		ButtonGroup buttons = new ButtonGroup();	
+		JRadioButton media = new JRadioButton("Media");
+		JRadioButton movies = new JRadioButton("Movies");
+		JRadioButton series = new JRadioButton("Series");
+		JRadioButton episodes = new JRadioButton("Episodes");
+		JRadioButton makers = new JRadioButton("Makers");
+		JRadioButton actors = new JRadioButton("Actors");
+		JRadioButton directors = new JRadioButton("Directors");
+		JRadioButton producers = new JRadioButton("Producers");
+		
+		//Make sure only 1 button is picked
+		buttons.add(media);
+		buttons.add(movies);
+		buttons.add(series);
+		buttons.add(episodes);
+		buttons.add(makers);
+		buttons.add(actors);
+		buttons.add(directors);
+		buttons.add(producers);
+		
+		//JPanel to hold the buttons
+		JPanel buttonJP = new JPanel();
+		buttonJP.setLayout(new GridLayout(0,1));
+		buttonJP.add(media);   	buttonJP.add(movies); 	buttonJP.add(series);		buttonJP.add(episodes);
+		buttonJP.add(makers); 	buttonJP.add(actors);		buttonJP.add(directors);	buttonJP.add(producers);
+		
+		//JPanel to hold the label, combo box, and buttonJP
+		JPanel jpImport = new JPanel();
+		jpImport.setLayout(new GridLayout(3,2));
+		
+		JLabel jlInput = new JLabel("Which file would you like to pick?");
+		
+		//Create the combo box and add the fileString to it 
+		JComboBox fileCB = new JComboBox(fileString);
+		fileCB.setSelectedIndex(4);
+		fileCB.addActionListener(this);
+		
+		//Add the elements to the 
+		jpImport.add(jlInput);
+		jpImport.add(fileCB);
+		jpImport.add(buttonJP);
+		add(jpImport);
+		
+		setSize(350,400);
+		
+		
+	}
+	
+	@Override
+	  public void actionPerformed(ActionEvent e) {
+        
+        
+    }
+
+}
