@@ -7,11 +7,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /** Edit View for Episode entries when user presses edit menu option */
-
 public class EpisodeEditView extends EditView implements ActionListener {
-
+	/** jPANEL TO HOLD EPISODENUMBER INFO */
 	private JPanel jpEpisodeNum = new JPanel();
-	private 	JLabel jlEpiNum = new JLabel("Episode Number: ");
+	/**jLABEL FOR the episode textfield. It will hold the Episode number */
+	private JLabel jlEpiNum = new JLabel("Episode Number: ");
+	/**Textfield to hold the episode number */
 	public JTextField tfEpiNum = new JTextField();
 	
 	/** Constructor for episode edit view */
