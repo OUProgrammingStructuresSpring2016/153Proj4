@@ -1,10 +1,165 @@
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Map;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,7 +169,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.ButtonGroup;
+import javax.swing.WindowConstants;
 public class ViewMDB extends JFrame implements ActionListener, Serializable{
 
 
@@ -27,8 +182,8 @@ public class ViewMDB extends JFrame implements ActionListener, Serializable{
 
 	private	JMenuBar mediaMB = new JMenuBar();
 
-	private	JLabel mediaType = new JLabel (" Media Type ");
-	private	JLabel selection = new JLabel(" Selection");
+	private	JLabel mediaType = new JLabel (" Filter:");
+	private	JLabel selection = new JLabel("Selection");
 	public	JList<Object>  mediaOutput; 
 	public DefaultListModel<Object> listModel = new DefaultListModel<Object>();
 
@@ -39,6 +194,8 @@ public class ViewMDB extends JFrame implements ActionListener, Serializable{
 	private JPanel selectPanel = new JPanel();
 
 
+	public ButtonGroup buttons = new ButtonGroup();
+	
 	/**Radio buttons for the GUI */
 	public	JRadioButton media = new JRadioButton("Media");
 	public	JRadioButton movies = new JRadioButton("Movies");
@@ -77,16 +234,17 @@ public class ViewMDB extends JFrame implements ActionListener, Serializable{
 
 	public ViewMDB(){
 		mediaOutput = new JList<Object>(listModel);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
+	
+
 
 	public void makeGUI(){
 		//Add selection list and MediaOutput the selectPanel 
 		selectPanel.setLayout(new GridLayout(2,4));
 		selectPanel.add(selection);
 		selectPanel.add(mediaOutput);
-
-		//Make sure only 1 button is selected
-		ButtonGroup buttons = new ButtonGroup();
+		
 		//make sure only 1 button is chosen
 		buttons.add(media);
 		buttons.add(movies);
@@ -135,7 +293,7 @@ public class ViewMDB extends JFrame implements ActionListener, Serializable{
 		//add elements to GUI
 
 		frame.setLayout(new GridLayout(0,1));
-		frame.add(mediaMB);
+		frame.setJMenuBar(mediaMB);
 
 
 		mediaMB.add(file);
@@ -187,7 +345,7 @@ public class ViewMDB extends JFrame implements ActionListener, Serializable{
 				listModel.addElement(s);
 			}
 			break;
-		case 3: // Telly webisodes
+		case 3: // Episodes
 			for(TVSeries s: theModel.mdb.tvDatabase){ 
 				for(TVEpisode ep: s.getEpisodes()){
 					listModel.addElement(ep);
@@ -207,14 +365,14 @@ public class ViewMDB extends JFrame implements ActionListener, Serializable{
 				listModel.addElement(m);
 			}
 			break;
-		case 6: // Dear Hectors
+		case 6: // Directors
 			ArrayList<MediaPerson> peoples1 = new ArrayList<MediaPerson>(theModel.mpdb.mpdb.values());
 			for(MediaPerson m: peoples1){
 				if(m.getNumMoviesDirected() != 0 || m.getNumSeriesDirected() != 0)
 				listModel.addElement(m);
 			}
 			break;
-		case 7: // Produce Section
+		case 7: // Producers
 			ArrayList<MediaPerson> peoples2 = new ArrayList<MediaPerson>(theModel.mpdb.mpdb.values());
 			for(MediaPerson m: peoples2){
 				if(m.getNumMoviesProduced() != 0 || m.getNumSeriesProduced() != 0)
@@ -222,6 +380,8 @@ public class ViewMDB extends JFrame implements ActionListener, Serializable{
 			}
 			break;
 		}
+		
+		repaint();
 	}
 
 	public void registerMediaRB(ActionListener al){ 
@@ -302,8 +462,26 @@ public class ViewMDB extends JFrame implements ActionListener, Serializable{
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-
+		int j=-1;
+		
+		if(media.isSelected())
+			j=0;
+		else if(movies.isSelected())
+			j=1;
+		else if(series.isSelected())
+			j=2;
+		else if(episodes.isSelected())
+			j=3;
+		else if(makers.isSelected())
+			j=4;
+		else if(actors.isSelected())
+			j=5;
+		else if(directors.isSelected())
+			j=6;
+		else if(producers.isSelected())
+			j=7;
+		populateListModel(j);
+		repaint();
 	}
 
 
