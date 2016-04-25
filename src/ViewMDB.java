@@ -25,7 +25,7 @@ import javax.swing.JToolBar;
 
 /** 
  * View for the Media Database 
- * /
+ */
 public class ViewMDB extends JFrame{
 
 /** Frame that will hold everything in the database */
